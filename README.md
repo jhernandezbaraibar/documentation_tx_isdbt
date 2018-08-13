@@ -1,2 +1,3 @@
-# documentation_tx_isdbt
-In this commit we work on the documentation for the repo gr-tx-isdbt
+# Documentation Tx-isdbt project
+
+In this repo we work on the documentation for the gr-tx-isdbt, an open and free digital television transmitter implemented in GNU Radio, which can be found here: https://github.com/jhernandezbaraibar/gr-isdbt-Tx
