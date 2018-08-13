@@ -85,7 +85,7 @@ FIng, UdelaR]
 }%
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% % Para tener una lista de referencias por capítulo, parte, etc. usar
+%% % Para tener una lista de referencias por capÃ­tulo, parte, etc. usar
 %% % este paquete.
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \RequirePackage{chapterbib} %
@@ -109,9 +109,7 @@ FIng, UdelaR]
 \newboolean{isProyecto}
 \setboolean{isProyecto}{false} % boolvar=true or false
 
-\def\TesisProy{}
-\def\TituloPosgrado{Elegir \texttt{master} o \texttt{doctor} o \texttt{proyecto}}
-\def\ISSN{ISSN XXXX-XXXX}
+
 
 \DeclareOption{master}{
   \def\TesisProy{Tesis}
@@ -134,7 +132,11 @@ FIng, UdelaR]
   \setboolean{isProyecto}{true}
 }
 
-\ProcessOptions
+
+\ProcessOptions\relax
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % fancyheader configuration
@@ -152,7 +154,7 @@ FIng, UdelaR]
 \fancyhead[RO]{\fancyplain{}{\textsf{\nouppercase{\rightmark}}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definir layout de la página
+% Definir layout de la pÃ¡gina
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \evensidemargin = 0cm%
 \oddsidemargin = 2cm%
@@ -162,14 +164,14 @@ FIng, UdelaR]
   
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Configuración de la fecha.
+% ConfiguraciÃ³n de la fecha.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\dateseparator}{-}
 \settimeformat{hhmmsstime}
 \renewcommand{\sfdefault}{lmss}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Darle un poco más de espacio para figuras y cosas flotantes.
+% Darle un poco mÃ¡s de espacio para figuras y cosas flotantes.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\textfraction}{0.1}
@@ -177,7 +179,7 @@ FIng, UdelaR]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deshacer los cambios hechos por el comando \appendix en caso de
-% tener varias partes y apéndices en cada una.
+% tener varias partes y apÃ©ndices en cada una.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\unappendix}{\par
   % \setcounter{chapter}{0}%
@@ -233,7 +235,7 @@ FIng, UdelaR]
 \input{definitions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Carátula  
+% CarÃ¡tula  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\maketitle}[0]{%
   \thispagestyle{empty}\vbox to \vsize{%
@@ -397,7 +399,7 @@ FIng, UdelaR]
 % \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Eliminar estilo en las páginas en blanco
+% Eliminar estilo en las pÃ¡ginas en blanco
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 \def\cleardoublepage{
@@ -494,4 +496,3 @@ FIng, UdelaR]
   \OriginalTitle{#1}%
   \newcommand*{\MyTitle}{#1}%
 }
-

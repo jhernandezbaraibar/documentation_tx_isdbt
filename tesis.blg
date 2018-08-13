@@ -7,11 +7,15 @@ A level-1 auxiliary file: dedicatoria.aux
 A level-1 auxiliary file: resumen.aux
 A level-1 auxiliary file: prefacio.aux
 A level-1 auxiliary file: capitulo_01.aux
+A level-1 auxiliary file: capitulo_02.aux
+A level-1 auxiliary file: capitulo_03.aux
+A level-1 auxiliary file: capitulo_04.aux
+A level-1 auxiliary file: capitulo_05.aux
 The style file: plain.bst
 Database file #1: referencias.bib
 You've used 1 entry,
             2118 wiz_defined-function locations,
-            511 strings with 4113 characters,
+            515 strings with 4173 characters,
 and the built_in function-call counts, 271 in all, are:
 = -- 25
 > -- 7
