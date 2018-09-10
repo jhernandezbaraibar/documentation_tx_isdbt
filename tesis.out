@@ -12,36 +12,35 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Fundamentos}{section.2.2}% 12
 \BOOKMARK [2][-]{subsection.2.2.2}{Continuos}{section.2.2}% 13
 \BOOKMARK [2][-]{subsection.2.2.3}{Discretos}{section.2.2}% 14
-\BOOKMARK [2][-]{subsection.2.2.4}{•}{section.2.2}% 15
-\BOOKMARK [1][-]{section.2.3}{Códigos de detección y correción de errores \(Reed-Solomon, BCH\)}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.4}{Flujos\040de\040transporte\040MPEG-2}{chapter.2}% 17
-\BOOKMARK [2][-]{subsection.2.4.1}{Paquete\040de\040flujo\040de\040transporte\040\(Transport\040Stream\040Packet\)}{section.2.4}% 18
-\BOOKMARK [2][-]{subsection.2.4.2}{PAT}{section.2.4}% 19
-\BOOKMARK [2][-]{subsection.2.4.3}{PMT}{section.2.4}% 20
-\BOOKMARK [0][-]{chapter.3}{El sistema de televisión digital terrestre ISDB-T}{}% 21
-\BOOKMARK [0][-]{chapter.4}{Radio\040definida\040por\040Software}{}% 22
-\BOOKMARK [0][-]{chapter.5}{Un\040transmisor\040ISDBT\040implementado\040en\040GNU\040Radio}{}% 23
-\BOOKMARK [1][-]{section.5.1}{Generalidades\040del\040Transmisor}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.2}{Bloques\040fundamentales\040del\040sistema}{chapter.5}% 25
-\BOOKMARK [2][-]{subsection.5.2.1}{TS\040Remux\040y\040el\040Broadcast\040Transpor\040Stream}{section.5.2}% 26
-\BOOKMARK [2][-]{subsection.5.2.2}{Reed-Solomon}{section.5.2}% 27
-\BOOKMARK [2][-]{subsection.5.2.3}{Divisor jerárquico}{section.5.2}% 28
-\BOOKMARK [2][-]{subsection.5.2.4}{Dispersor de energía}{section.5.2}% 29
-\BOOKMARK [2][-]{subsection.5.2.5}{Entrelazamiento\040de\040byte}{section.5.2}% 30
-\BOOKMARK [2][-]{subsection.5.2.6}{Código convolucional}{section.5.2}% 31
-\BOOKMARK [2][-]{subsection.5.2.7}{Entrelazamiento de bit y modulación}{section.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.2.8}{Combinación jerárquica}{section.5.2}% 33
-\BOOKMARK [2][-]{subsection.5.2.9}{Entrelazamiento\040temporal}{section.5.2}% 34
-\BOOKMARK [2][-]{subsection.5.2.10}{Entrelazamiento\040frecuencial}{section.5.2}% 35
-\BOOKMARK [2][-]{subsection.5.2.11}{El\040cuadro\040OFDM}{section.5.2}% 36
-\BOOKMARK [2][-]{subsection.5.2.12}{Portadoras\040piloto}{section.5.2}% 37
-\BOOKMARK [2][-]{subsection.5.2.13}{IFFT y prefijo cíclico}{section.5.2}% 38
-\BOOKMARK [1][-]{section.5.3}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 39
-\BOOKMARK [0][-]{chapter.6}{Evaluacion\040del\040sistema}{}% 40
-\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 41
-\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 42
-\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 43
-\BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 44
-\BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 45
-\BOOKMARK [0][-]{appendix*.9}{Índice de tablas}{}% 46
-\BOOKMARK [0][-]{appendix*.10}{Índice de figuras}{}% 47
+\BOOKMARK [1][-]{section.2.3}{Códigos de detección y correción de errores \(Reed-Solomon, BCH\)}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.4}{Flujos\040de\040transporte\040MPEG-2}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.4.1}{Paquete\040de\040flujo\040de\040transporte\040\(Transport\040Stream\040Packet\)}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.2}{PAT}{section.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.4.3}{PMT}{section.2.4}% 19
+\BOOKMARK [0][-]{chapter.3}{El sistema de televisión digital terrestre ISDB-T}{}% 20
+\BOOKMARK [0][-]{chapter.4}{Radio\040definida\040por\040Software}{}% 21
+\BOOKMARK [0][-]{chapter.5}{Un\040transmisor\040ISDBT\040implementado\040en\040GNU\040Radio}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Generalidades\040del\040Transmisor}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Bloques\040fundamentales\040del\040sistema}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{TS\040Remux\040y\040el\040Broadcast\040Transpor\040Stream}{section.5.2}% 25
+\BOOKMARK [2][-]{subsection.5.2.2}{Reed-Solomon}{section.5.2}% 26
+\BOOKMARK [2][-]{subsection.5.2.3}{Divisor jerárquico}{section.5.2}% 27
+\BOOKMARK [2][-]{subsection.5.2.4}{Dispersor de energía}{section.5.2}% 28
+\BOOKMARK [2][-]{subsection.5.2.5}{Entrelazamiento\040de\040byte}{section.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.2.6}{Código convolucional}{section.5.2}% 30
+\BOOKMARK [2][-]{subsection.5.2.7}{Entrelazamiento de bit y modulación}{section.5.2}% 31
+\BOOKMARK [2][-]{subsection.5.2.8}{Combinación jerárquica}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.9}{Entrelazamiento\040temporal}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.10}{Entrelazamiento\040frecuencial}{section.5.2}% 34
+\BOOKMARK [2][-]{subsection.5.2.11}{El\040cuadro\040OFDM}{section.5.2}% 35
+\BOOKMARK [2][-]{subsection.5.2.12}{Portadoras\040piloto}{section.5.2}% 36
+\BOOKMARK [2][-]{subsection.5.2.13}{IFFT y prefijo cíclico}{section.5.2}% 37
+\BOOKMARK [1][-]{section.5.3}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{Evaluacion\040del\040sistema}{}% 39
+\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 41
+\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 42
+\BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 43
+\BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 44
+\BOOKMARK [0][-]{appendix*.14}{Índice de tablas}{}% 45
+\BOOKMARK [0][-]{appendix*.15}{Índice de figuras}{}% 46
