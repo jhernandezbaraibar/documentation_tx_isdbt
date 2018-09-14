@@ -1,10 +1,27 @@
 \chapter{Introducción}
 
-TV digital, SDRs, gr-isdbt, evolucion de la TV digital en el Uruguay,......
+Implementar un transmisor de television digital, no es una tarea sencilla. El primer problema a enfrentar es el acceso a la informacion tecnica. Existe poca documentacion generada en el pais, para cumplir con las condiciones tecnicas de un sistema complejo y que, ademas, ya lleva 7 años de vigencia como oficial. La norma presentada por la ARIB deja varias zonas grises, asume por conocidos conceptos clave, y no se explaya mas de lo necesario en cuestiones de fondo. 
 
-Este capítulo es muy importante, y hay que poner la motivación y la importancia del proyecto. Hay que ver si no me olvido de nada, pero lo que sí o sí hay que poner son la didáctica (mostrar un sistema punta a punta bastante complejo como ISDB-T, que no es una radio AM digamos) y la posibilidad de armar una transmisora de TV con unos cientos de dólares. Esto último hay que verificarlo en la parte de evaluación: sobre todo el alcance. 
+Existen fuertes limitaciones economicas para hacerse con software o hardware comercial que resuelvan incluso algunas de las funcionalidades que exige la norma. 
 
-Motivacion, facultad busca darle al estado conocimiento sobre ISDBT, software de codigo abierto y el alcance global de la informacion bajo este paradigma. Complementar el trabajo del Receptor.
+Esta tesis intenta suplir esa carencia, en principio complementando el trabajo iniciado por el grupo ARTES con el receptor gr-isdbt. Se desarrollo a lo largo de este proyecto, un transmisor de television digital que cumple con las condiciones establecidas en la norma, y cuyas señales son decodificables por los televisores comerciales homologados por el LATU.
+
+Contar con el trabajo presentado en gr-isdbt fue una ayuda mayuscula, ya que el paradigma de codigo abierto permitio contrastar y testear los conceptos vertidos en la norma, lo que fue fundamental para la comprension de que cosas seria necesario implementar para transmitir. Es fundamental para este grupo de trabajo destacar lo valioso de la generacion de proyectos de codigo abierto.
+
+Esperamos contribuir con esta comunidad poniendo a disposicion de cualquier persona el transmisor, para que continuen con el trabajo de aprendizaje, la optimizacion del mismo por tecnicos y estudiantes con un mejor panorama del rubro del que tuvimos al implementar gr-isdbt-tx
+
+Contribuir con la comunidad nacional de tecnicos que trabajan en el rubro, y que no cuentan con documentacion tecnica generada por y para la norma nacional, con los problemas y las particularidades que la transmision tiene en nuestro pais y no tener que abstraer de trabajos de terceros, que resolvieron problemas similares en contextos diferentes.
+
+Existen en el Uruguay XX licencias de transmision de television para el area nacional. Durante la implementacion en el marco legal de la television digital, se entregaron 22 licencias para transmision de television digital bajo la norma ISDBT. De ese total, solo algunos estan brindando el servicio de forma adecuada.
+
+La situacion de los consumidores del servicio tampoco es la ideal. La television analogica sigue siendo la mayor puerta de acceso al medio. Tanto es asi, que el apagon analogico programado para 2015, fue postpuesto por tiempo indeterminado. En Argentina, la situacion es similar, siendo postpuesto para 2019. El alto costo del recambio de equipamiento, y posturas sobre la democratizacion del acceso a la informacion para personas de bajos recursos, fundamentan estas decisiones.
+	
+Se logra visualizar el funcionamiento de la norma de television nacional, de forma mas clara y consisa de lo que habia actualmente. Los conceptos que deja la norma como documento se bajan a tierra en un formato de codigo abierto, y gratuito, lo que democratiza el acceso a la informacion que hoy por hoy existe mayoritariamente en hardware y software propietario con licencias caras.
+	
+Aparece la posibilidad de recrear una planta de transmision de television nacional a muy bajo costo, permitiendo su reproduccion tanto en el hogar por entusiastas, en el aula por docentes o en la industria, por tecnicos, lo cual puede colaborar con el mejoramiento de la calidad del servicio actual.
+	
+Sirve como ejemplo para algunos de los cursos de facultad, generalmente denominados por el estudiantado como muy teoricos y con poco alcance practico. 
+
 
 Miren todo lo que aprendí, ver~\cite{Autor}.
 
