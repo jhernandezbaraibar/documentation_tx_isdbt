@@ -16,9 +16,9 @@
 \contentsline {subsection}{\numberline {2.2.5}Entrelazamiento de datos}{6}{subsection.2.2.5}
 \contentsline {section}{\numberline {2.3}Modulación OFDM}{6}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Fundamentos}{6}{subsection.2.3.1}
-\contentsline {subsubsection}{Transformada de Fourier}{6}{section*.8}
-\contentsline {subsubsection}{Convoluci\'on circular}{6}{section*.9}
-\contentsline {subsubsection}{Esquema b\'asico}{6}{section*.10}
+\contentsline {subsubsection}{Transformada de Fourier}{6}{section*.9}
+\contentsline {subsubsection}{Convoluci\'on circular}{6}{section*.10}
+\contentsline {subsubsection}{Esquema b\'asico}{6}{section*.11}
 \contentsline {subsection}{\numberline {2.3.2}Continuos}{6}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Discretos}{6}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}El estandard MPEG-4}{6}{section.2.4}
@@ -56,5 +56,5 @@
 \contentsline {chapter}{\numberline {7}Conclusiones y trabajo a futuro}{15}{chapter.7}
 \contentsline {chapter}{\numberline {A}Algo que agregar}{17}{appendix.Alph1}
 \contentsline {chapter}{Referencias}{19}{appendix.Alph1}
-\contentsline {chapter}{\'Indice de tablas}{20}{appendix*.11}
-\contentsline {chapter}{\'Indice de figuras}{22}{appendix*.12}
+\contentsline {chapter}{\'Indice de tablas}{20}{appendix*.12}
+\contentsline {chapter}{\'Indice de figuras}{22}{appendix*.13}
