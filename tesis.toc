@@ -8,52 +8,53 @@
 \contentsline {subsection}{\numberline {2.1.1}Canales Continuos}{3}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Canales Discretos}{3}{subsection.2.1.2}
 \contentsline {subsection}{\numberline {2.1.3}Las no idealidades del Canal}{3}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Estrategias para mitigar los efectos del canal}{4}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}C\'odigos de detecci\'on y correci\'on de errores}{4}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}C\'odigos de Reed-Solomon}{4}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}C\'odigos BCH}{4}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Entrelazamiento de datos}{4}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Modulación OFDM}{4}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Fundamentos}{4}{subsection.2.3.1}
-\contentsline {subsubsection}{Transformada de Fourier}{4}{section*.7}
-\contentsline {subsubsection}{Convoluci\'on circular}{4}{section*.8}
-\contentsline {subsubsection}{Esquema b\'asico}{4}{section*.9}
-\contentsline {subsection}{\numberline {2.3.2}Continuos}{4}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Discretos}{4}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}El estandard MPEG-4}{4}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Generalidades}{4}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Transport Stream Packet}{4}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Tablas PAT}{4}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Tablas PMT}{4}{subsection.2.4.4}
-\contentsline {chapter}{\numberline {3}El Sistema de Televisión Digital Terrestre ISDB-T}{5}{chapter.3}
-\contentsline {section}{\numberline {3.1}BTS como fuente de datos}{5}{section.3.1}
-\contentsline {section}{\numberline {3.2}Robustecimiento frente a las no idealidades del canal}{5}{section.3.2}
-\contentsline {section}{\numberline {3.3}Las portadoras y la modulacion}{5}{section.3.3}
-\contentsline {section}{\numberline {3.4}Formacion de los frames OFDM}{5}{section.3.4}
-\contentsline {section}{\numberline {3.5}La puesta en el aire de la señal}{5}{section.3.5}
-\contentsline {chapter}{\numberline {4}Radio definida por Software}{7}{chapter.4}
-\contentsline {section}{\numberline {4.1}GNU Radio}{7}{section.4.1}
-\contentsline {section}{\numberline {4.2}Hardware}{7}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Alcance del transmisor}{7}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Antenas de laboratorio}{7}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}gr-isdbt}{7}{section.4.3}
-\contentsline {chapter}{\numberline {5}Un transmisor ISDBT implementado en GNU Radio}{9}{chapter.5}
-\contentsline {section}{\numberline {5.1}Generalidades del Transmisor}{9}{section.5.1}
-\contentsline {section}{\numberline {5.2}El flujo de datos en GNU Radio}{9}{section.5.2}
-\contentsline {section}{\numberline {5.3}Obtencion de los TSP por capa}{9}{section.5.3}
-\contentsline {section}{\numberline {5.4}Codificaciones de Canal}{9}{section.5.4}
-\contentsline {section}{\numberline {5.5}La modulacion}{9}{section.5.5}
-\contentsline {section}{\numberline {5.6}El uso de los entrelazamientos}{9}{section.5.6}
-\contentsline {section}{\numberline {5.7}Formacion de cuadros OFDM}{9}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Las portadoras piloto}{9}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Las portadoras activas}{9}{subsection.5.7.2}
-\contentsline {section}{\numberline {5.8}El prefijo ciclico}{9}{section.5.8}
-\contentsline {section}{\numberline {5.9}La transmision desde USRP}{9}{section.5.9}
-\contentsline {chapter}{\numberline {6}Evaluacion del sistema}{11}{chapter.6}
-\contentsline {section}{\numberline {6.1}Pruebas sobre gr-isdbt}{11}{section.6.1}
-\contentsline {section}{\numberline {6.2}Pruebas sobre televisores comerciales}{11}{section.6.2}
-\contentsline {chapter}{\numberline {7}Conclusiones y trabajo a futuro}{13}{chapter.7}
-\contentsline {chapter}{\numberline {A}Algo que agregar}{15}{appendix.Alph1}
-\contentsline {chapter}{Referencias}{17}{appendix.Alph1}
-\contentsline {chapter}{\'Indice de tablas}{18}{appendix*.10}
-\contentsline {chapter}{\'Indice de figuras}{20}{appendix*.11}
+\contentsline {section}{\numberline {2.2}Estrategias para mitigar los efectos del canal}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}C\'odigos de detecci\'on y correci\'on de errores}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Códigos Cíclicos}{4}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}C\'odigos BCH}{6}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}C\'odigos de Reed-Solomon}{6}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Entrelazamiento de datos}{6}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Modulación OFDM}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Fundamentos}{6}{subsection.2.3.1}
+\contentsline {subsubsection}{Transformada de Fourier}{6}{section*.8}
+\contentsline {subsubsection}{Convoluci\'on circular}{6}{section*.9}
+\contentsline {subsubsection}{Esquema b\'asico}{6}{section*.10}
+\contentsline {subsection}{\numberline {2.3.2}Continuos}{6}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Discretos}{6}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}El estandard MPEG-4}{6}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Generalidades}{6}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Transport Stream Packet}{6}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Tablas PAT}{6}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Tablas PMT}{6}{subsection.2.4.4}
+\contentsline {chapter}{\numberline {3}El Sistema de Televisión Digital Terrestre ISDB-T}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}BTS como fuente de datos}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Robustecimiento frente a las no idealidades del canal}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Las portadoras y la modulacion}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Formacion de los frames OFDM}{7}{section.3.4}
+\contentsline {section}{\numberline {3.5}La puesta en el aire de la señal}{7}{section.3.5}
+\contentsline {chapter}{\numberline {4}Radio definida por Software}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}GNU Radio}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Hardware}{9}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Alcance del transmisor}{9}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Antenas de laboratorio}{9}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}gr-isdbt}{9}{section.4.3}
+\contentsline {chapter}{\numberline {5}Un transmisor ISDBT implementado en GNU Radio}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}Generalidades del Transmisor}{11}{section.5.1}
+\contentsline {section}{\numberline {5.2}El flujo de datos en GNU Radio}{11}{section.5.2}
+\contentsline {section}{\numberline {5.3}Obtencion de los TSP por capa}{11}{section.5.3}
+\contentsline {section}{\numberline {5.4}Codificaciones de Canal}{11}{section.5.4}
+\contentsline {section}{\numberline {5.5}La modulacion}{11}{section.5.5}
+\contentsline {section}{\numberline {5.6}El uso de los entrelazamientos}{11}{section.5.6}
+\contentsline {section}{\numberline {5.7}Formacion de cuadros OFDM}{11}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Las portadoras piloto}{11}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Las portadoras activas}{11}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}El prefijo ciclico}{11}{section.5.8}
+\contentsline {section}{\numberline {5.9}La transmision desde USRP}{11}{section.5.9}
+\contentsline {chapter}{\numberline {6}Evaluacion del sistema}{13}{chapter.6}
+\contentsline {section}{\numberline {6.1}Pruebas sobre gr-isdbt}{13}{section.6.1}
+\contentsline {section}{\numberline {6.2}Pruebas sobre televisores comerciales}{13}{section.6.2}
+\contentsline {chapter}{\numberline {7}Conclusiones y trabajo a futuro}{15}{chapter.7}
+\contentsline {chapter}{\numberline {A}Algo que agregar}{17}{appendix.Alph1}
+\contentsline {chapter}{Referencias}{19}{appendix.Alph1}
+\contentsline {chapter}{\'Indice de tablas}{20}{appendix*.11}
+\contentsline {chapter}{\'Indice de figuras}{22}{appendix*.12}

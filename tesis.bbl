@@ -2,7 +2,16 @@
 
 \bibitem{Autor}
 Author.
-\newblock Title.
+\newblock pocho.
 \newblock {\em Journal}, 10(2):1--2, 2001.
+
+\bibitem{ine2017}
+Instituto~Nacional de~Estadística.
+\newblock {\em Encuesta Continua de Hogares}, 2017.
+
+\bibitem{moon2005error}
+Todd~K Moon.
+\newblock Error correction coding.
+\newblock {\em Mathematical Methods and Algorithms. Jhon Wiley and Son}, 2005.
 
 \end{thebibliography}
