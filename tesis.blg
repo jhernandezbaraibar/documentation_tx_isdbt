@@ -16,45 +16,46 @@ A level-1 auxiliary file: capitulo_07.aux
 The style file: plain.bst
 Database file #1: referencias.bib
 Warning--empty title in ine2017
-You've used 3 entries,
+Warning--empty title in gr-isdbt
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            526 strings with 4383 characters,
-and the built_in function-call counts, 674 in all, are:
-= -- 63
-> -- 21
+            525 strings with 4471 characters,
+and the built_in function-call counts, 828 in all, are:
+= -- 75
+> -- 28
 < -- 0
-+ -- 9
-- -- 6
++ -- 12
+- -- 8
 * -- 38
-:= -- 129
-add.period$ -- 8
-call.type$ -- 3
-change.case$ -- 11
+:= -- 156
+add.period$ -- 10
+call.type$ -- 4
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 31
-empty$ -- 58
-format.name$ -- 6
-if$ -- 134
+cite$ -- 6
+duplicate$ -- 37
+empty$ -- 74
+format.name$ -- 8
+if$ -- 165
 int.to.chr$ -- 0
-int.to.str$ -- 3
+int.to.str$ -- 4
 missing$ -- 3
-newline$ -- 17
-num.names$ -- 6
-pop$ -- 12
+newline$ -- 21
+num.names$ -- 8
+pop$ -- 25
 preamble$ -- 1
-purify$ -- 9
+purify$ -- 12
 quote$ -- 0
-skip$ -- 20
+skip$ -- 26
 stack$ -- 0
-substring$ -- 24
-swap$ -- 3
+substring$ -- 20
+swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
-warning$ -- 1
-while$ -- 7
-width$ -- 4
-write$ -- 31
-(There was 1 warning)
+type$ -- 16
+warning$ -- 2
+while$ -- 8
+width$ -- 5
+write$ -- 38
+(There were 2 warnings)
