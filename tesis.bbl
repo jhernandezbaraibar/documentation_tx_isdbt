@@ -5,6 +5,12 @@ ARIB.
 \newblock Association of radio industries and businesses, 1995.
 \newblock [Web; accedido el 06-11-2018].
 
+\bibitem{chang-ofdm}
+Robert~W Chang.
+\newblock Synthesis of band-limited orthogonal signals for multichannel data
+  transmission.
+\newblock {\em Agregar Luego}, 1966.
+
 \bibitem{ine2017}
 Instituto~Nacional de~Estadística.
 \newblock {\em Encuesta Continua de Hogares}, 2017.
@@ -14,8 +20,19 @@ Todd~K Moon.
 \newblock Error correction coding.
 \newblock {\em Mathematical Methods and Algorithms. Jhon Wiley and Son}, 2005.
 
+\bibitem{MPEG}
+MPEG.
+\newblock Moving picture experts group, 1995.
+\newblock [Web; accedido el 06-11-2018].
+
 \bibitem{gr-isdbt}
 Federico~Larroca Pablo~Flores.
 \newblock {\em Encuesta Continua de Hogares}, 2017.
+
+\bibitem{discrete-ofdm}
+Weinstein and Edbert.
+\newblock Data transmission by frequency-division multiplexing using the
+  discrete fourier transform.
+\newblock {\em Agregar Luego}, 1971.
 
 \end{thebibliography}

@@ -96,18 +96,36 @@ Los bits de paridad se obtienen calculando el resto de la division $x^{(7-4)}m(x
 
 \section{Modulación OFDM}
 
-	\subsection{Fundamentos}
-		\subsubsection{Transformada de Fourier}
-		\subsubsection{Convoluci\'on circular}
-		\subsubsection{Esquema b\'asico}
-	
-	\subsection{Continuos}
+Chang presenta un metodo para lograr la multiplexion canales de datos a través de un medio de frecuencia acotada, en \cite{chang-ofdm}, que elimina los efectos de interferencia intersimbolica e intercanal. Implico un cambio importante en la teoría de telecomunicaciones de la época, pues hasta entonces, los resultados existentes tomaban como funciones modulantes ortogonales, señales limitadas en el tiempo, lo que implica grandes anchos de banda en frecuencia, y en los canales de banda acotada implementados en la practica se traducían en interferencias producto de los recortes en banda. 
 
-	\subsection{Discretos}
+En el paper, Chang postula la idea de una nueva clase de funciones modulantes acotadas en frecuencia, que ademas, permite modular de manera independiente amplitud y frecuencia. En ese momento se sentaban las bases de la modulacion OFDM (Orthogonal Frecuency-Division Multiplexing).
 
-\section{El estandard MPEG-4}
-	\subsection{Generalidades}
-	\subsection{Transport Stream Packet}
+Uno de los mayores problemas de los sistemas FDM, era la incapacidad para escalar en cantidad de canales. La complejidad y el costo de construir los osciladores para la cantidad de portadoras necesarias, mantenían la brecha entre la teoría y la practica. 
+
+La solución a estos problemas, llega cuando se logra programar computadoras capaces de procesar grandes cantidades de datos, mediante la implementación del algoritmo de “Fast Fourier Transform”. 
+
+Weinstein y Ebert, resolvieron en \cite{discrete-ofdm} el problema de la escalabilidad de los sistemas FDM, mediante la conjugacion de los mencionados avances tecnologicos, discretizando las señales a transmitir, y modulandolas por computadora, en lugar de usar los bancos de osciladores. 
+
+Una señal multitonal, puede ser vista como la transformada de fourier de un tren de pulsos, y la demodulacion coherente a su vez puede entenderse como la aplicación en tiempo continuo de una transformada inversa de Fourier. Entonces, probaron que muestreando la señal de origen, y mediante la implementación de un modem sobre una computadora que ejecute el algoritmo de la transofrmada rápida de fourier, se pueden obtener aproximaciones suficientemente cercanas a los de la señal original. 
+
+En principio el resultado es valido para un sistema FDM con N canales simultáneos, con portadoras separadas en frecuencia en distancias suficientemente cercanas, como para aproximar la respuesta al impulso del canal, como si fuese de modulo constante sobre cada uno de los N canales. 
+
+Pero falta un paso mas, pues la hipótesis del comportamiento del canal constante, se aleja bastante de la realidad. Plantearon entonces un canal, de respuesta al impulso lineal en frecuencia.
+
+En estas condiciones, y atendiendo ademas que la señal discreta a transmitir solo “vive” en el ancho de banda de transmisión (N.df), consideraron a la señal a transmitir como una transformada de fourier enventanada. Desarrollando estas ideas lograron probar que, si la ventana es plana en las frecuencias de interés, y se agregan “guardas” de seguridad a ambos lados de las portadoras activas, de modo que las colas del enventanado caigan de forma continua, (alejando el enventanado de la idealidad de las ventanas rectangulares) se logran condiciones para reducir la distorsión generada por la respuesta al impulso del canal, a efectos transitorios de dispersión rápida, y la señal en recepción sigue convergiendo a la señal transmitida.
+
+\section{MPEG y sus Estandares}
+
+El Moving Picture Experts Group (MPEG)\cite{MPEG} es un grupo de trabajo conformado por expertos internacionales, formado por la Organizacion Internacional de Normalizacion (ISO) en conjunto con la Comision Electrotecnica Internacional (IEC), con el objetivo de desarrollar estandares para la codificacion, compresion y transmision de audio y video.
+
+Uno de los estandares publicados por el MPEG, es MPEG-4. Consta de metodos para la compresion digital de contenidos audiovisuales,  y abarca la difusion de los mismos a traves de una amplia gamas de tecnologias, desde el streaming de datos a traves de la web, codificacion de voz y video para telefonia y videoconferencias, comercializacion de discos compactos (CD) y hasta formatos para la transmision de Television. 
+
+Es en este ultimo punto donde se vincula con ISDB-T Internacional, puesto que para la codificacion de fuente en la norma, fue seleccionado el Estandar MPEG-4 Parte 10 “Advanced Video Coding”, tambien denominado H.264.
+
+Para garantizar que los receptores de television digital ISDB-T, tambien sean compatibles con los transmisores tanto de ISDB-T como de ISDB-T International, se encapsulan los videos codificados en H.264 dentro de un formato denominado “Transport Stream” que se define en la norma MPEG-2 Parte 1 – Sistemas.
+
+En el transmisor gr-isdbt-tx, tomamos como fuente de datos un archivo codificado como Transport Stream, para garantizar esta compatibilidad.
+	\subsection{MPEG 2 Transport Stream}
 	\subsection{Tablas PAT}
 	\subsection{Tablas PMT}
 
