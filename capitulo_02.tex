@@ -126,6 +126,36 @@ Para garantizar que los receptores de television digital ISDB-T, tambien sean co
 
 En el transmisor gr-isdbt-tx, tomamos como fuente de datos un archivo codificado como Transport Stream, para garantizar esta compatibilidad.
 	\subsection{MPEG 2 Transport Stream}
-	\subsection{Tablas PAT}
+	
+
+Un Paquetized Elementary Stream (PES), es una especificacion de MPEG 2 para el transporte de flujos elementales, generalmente las salidas del codificadores de audio y video. En ISDB-T, los elementary Streams pueden ser videos, audios en mas de un idioma, archivos de subtitulo, grillas de programacion y tablas de informacion de transmision.
+
+Un Transport Stream (TS) es un contenedor de datos en el que se encapsulan en conjunto un PES, junto con codigos de correccion de errores y flags de sincronismo. La combinacion de estos datos, permite mantener la continuidad de la transmision cuando el canal se degrada, respondiendo a su propia naturaleza. 
+
+En ISDB-T, se multiplexan varios TS al inicio de la cadena de transmisión, para crear un unico TS de transmision. El mismo sera sometido luego a codificaciones de canal, para robustecerlo aun mas frente a las perdidas del canal. Este proceso se discutira luego en el capitulo 3.
+
+La estructura de un Transport Stream es la siguiente:
+(Imagen)
+
+Los datos de los elementary streams se recortan en secciones de 188 bytes, este tamaño tan chico, permite que se realice un entrelazamiento con otros ES con muy baja latencia, y con una mayor resistencia ante las perdidas.
+
 	\subsection{Tablas PMT}
+
+Dentro de los Transport Streams se define el concepto de Programas. Cada programa esta definido en una tabla denominada PMT (Program Map Table), que viaja multiplexada en el TS de transmisión, identificada por un PID único. Los Elementary Streams asociados con el programa en cuestión, tienen sus PIDs listados en la PMT. En general, se asocia cada canal con un programa, aunque también podrían utilizarse programas para (completar)
+
+Cuando un receptor decide reproducir un canal en particular, lo que tiene que hacer es decodificar los payloads contendidos en los TS cuyos PIDs están en la tabla PMT
+
+Ademas de la tabla PMT, existen otros tipos de tablas en MPEG-2. Para el alcance de este documento, nos interesa detallar solo dos mas.
+La Program Asociation Table (PAT), contiene una lista con todos los programas 
+
+
+
+	
+	\subsection{Tablas PAT}
+	The program association table lists all programs available in the transport stream. Each of the listed programs is identified by a 16-bit value called program number. Each of the programs listed in PAT has an associated value of PID for its program map table (PMT). 
+	The value 0x0000 for program number is reserved to specify the PID where to look for network information table. If such a program is not present in PAT the default PID value (0x0010) shall be used for NIT. 
+	TS packets containing PAT information always have PID 0x0000. 
+	\subsection{Paquetes Nulos}
+	Null packets
+	Some transmission schemes, such as those in ATSC and DVB, impose strict constant bitrate requirements on the transport stream. In order to ensure that the stream maintains a constant bitrate, a Multiplexer may need to insert some additional packets. The PID 0x1FFF is reserved for this purpose. The payload of null packets may not contain any data at all, and the receiver is expected to ignore its contents. 
 
