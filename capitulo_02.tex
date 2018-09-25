@@ -1,15 +1,10 @@
 \chapter{Fundamento Teórico}
 
-La sección de canal van a dar pie a los time interleavers y esas cosas, no? O sea, hablar de fading tanto en frecuencia y tiempo y cómo contrarrestarlo?
-Yo pondría la parte de DFT, FFT y convolución circular dentro de OFDM. En FFT van a hablar del algoritmo? Me parece medio al santo botón.
-En la parte de códigos les faltó hablar de convolucionales.
-
-
 \section{Modelado del canal}
 	\subsection{Canales Continuos}
 	\subsection{Canales Discretos}
 	\subsection{Las no idealidades del Canal}
-No idealidades del canal inalámbrico móvil.
+
 
 \section{Estrategias para mitigar los efectos del canal}
 
@@ -88,15 +83,9 @@ En una situación en la que se recibe una palabra $\textbf{r}$ cuyo mensaje es $
 Por ejemplo, para un código cíclico (7, 4) con polinomio generador $g(x) = x^3 + x + 1$ se desea codificar el mensaje 1001. Los mensajes codificados tendran $n-k = 7 - 4 = 3$ bits de paridad. El mensaje en su forma polinomial queda $m(x) = 1 + x^3$.
 Los bits de paridad se obtienen calculando el resto de la division $x^{(7-4)}m(x)/g(x)$, los coeficientes de ese resto seran los bits de la paridad buscada. Operando se llega a que la paridad es 011 y el mensaje codificado queda 0111001.
 
-	
-	
-	\subsection{C\'odigos BCH}
-	\subsection{C\'odigos de Reed-Solomon}
-	\subsection{Entrelazamiento de datos}
-
 \section{Modulación OFDM}
 
-Chang presenta un metodo para lograr la multiplexion canales de datos a través de un medio de frecuencia acotada, en \cite{chang-ofdm}, que elimina los efectos de interferencia intersimbolica e intercanal. Implico un cambio importante en la teoría de telecomunicaciones de la época, pues hasta entonces, los resultados existentes tomaban como funciones modulantes ortogonales, señales limitadas en el tiempo, lo que implica grandes anchos de banda en frecuencia, y en los canales de banda acotada implementados en la practica se traducían en interferencias producto de los recortes en banda. 
+En 1966, Chang presenta un método para lograr la multiplexion canales de datos a través de un medio de frecuencia acotada, en \cite{chang-ofdm}, que elimina los efectos de interferencia intersimbolica e intercanal. Implico un cambio importante en la teoría de telecomunicaciones de la época, pues hasta entonces, los resultados existentes tomaban como funciones modulantes ortogonales, señales limitadas en el tiempo, lo que implica grandes anchos de banda en frecuencia, y en los canales de banda acotada implementados en la practica se traducían en interferencias producto de los recortes en banda. 
 
 En el paper, Chang postula la idea de una nueva clase de funciones modulantes acotadas en frecuencia, que ademas, permite modular de manera independiente amplitud y frecuencia. En ese momento se sentaban las bases de la modulacion OFDM (Orthogonal Frecuency-Division Multiplexing).
 
@@ -125,37 +114,41 @@ Es en este ultimo punto donde se vincula con ISDB-T Internacional, puesto que pa
 Para garantizar que los receptores de television digital ISDB-T, tambien sean compatibles con los transmisores tanto de ISDB-T como de ISDB-T International, se encapsulan los videos codificados en H.264 dentro de un formato denominado “Transport Stream” que se define en la norma MPEG-2 Parte 1 – Sistemas.
 
 En el transmisor gr-isdbt-tx, tomamos como fuente de datos un archivo codificado como Transport Stream, para garantizar esta compatibilidad.
+
 	\subsection{MPEG 2 Transport Stream}
 	
-
-Un Paquetized Elementary Stream (PES), es una especificacion de MPEG 2 para el transporte de flujos elementales, generalmente las salidas del codificadores de audio y video. En ISDB-T, los elementary Streams pueden ser videos, audios en mas de un idioma, archivos de subtitulo, grillas de programacion y tablas de informacion de transmision.
-
-Un Transport Stream (TS) es un contenedor de datos en el que se encapsulan en conjunto un PES, junto con codigos de correccion de errores y flags de sincronismo. La combinacion de estos datos, permite mantener la continuidad de la transmision cuando el canal se degrada, respondiendo a su propia naturaleza. 
-
-En ISDB-T, se multiplexan varios TS al inicio de la cadena de transmisión, para crear un unico TS de transmision. El mismo sera sometido luego a codificaciones de canal, para robustecerlo aun mas frente a las perdidas del canal. Este proceso se discutira luego en el capitulo 3.
-
-La estructura de un Transport Stream es la siguiente:
-(Imagen)
-
-Los datos de los elementary streams se recortan en secciones de 188 bytes, este tamaño tan chico, permite que se realice un entrelazamiento con otros ES con muy baja latencia, y con una mayor resistencia ante las perdidas.
+	Un Transport Stream (TS) es un contenedor de datos en el que se encapsulan en conjunto uno o mas PES (Paquetized Elementary Streams), junto con códigos de corrección de errores y flags de sincronismo. La combinación de esta información, permite mantener la continuidad de la decodificación incluso cuando cuando el canal se degrada fuertemente.
+	
+	Un Paquetized Elementary Stream (PES), es una especificación de MPEG 2 para el transporte de flujos elementales, generalmente las salidas del codificadores de audio y video. En ISDB-T, los Elementary Streams generalmente contienen video, audios en mas de un idioma, archivos de subtitulo, grillas de programación y tablas de información de transmisión.
+	
+	Al comienzo de la cadena de transmisión, en ISDB-T, se multiplexan varios TS, para crear un único TS sobre el cual se va a trabajar. El mismo sera sometido luego a varias capas de codificaciones de canal, para robustecerlo aun mas frente a las perdidas. Este proceso se discutirá luego en el capitulo 3.
+	
+	La estructura de un Transport Stream es la siguiente:
+	(Imagen)
+	
+	Los datos de los elementary streams se recortan en secciones de 188 bytes, este tamaño tan chico, permite que se realice un entrelazamiento con otros ES con muy baja latencia, y con una mayor resistencia ante las perdidas.
 
 	\subsection{Tablas PMT}
 
-Dentro de los Transport Streams se define el concepto de Programas. Cada programa esta definido en una tabla denominada PMT (Program Map Table), que viaja multiplexada en el TS de transmisión, identificada por un PID único. Los Elementary Streams asociados con el programa en cuestión, tienen sus PIDs listados en la PMT. En general, se asocia cada canal con un programa, aunque también podrían utilizarse programas para (completar)
-
-Cuando un receptor decide reproducir un canal en particular, lo que tiene que hacer es decodificar los payloads contendidos en los TS cuyos PIDs están en la tabla PMT
-
-Ademas de la tabla PMT, existen otros tipos de tablas en MPEG-2. Para el alcance de este documento, nos interesa detallar solo dos mas.
-La Program Asociation Table (PAT), contiene una lista con todos los programas 
-
-
+	Dentro de los Transport Streams se define el concepto de Programas. Cada programa esta definido en una tabla denominada PMT (Program Map Table), que viaja multiplexada en el TS de transmisión, identificada por un PID único. Los Elementary Streams asociados con el programa en cuestión, tienen sus PIDs listados en la PMT. En general, se asocia cada canal con un programa, aunque también podrían utilizarse programas para (completar)
+	
+	Cuando un receptor decide reproducir un canal en particular, lo que tiene que hacer es decodificar los payloads contendidos en los TS cuyos PIDs están en la tabla PMT
+	
+	Ademas de la tabla PMT, existen otros tipos de tablas en MPEG-2. Para el alcance de este documento, nos interesa detallar solo dos mas.
+	La Program Asociation Table (PAT), contiene una lista con todos los programas 
 
 	
 	\subsection{Tablas PAT}
-	The program association table lists all programs available in the transport stream. Each of the listed programs is identified by a 16-bit value called program number. Each of the programs listed in PAT has an associated value of PID for its program map table (PMT). 
-	The value 0x0000 for program number is reserved to specify the PID where to look for network information table. If such a program is not present in PAT the default PID value (0x0010) shall be used for NIT. 
-	TS packets containing PAT information always have PID 0x0000. 
+	La Program Association Table (PAT), es una tabla que contiene una lista de todos los programas disponibles en el TS. Esta formada por valores de 16 bits denominados Program Number, asociados cada uno de ellos con un PID correspondiente a su tabla PMT dentro del stream. 
+	
+	De modo que, el receptor que se conecta al stream en cualquier momento de la transmisión, pueda hallar el programa de interés y sintonizarlo, es que se identifican a todos los paquetes del Transport Stream con un identificador único, o PID. Las tablas PAT siempre van contenidas en paquetes de PID 0x0000.
+	
+	Habiendo identificado la PAT por su PID bien conocido, el receptor selecciona un programa de la lista y guarda el PID de su tabla PMT. Luego filtrando todos los paquetes cuyo identificador difiera del identificador del programa elegido, se hace con toda la información de decodificación del programa contenida en la PMT, y luego podrá discriminar entre todos los paquetes del TS, los del contenido audiovisual que le son de interés para decodificarlo. 
+ 
+	
 	\subsection{Paquetes Nulos}
-	Null packets
-	Some transmission schemes, such as those in ATSC and DVB, impose strict constant bitrate requirements on the transport stream. In order to ensure that the stream maintains a constant bitrate, a Multiplexer may need to insert some additional packets. The PID 0x1FFF is reserved for this purpose. The payload of null packets may not contain any data at all, and the receiver is expected to ignore its contents. 
+	
+	Resulta vital para un esquema de transmisión de televisión mantener el bitrate constante, pero puede ocurrir que falten datos para contemplar esa tasa. Es por eso que se definen los paquetes nulos. Un multiplexor completa con los paquetes necesarios para mantener la tasa constante.
+	
+	Para diferenciar los datos validos de los paquetes de relleno, al igual que lo que sucede con la tabla PAT, es que se usa para identificar los paquetes nulos un PID bien conocido, que en este caso es el 0x1FFF.
 
