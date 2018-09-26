@@ -15,6 +15,16 @@ Robert~W Chang.
 Instituto~Nacional de~Estadística.
 \newblock {\em Encuesta Continua de Hogares}, 2017.
 
+\bibitem{multiplex-pattern}
+P.~Flores-Guridi and F.~Larroca.
+\newblock The isdb-t multiplex frame pattern explained.
+\newblock In {\em 2017 IEEE URUCON}, pages 1--4, Oct 2017.
+
+\bibitem{forney1965concatenated}
+G~David Forney.
+\newblock Concatenated codes.
+\newblock 1965.
+
 \bibitem{moon2005error}
 Todd~K Moon.
 \newblock Error correction coding.
