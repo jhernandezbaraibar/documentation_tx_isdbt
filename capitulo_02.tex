@@ -1,5 +1,13 @@
 \chapter{Fundamento Teórico}
 
+Entendemos al proyecto gr-isdbt-tx como un complemento al trabajo de maestría presentado por Pablo Flores, por lo que nos parece reiterativo explicar en sumo detalle algunos de los fundamentos de telecomunicaciones sobre los que se construye la norma ISDB-T. Los mismos ya fueron explicados con gran claridad y nivel de detalle en la documentación de aquel proyecto. Quizás algunos de los lectores encuentren insuficiente el desarrollo de este algunos de los conceptos incluidos en este capitulo, a ellos los invitamos a complementar la lectura de esta documentación, con la tesis de Pablo.
+
+Es posible también, que entre los lectores se encuentren técnicos vinculados al área de sistemas y programación.  Encontraran ellos, seguramente, mayor interés y profundidad de conceptos en los capítulos 4 y 5, donde detallamos el uso de GNU Radio como plataforma de SDR, y la estructura funcional de nuestro transmisor, así como los desafíos de programación a los que nos enfrentamos implementando cada uno de sus bloques. 
+
+Intentando contemplar el interés de todos los lectores, es que les presentamos en este capitulo un repaso sobre algunos de los conceptos que entendemos clave para comprender por que son necesarios algunos de los bloques del transmisor. 
+
+Comenzaremos explicando aquí como se modela el canal inalámbrico para trabajar, que problemas se enfrenta uno cuando debe diseñar un sistema de transmisión por aire y como mitigar algunos de los efectos que el canal tendrá sobre nuestra señal. Repasaremos algunos de los mas utilizados códigos de detección y corrección de errores. Luego vendrá una corta explicación sobre los sistemas OFDM, su surgimiento teórico y practico, para dar un marco de surgimiento de algunas de las funcionalidades de ISDB-T. Para terminar, explicaremos de que forma se encapsulan los datos a transmitir, para eso, repasamos algunos conceptos definidos en las normas MPEG, orientados hacia la transmisión de televisión, que ayudaran a modelar la fuente de datos del sistema.  
+
 \section{Modelado del canal}
 	\subsection{Canales Continuos}
 	\subsection{Canales Discretos}
