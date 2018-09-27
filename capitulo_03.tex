@@ -23,7 +23,6 @@ Se define la frecuencia de muestreo de la IFFT como $f_{IFFT} \triangleq \frac{5
 Cada segmento a su vez est\'a conformado por dos tipos de señales portadoras. Las primeras son las correspondientes a los datos, y las otras son las denominadas \textit{portadoras piloto} que cumplen se utilizan para la estimaci\'on del canal y transmisi\'on de par\'ametros de control e informaci\'on del sistema.
 De manera general, los segmentos tienen $96 \times 2^{modo-1}$ portadoras de datos $12 \times 2^{modo-1}$ portadoras piloto dependiendo del modo de transmisi\'on. En la Tabla \ref{parametros_ISDBT} se eval\'uan estos par\'ametros para los distintos modos de transmisi\'on. 
 
-******* Prefijo c\'iclico (Considerar lo que se hablo en el CAP 2 para no ser reiterativos)******.
 
 \begin{figure}
 \centering
@@ -97,15 +96,46 @@ Como medida adicional para contrarrestar los efectos del canal se utiliza el \te
 Al transmitir en m\'ultiples portadoras ortogonales se corre el riesgo de atravesar canales selectivos en frecuencia y por lo tanto que ciertas portadoras se vean continuamente afectadas. Para mitigar esto una estrategia puede ser rotar de portadora los contenidos que se transmiten, es decir hacer un \textit{entrelazamiento frecuencial}. Con esto se logra que ante un canal selectivo, ya lo sea por sus caracter\'isticas propias o por interferencias de señales espurias fuera de banda, las portadoras que son afectadas no resulte en una p\'erdida de bloques de informaci\'on irrecuperables.
 
 
+\section{Formacion de los cuadros OFDM}
+
+El estándar define una estructura de cuadro OFDM formada por un conjunto de 204 símbolos OFDM consecutivos, es decir que, por ejemplo, para el modo 1 se tienen 108 símbolos complejos por segmento con lo cual un cuadro OFDM en modo 1 está compuesto por $108 \times 13 \times 204$ complejos. Esta estructura facilita las tareas de sincronización en el receptor.
+
+
 \section{Las portadoras y la modulacion}
 
+Cada segmento OFDM está conformado por una cantidad de portadoras en función del modo de transmisión. La mayor cantidad de portadoras está destinada a la transmisión de los datos mientras que algunas otras son utilizadas como mecanismos para la estimación del canal, sincronización, transmisión de parámetros de funcionamiento entre otros.
 
-DATOS
+
+
 Scattered Pilot
-TMCC
-AC
+Las portadoras piloto son señales moduladas en BPSK que se generan a partir de una secuencia pseudoaleatoria PRBS (Pseudo Random Binary Sequence). El procedimiento para generar estas portadoras consiste en evolucionar el circuito de la Figura XX y tomar Wi para la modulación BPSK. El índice de la portadora SP dentro del símbolo OFDM es el que determina la cantidad de veces que se debe evolucionar el registro para obtener $W_i$.
+Por último la modulación se realiza como $(4/3, 0)$ si $W_i = 0$, y $(-4/3, 0)$ si $W_i = 1$.
+
+Las SP se ubican cada 12 portadoras y a medida que transucrren los símbolos OFDM las mismas van rotando $3 \times n MOD 4$, donde $n$ es el número de símbolo OFDM. Esto sucede así puesto que la función de estas portadoras es justamente la estimación del canal y por lo tanto para contemplar la situación de todo el canal de 6MHz es necesario ir rotándolas. 
+
+
+% Circuito generador y portadoras
+
+Portadora TMCC
+Las portadoras TMCC son las que transportan toda la información de las capas jerárquicas y la información de control. Si bien en los cuadros OFDM se transmiten varias TMCC estas tienen exactamente el mismo contenido, lo que da al receptor la posibilidad de ponderar todas las TMCC que recibe para quedarse con las que tienen mayor porcentaje de coincidencia entre sí.
+Se compone de 204 bits modulados en DBPSK de los cuales el primero es un bit de referencia para realizar la modulación diferencial. Este bit coincide con el valor de la $W_i$ correspondiente al primer símbolo del cuadro OFDM.
+Los siguientes 16 bits son utilizados por una señal de sincronismo que puede tomar los valores $w_0 = 0011010111101110$ y $w_1 = 1100101000010001$, alternándose entre una y otra en cada cuadro OFDM.
+A continuación se encuentran los datos de la información jerárquica y otros parámetros para los que se dedican 105 bits. Estos 105 bits son protegidos por un código cíclico acortado (200,118) con lo cual se dedican los siguientes 82 bits para la paridad. 
+  
+Portadoras Auxiliares
+
+Las portadoras auxiliares están pensadas para transmitir información complementaria del control de transmisión. Utilizan modulación diferencial DBPSK con referencia $W_i$ al igual que la TMCC. Su uso es opcional y el sistema puede trabajar perfectamente prescindiendo de ellas; en caso de no ser usadas los bits correspondientes a las portadoras AC se rellenan con "1".
+
 Piloto Continuo
-\section{Formacion de los frames OFDM}
+Al igual que las SP, se agrega un piloto continuo a la derecha del segmento 12 con propósitos de sincronismo en recepción. Su modulación también es BPSK y toma el valor de $(-4/3, 0)$, $(4/3, 0)$, $(4/3, 0)$ para los modos 1, 2 y 3 respectivamente.
+
+
+
+
+
+
+
+
 \section{La puesta en el aire de la señal}
 
 ?Equipos USRP, Antenas, ganancias, potencia, SNR necesario (??por esto es que no logramos recibir aun???)?
