@@ -9,6 +9,13 @@ Intentando contemplar el interés de todos los lectores, es que les presentamos 
 Comenzaremos explicando aquí como se modela el canal inalámbrico para trabajar, que problemas se enfrenta uno cuando debe diseñar un sistema de transmisión por aire y como mitigar algunos de los efectos que el canal tendrá sobre nuestra señal. Repasaremos algunos de los mas utilizados códigos de detección y corrección de errores. Luego vendrá una corta explicación sobre los sistemas OFDM, su surgimiento teórico y practico, para dar un marco de surgimiento de algunas de las funcionalidades de ISDB-T. Para terminar, explicaremos de que forma se encapsulan los datos a transmitir, para eso, repasamos algunos conceptos definidos en las normas MPEG, orientados hacia la transmisión de televisión, que ayudaran a modelar la fuente de datos del sistema.  
 
 \section{Modelado del canal}
+
+Cuando una señal viaja a través del aire, sufrirá una serie de modificaciones a causa de muchos factores. El clima, el ruido generado por otras señales que también viajan por el mismo medio, los rebotes de la señal contra edificios, autos o cualquier objeto que se encuentre en el camino, son todos aspectos que modificaran la señal, y por lo que la señal recibida sera distinta de la transmitida. 
+
+De forma teórica, se podrían plantear las ecuaciones de Maxwell, definir condiciones de borde que modelen de manera fiel los obstáculos en el camino y calcular en cada momento y en cada lugar del espacio, la atenuación que afectara nuestra señal. Pero el canal cambia constantemente, las diferentes señales que comparten el medio también están en constante transformación, y por lo tanto no seria ni practico, ni útil seguir un camino como este para comprender el canal, mucho menos basarse en el para robustecer a la señal frente a los atenuantes que surgirán. 
+
+Es por eso que se realiza un modelado del canal. Una forma mas simple de entender al medio, donde consideramos modelos puntuales de las fuentes de interferencia, para obtener una idea general del comportamiento del mismo, y modelamos el éxito en recepción mediante una función de probabilidad. Este modelo del canal podrá ser mas o menos complejo, dependerá del técnico que se enfrente al problema decidir que herramientas incluir en función de los efectos que desea mitigar en su señal.
+
 	\subsection{Canales Continuos}
 	\subsection{Canales Discretos}
 	\subsection{Las no idealidades del Canal}
