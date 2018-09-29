@@ -21,11 +21,11 @@ Durante la carrera, nos habíamos encontrado con GNU Radio en algunas ocasiones,
 
 Pasaremos a desarrollar algunos de los conceptos clave para comprender el uso de GNU Radio, ejemplificando con nuestro transmisor gr-isdbt-tx
 
-\textbf{Flowgraphs}
+\subsection{Flowgraphs}
 
 El flowgraph es la estructura de datos mas básica del programa. Puede entenderse al mismo como si fuera una mesa de trabajo. Dentro de un flowgraph, vamos a insertar nuestras muestras desde la fuente, las vamos a procesar y las vamos a exportar, ya sea hacia un archivo o hacia el canal a través de una antena. 
 
-\textbf{Bloques}
+\subsection{Bloques}
 
 En GNU Radio, los datos siempre se mueven a través de bloques. Un bloque puede tener la fuente de datos, realizar operaciones sobre las muestras, puede exportar datos hacia el exterior del entorno, o puede tener toda una estructura de bloques adentro. 
 Existen cuatro tipos de bloques, y de diferencian por la tasa de muestras que atraviesan el mismo. 
@@ -38,6 +38,38 @@ Finalmente tenemos el caso general, \textit{Bloques Generales (N:M)}, en el cual
 Para implementar el transmisor, tuvimos que separar las funcionalidades en bloques de procesamiento, e implementar aquellos bloques que no estuviesen ya presentes en el repositorio. Algunos ejemplos como conversores serie a paralelo, el codificador Reed Solomon, el codificador Viterbi, existían ya como bloques funcionales del programa, y fueron re utilizados. 
 
 \section{Hardware}
-	\subsection{Alcance del transmisor}
-	\subsection{Antenas de laboratorio}
+Universal Software Radio Peripheral (USRP) es una linea de plataformas de hardware para SDRs diseñados y comercializados por la empresa Ettus Research. Gran parte de la arquitectura de estos equipos es de código abierto, y puede ser descargada desde la web de la empresa. Con estos equipos se logra poner en funcionamiento soluciones de radio definida por software por costo accesible. 
+
+En lineas generales, se componen de una placa madre en la que conviven varios subsistemas, como lo son un generador y sincronizador de señales de reloj, conversores analógico digitales y FPGAs, que se encargan de realizar tareas de procesamiento de señal en banda base. Se complementa con una placa modular de[h!]nominada “daugtherband” que realiza tareas como filtrado, condicionamiento de señal y modulación las señales en frecuencias de hasta 6 GHz.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.55]{figuras/cap04/usrp_arq}
+	\caption{\label{f:usrp_arq} Arquitectura general de un equipo USRP}
+\end{figure}
+
+Durante este proyecto, trabajamos con el modelo USRP B100.
+
+\subsection{USRP B100}
+
+En este modelo, las muestras llegan al equipo a traves de una interfaz USB 2.0 y tiene una capacidad para transmitir en velocidades de hasta 16 MS/s, cuando se trabaja con muestras de 8 bits. 
+
+Este modelo en particular esta actualmente discontinuado, pero su precio en el mercado rondaba los 700 dolares. Para el desarrollo del proyecto, recibimos en calidad de préstamo uno de estos equipos para las pruebas
+
+Para poder levantar el equipo desde una PC, solamente es necesario instalar el driver universal de Ettus, “USRP Hardware Driver”. Con el driver instalado, es posible correr un analizador de espectro desde linea de comandos, para verificar que este funcionando correctamente.
+
+\subsubsection{Interfaz con GNU Radio}
+
+Para intercomunicar al equipo con el software de procesamiento de datos, es necesario incluir en el flowgraph, bloques de source o sink al equipo segun sea el caso. En gr-isdbt-tx, las muestras ya procesadas se enviaban al equipo a traves de un sink.  
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.55]{figuras/cap04/sink_block}
+	\caption{\label{f:sink_block} Bloque sink al equipo USRP}
+\end{figure}
+
+Los argumentos con los que funciona son la tasa de muestras, la frecuencia de destino en la que se desea transmitir y el valor de ganancia aplicado a la señal de entrada. 
+
+A la hora de transmitir, es importante recordar algunas consideraciones con respecto al buen funcionamiento del equipo.
+
 \section{gr-isdbt}
