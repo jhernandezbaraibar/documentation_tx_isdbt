@@ -9,7 +9,7 @@ A nivel de la distribuci\'on en el espectro, el estándar utiliza 6 MHz de ancho
 \begin{figure}
 \centering
 \includegraphics[scale=0.55]{figuras/cap03/segmentos_isdbt}
-\caption{\label{segmentos_isdbt} Distribuci\'on espectral de los segmentos OFDM. A la derecha puede apreciarse la presencia del piloto continuo.}
+\caption{\label{segmentos_isdbt} Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.}
 \end{figure}
 
 Tener un esquema de transmisi\'on jer\'arquica permite asignar a cada capa jer\'arquica la cantidad de segmentos que uno quiera. El est\'andar de la ARIB denomina a estas capas como A, B y C, y es posible tener configurac\'ones con solamente 2 capas presentes tal como la de la Figura \ref{segmentos_isdbt} en la que la capa A corresponde al segmento 0 y el resto de los segmentos forman la capa B.
@@ -26,7 +26,7 @@ De manera general, los segmentos tienen $96 \times 2^{modo-1}$ portadoras de dat
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.55]{figuras/cap03/esquema-tx}
+\includegraphics[scale=0.5]{figuras/cap03/esquema-tx}
 \caption{\label{f:esquema-tx} Diagrama de bloques del transmisor ISDB-T definido por la ARIB.}
 \end{figure}
 
@@ -70,6 +70,8 @@ Esquemas de modulacion & DQPSK, QPSK,\\
 \end{tabular}
 \caption{\label{parametros_ISDBT} Par\'ametros relevantes en el est\'andar ISDB-T.}
 \end{table}
+
+
 
 \section{BTS como fuente de datos}
 
@@ -130,28 +132,102 @@ Piloto Continuo
 Al igual que las SP, se agrega un piloto continuo a la derecha del segmento 12 con propósitos de sincronismo en recepción. Su modulación también es BPSK y toma el valor de $(-4/3, 0)$, $(4/3, 0)$, $(4/3, 0)$ para los modos 1, 2 y 3 respectivamente.
 
 
+\section{La puesta en el aire de la señal}
 
+Luego de conformarse el cuadro OFDM los datos ya están listos para ser transmitidos mediante la modulación OFDM. En este punto los símbolos son procesados por el bloque de la IFFT y a continuación es necesario agregar el prefijo cíclico. Una vez agregado el prefijo las muestras ya estan prontas para ser dirigidas al conversor D/A para la transmisión en ondas EM.
 
+\subsection{Necesidad del prefijo cíclico}
 
+Cuando se pasa de trabajar en el dominio continuo al dominio discreto muchas cosas no funcionan igual. Si bien es cierto que en el dominio continuo la transformada de Fourier de un producto convolución coincide con la transformada de cada factor, esto deja de ser válido en tiempo discreto; si $y[n] = x[n]\ast h[n] \Rightarrow DFT \left\{ y[n] \right\} \neq X[q]H[q]$.
+Sería bueno poder tener una relación similar a la que ocurre en tiempo continuo y así poder separar fácilmente las muestras que se enviaron de la respuesta del canal. 
 
+Afortunadamente existe un tipo de producto convolución especial llamado \textit{convolución circular} que nos devuelve esa propiedad de la transformada de Fourier.
+Supongamos que la señal que enviamos es $x[n]$ y la respuesta del canal $h[n]$ con $n = 0,..,N-1$. La convolución circular de dos señales $x[n]$ y $h[n]$ se define de la siguiente manera:
 
+\begin{equation}
+x[n] \circledast h[n] = \sum_{k = 0}^{N-1} x[(n-k) \enskip MOD \enskip N]h[k]
+\end{equation} 
 
-%\section{La puesta en el aire de la señal}
-%
-%?Equipos USRP, Antenas, ganancias, potencia, SNR necesario (??por esto es %que no logramos recibir aun???)?
-%
-%\begin{table}[h!]
-%\centering
-%\begin{tabular}{|c|cccc}   %center
-%\cline{1-4}
-%\textbf{Modo de transmisi\'on} & \multicolumn{1}{c|}{\textbf{Modo 1}} & %\multicolumn{1}{c|}{\textbf{Modo 2}} & \multicolumn{1}{c|}{\textbf{Modo %3}} &  \\ \cline{1-4}
-%\textbf{Entrelazamiento de byte} 					&                   			  & 1 Cuadro 					   & \multicolumn{1}{c|}{} 			&  \\ \cline{1-4}
-%\textbf{Entrelazamiento de bit} 						&					   			  & 2 S\'imbolos OFDM 			   & \multicolumn{1}{c|}{} 			&  \\ \cline{1-4}
-%\multirow{4}{*}{\textbf{Entrelazamiento temporal}}	&\multicolumn{1}{c|}{0 Cuadros (I = 0)} & \multicolumn{1}{c|}{0 Cuadros (I = 0)} & \multicolumn{1}{c|}{0 Cuadros (I = 0)} &  \\ \cline{2-4}
-  										    %&\multicolumn{1}{l|}{2 Cuadros (I = 4)} & \multicolumn{1}{c|}{1 Cuadros (I = 2)} & \multicolumn{1}{c|}{1 Cuadros (I = 1)} &  \\ \cline{2-4}
-											%&\multicolumn{1}{c|}{4 Cuadros (I = 8)} & \multicolumn{1}{c|}{2 Cuadros (I = 4)} & \multicolumn{1}{c|}{1 Cuadros (I = 2)} &  \\ \cline{2-4}
-											%&\multicolumn{1}{l|}{8 Cuadros (I = 16)} & \multicolumn{1}{c|}{4 Cuadros (I = 8)} & \multicolumn{1}{c|}{2 Cuadros (I = 4)} &  \\ \cline{1-4}
-%\textbf{Combinaci\'on jer\'arquica}			%& 				   			    & 2 Cuadros 			 & %\multicolumn{1}{c|}{} 		  &  \\ \cline{1-4}
-%\end{tabular}
-%\caption{\label{delays_agregados} Retardos agregados por los bloques en %transmisi\'on.}
-%\end{table}
+Para evitar sobrecargar la notación se suele utilizar la siguiente nomenclatura $x_N[n-k] \triangleq x[(n-k) \enskip MOD \enskip N]$. Con lo cual la convolución circular queda expresada:
+
+\begin{equation}
+x[n] \circledast h[n] = \sum_{k = 0}^{N-1} x_N[n-k] h[k]
+\end{equation} 
+
+La señal $x_N[n-k]$ no es otra cosa que la señal $x[n-k]$ periodizada cada $N$ muestras. Tomemos la transformada discreta de Fourier de esta convolución circular y veamos lo que sucede.
+
+\begin{equation}
+Y[q] \triangleq DFT\left\{x[n] \circledast h[n]\right\} = \sum_{n=0}^{N-1}e^{-j2\pi \frac{ nq}{N}} \sum_{k = 0}^{N-1}x_N[n-k]h[k] 
+\end{equation}
+
+\begin{equation}
+Y[q] = \sum_{k = 0}^{N-1}h[k] \sum_{n=0}^{N-1} e^{-j2\pi \frac{nq}{N}} x_N[n-k]
+\end{equation}
+
+Renombrando la variable $m$ como $n - k$ se tiene:
+
+\begin{equation}
+Y[q] = \sum_{k = 0}^{N-1}h[k] \sum_{m = -k}^{N-1-k} e^{-j2\pi (m+k)\frac{q}{N}} x_N[m]
+\end{equation}
+
+Todo lo que no depende de $m$ en la segunda sumatoria puede salir como factor
+
+\begin{equation}\label{e:convolucion}
+Y[q] = \sum_{k = 0}^{N-1}e^{-j2\pi \frac{mq}{N}}h[k] \sum_{m = -k}^{N-1-k} e^{-j2\pi \frac{mq}{N}} x_N[m]
+\end{equation}
+
+En la ecuación \ref{e:convolucion} puede apreciarse que la sumatoria en $k$ corresponde a la $DFT\left\{ h[k] \right \}$.
+La otra sumatoria resulta un poco más complicado de verla pero pensemos que $x_N[m]$ es la señal $x[m]$ de $N$ muestras periodizada; la sumatoria se lleva a cabo en una ventana de $N$ muestras por lo cual esto coincide con la transformada discreta de Fourier de la señal $x[n]$. Dicho de otra manera, la sumatoria de la ecuación \ref{e:convolucion} es una manera de calcular la DFT en la que se suman los términos en otro orden, pero al final la suma es la misma.
+
+Con esto queda demostrado que la DFT de la convolución circular de dos señales coincide con el producto de sus transformadas discretas, es decir que $DFT\left\{ h[n] \circledast x[n] \right \} = H[q]X[q]$.
+
+Pasemos a ver qué sucede con la señal OFDM cuando se propaga por el canal inalámbrico. En principio el canal podría variar con el tiempo, con lo cual el modelo discreto de la señal recibida queda de la siguiente manera:
+
+\begin{equation}
+r[n] = \sum_{k = -\infty}^{\infty} h_k[n]x[n-k] + w[n]
+\end{equation}
+
+Donde $w[n]$ corresponde al ruido gaussiano aditivo que introduce el canal, y $h_k[n]$ es la respuesta al impulso del canal que en principio puede ser una función del tiempo. Para el estudio que realizaremos se asumirá que el canal es un sistema lineal invatiante en el tiempo y su respuesta está definida por $L$ muestras, con lo cual se elimina la dependencia de $n$:
+
+\begin{equation}
+r[n] = \sum_{k = 0}^{L-1} h_k x[n-k] + w[n]
+\end{equation}
+
+La señal resultante tendrá $N+L-1$ dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias, sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la Figura \ref{f:prefijo_ciclico}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.65]{figuras/cap03/prefijo_ciclico}
+\caption{\label{f:prefijo_ciclico} Inserción del prefijo cíclico.}
+\end{figure}
+
+El estándar ISDB-T ofrece la posibilidad de utilizar distintos largos de prefijo cíclico. Una manera de establecer sincronismo, y también poder conocer los parámetros básicos de transmisión desde el lado del receptor como el modo y el largo del prefijo cíclico, consiste en tomar símbolos OFDM consecutivos que van arribando y retardarlos una cierta cantidad de símbolos. Luego se calcula una función de verosimilitud propuesta por Van de Beek en \cite{van1997ml} y según su característica es que se puede determinar el largo del prefijo cíclico y el modo de transmisión.  
+
+La nueva señal conformada a partir de $x[n]$ con su prefijo cíclico queda expresada de la siguiente manera:
+
+\begin{equation}
+ u[m] =
+  \begin{cases}
+    x[N-L+m+1]       & \quad \text{si } m = 0,..., L-2\\
+    x[m-L+1]  & \quad \text{para } m = L-1,..., N+L-2
+  \end{cases}
+\end{equation}
+
+Ahora con esta nueva señal que hemos definido, en recepción llegará la siguiente señal:
+
+\begin{equation}\label{eq:pref_convolucion}
+v[n] = \sum_{k = 0}^{L-1}h[k]u[n-k] + w[n] = \sum_{k = 0}^{L-1}h[k]x[n-L-k] + w[n]
+\end{equation}
+
+La superposición de las primeras $L-1$ de $v$ hace que deban descartarse. Por lo tanto se considerarán las muestas con $n = L,..., L+N-1$ y entonces es posible considerar un $n'$ el cual contempla que las muestras indicadas ya han sido descartadas. Como este es un proceso cíclico símbolo a símbolo, la ecuación \ref{eq:pref_convolucion} queda así: 
+
+\begin{equation}
+v[n'] = \sum_{k = 0}^{N-1}h[k]x_N[n'- k] + w[n'] \text{ con } n' = [0, ..., N-1]
+\end{equation}
+
+Esta última ecuación no es otra cosa que la convolución circular $h \circledast x$ y que, como se vió anteriormente, su transformada de Fourier resulta ser $Y[q] = H[q]X[q]$.
+De esta manera el receptor una vez que realizó su estimación del canal es capaz de separar las muestras $X[q]$ y así recuperar la señal transmitida.
+
+\subsection{La potencia requerida para transmitir}
+- Relación entre la potencia necesaria segun la modulación
+- SNR Necesario para decodificar
