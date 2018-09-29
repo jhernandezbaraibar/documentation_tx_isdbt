@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{ARIB}
 ARIB.
@@ -38,6 +38,11 @@ MPEG.
 \bibitem{gr-isdbt}
 Federico~Larroca Pablo~Flores.
 \newblock {\em Encuesta Continua de Hogares}, 2017.
+
+\bibitem{UHD}
+Ettus Research.
+\newblock The usrp™ hardware driver repository, 2018.
+\newblock [Web; accedido el 24-11-2018].
 
 \bibitem{discrete-ofdm}
 Weinstein and Edbert.

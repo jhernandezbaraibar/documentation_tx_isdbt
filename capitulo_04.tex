@@ -56,11 +56,34 @@ En este modelo, las muestras llegan al equipo a traves de una interfaz USB 2.0 y
 
 Este modelo en particular esta actualmente discontinuado, pero su precio en el mercado rondaba los 700 dolares. Para el desarrollo del proyecto, recibimos en calidad de préstamo uno de estos equipos para las pruebas
 
-Para poder levantar el equipo desde una PC, solamente es necesario instalar el driver universal de Ettus, “USRP Hardware Driver”. Con el driver instalado, es posible correr un analizador de espectro desde linea de comandos, para verificar que este funcionando correctamente.
+Para poder levantar el equipo desde una PC, es necesario instalar el driver universal de Ettus, “USRP Hardware Driver”. La mejor forma de hacer esto es instalarlo desde su repositorio oficial \cite{UHD}. El driver es gratuito y de codigo abierto, y soporta todos los equipos de radio de Ettus.
+
+La forma mas sencilla de instalar el driver, es ejecutar en una linea de comandos \textit{sudo apt-get install uhd}. Pero este comando instalara por defecto, el ultimo release estable del controlador. Puede suceder que se desee trabajar con un release en particular, para eso, se debe realizar una copia del repositorio con las herramientas de linea de comando de \textit{git}.\\
+
+\textit{git clone https://github.com/EttusResearch/uhd}\\
+
+Nos creara una copia del repositorio entero del driver. Una vez ahi, es necesario moverse hacia el commit donde se encuentra el release que nos interesa instalar, para eso, nos movemos entre las branchs del repositorio con el comando:\\
+
+\textit{git tag -l}\\
+
+
+Obtenemos una lista de los releases publicados en el repositorio, para movernos al de interes, utilziamos el comando \\
+
+\textit{git checkout nombre\_release\_deseado} \\
+
+Una vez parados en el release a instalar, simplemente instalamos con el uso de la herramienta \textit{make}
+
+Con el driver instalado, para verificar que este funcionando correctamente, debemos realizar los siguientes pasos.\\
+
+\textit{uhd\_usrp\_probe}\\
+
+Muestra una lista de los dispositivos soportados que esten conectados a la pc. En nuestro caso, el equipo es el B100 y la salida del comando es la siguiente:\\
+
+Tambien se puede configurar antenas que no esten directamente conectadas a la pc, pero si en una direccion de red. No vamos a entrar en mas detalles con respecto a este punto, pero vale la pena mencionarlo.
 
 \subsubsection{Interfaz con GNU Radio}
 
-Para intercomunicar al equipo con el software de procesamiento de datos, es necesario incluir en el flowgraph, bloques de source o sink al equipo segun sea el caso. En gr-isdbt-tx, las muestras ya procesadas se enviaban al equipo a traves de un sink.  
+Para intercomunicar al equipo con el software de procesamiento de datos, es necesario incluir en el flowgraph, bloques del complemento gr-uhd (en las versiones actuales de GNURadio ya vienen incluidos). Este complemento, vincula a la interfaz con el driver que se instalo segun los detalles en la seccion anterior. En gr-isdbt-tx, las muestras ya procesadas se enviaban al equipo a traves de un bloque sink.  
 
 \begin{figure}[h!]
 	\centering
@@ -68,8 +91,14 @@ Para intercomunicar al equipo con el software de procesamiento de datos, es nece
 	\caption{\label{f:sink_block} Bloque sink al equipo USRP}
 \end{figure}
 
-Los argumentos con los que funciona son la tasa de muestras, la frecuencia de destino en la que se desea transmitir y el valor de ganancia aplicado a la señal de entrada. 
+Los argumentos con los que funciona son la tasa de muestras, la frecuencia de destino en la que se desea transmitir y el valor de ganancia aplicado a la señal de entrada. Es importante verificar que los parametros a seleccionar sean soportados por el hardware. En el caso de nuestro transmision, tiene una tasa de muestras objetivo de:
 
-A la hora de transmitir, es importante recordar algunas consideraciones con respecto al buen funcionamiento del equipo.
+\begin{gather*}
+	f_{IFFT} = \frac{portadoras}{T_{s}} = \frac{512}{63} \approx 8.127 MHz
+\end{gather*}
 
-\section{gr-isdbt}
+Para verificar que la tasa de muestras sea soportada por el transmisor, primero debemos verificar el tamaño de los datos. En nuestro caso, el tipo es \textit{grc::complex}, el cual es un tipo propietario de GNU Radio, formado por dos variables \textit{std::complex} cada una de 32 bits representadas en punto flotante. Es decir que cada una de las muestras de nuestro transmisor se compone de 64 bits.
+
+Recordando que el B100 tiene una capacidad de $61.44 MS\bar{s} @ 16 bit I/Q$, si le imponemos nuestra tasa de $32 bit I/Q$ tendremos un ancho de banda disponible aproximado de $\approx 32 MS\bar{s}@32 bit$ lo cual es muy superior a nuestra tasa objetivo. Esto nos garantiza que podremos transmitir sin problemas de aliasing.
+
+Otro aspecto a tener en cuenta con el transmisor, es verificar que la amplitud de las muestras este normalizada, a modo de evitar un efecto de \textit{clipping} a la salida, esto es, que todas las muestras superiores a 1, terminaran con la misma amplitud en recepcion, lo que nos dejara una señal trunca en amplitud. Evitar este problema resulta sencillo, basta con agregar una ganancia a la salida del sistema de factor 0.5, para que las amplitudes que llegan al bloque de sink, y van hacia el equipo esten lejos de los umbrales de clipping.
