@@ -5,6 +5,11 @@ ARIB.
 \newblock Association of radio industries and businesses, 1995.
 \newblock [Web; accedido el 06-11-2018].
 
+\bibitem{gr-dvb}
+Git~User BogdanDIA.
+\newblock Dvb-t implementation in gnuradio, 2015.
+\newblock [Web; accedido el 06-11-2018].
+
 \bibitem{chang-ofdm}
 Robert~W Chang.
 \newblock Synthesis of band-limited orthogonal signals for multichannel data
