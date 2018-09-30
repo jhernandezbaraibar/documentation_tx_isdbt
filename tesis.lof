@@ -1,15 +1,15 @@
 \select@language {spanish}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Distribución de las estaciones transmisoras de TV digital en el Uruguay.\relax }}{2}{figure.caption.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Distribución de las estaciones transmisoras de TV digital en el Uruguay.\relax }}{2}{figure.caption.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Esquema básico de codificación de canal.\relax }}{7}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Esquema básico de codificación de canal.\relax }}{7}{figure.caption.8}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.\relax }}{13}{figure.caption.8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de bloques del transmisor ISDB-T definido por la ARIB.\relax }}{15}{figure.caption.9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Inserción del prefijo cíclico.\relax }}{20}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Distribuci\'on espectral de los segmentos OFDM. A la derecha puede apreciarse la presencia del piloto continuo.\relax }}{13}{figure.caption.9}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de bloques del transmisor ISDB-T definido por la ARIB.\relax }}{15}{figure.caption.10}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP\relax }}{21}{figure.caption.12}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Bloque sink al equipo USRP\relax }}{23}{figure.caption.14}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP\relax }}{23}{figure.caption.12}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Bloque sink al equipo USRP\relax }}{25}{figure.caption.14}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
