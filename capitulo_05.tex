@@ -193,6 +193,32 @@ QPSK 		& $1/ \sqrt{2}$\\
 \end{table}
 
 
+\section{Entrelazamiento temporal}
+
+El entrelazamiento temporal consiste en distribu\'uir los s\'imbolos complejos entre distintos s\'imbolos OFDM. Esta distribuci\'on o entrelazamiento se realiza para cada portadora, es decir que se realiza en el dominio del tiempo.
+
+Esta t\'ecnica act\'ua como mecanismo de protecci\'on frente a ruidos impulsivos que t\'ipicamente se caracterizan por una corta duraci\'on en el tiempo. La profundidad o largo del entrelazamiento temporal es el par\'ametro que rige este proceso de entrelazado y puede ser seteado de manera independiente para cada capa. Est\'a \'intimamente ligado a la dispersi\'on temporal que se realiza en los s\'imbolos; a mayor profundidad, los s\'imbolos de una misma portadora son retardados un tiempo mayor.
+
+La Figura \ref{f:entrelazamiento_temporal} describe esquem\'aticamente el mecanismo de entrelazamiento. Consiste en aplicar un retardo distinto para cada s\'imbolo dentro de un mismo segmento; los segmentos de una misma capa son retardados de igual manera seg\'un la profundidad de entrelazamiento elegida. 
+
+La implementaci\'on de estos retardos en \textit{gr-isdbt-tx} es llevada a cabo por medio de colas en las que, de manera secuencial, se empujan los s\'imbolos que van arribando correspondientes a las distintas capas jer\'arquicas. Desde el otro extremo se extrae un s\'imbolo de cada cola tambi\'en de manera secuencial. 
+
+Para una capa jer\'arquica con profundidad de entrelazamiento $I_L$, los retardos estipulados por ISDB-T para cada uno de sus segmentos se define de la siguiente manera:
+
+\begin{equation}
+q_L(i) = I_L \times m_i = I_L \times ((i \times 5) \; mod \; 96)
+\end{equation}
+
+Donde $q_L(i)$ representa el tamano de las colas o búfers; $m_i$ es definido por el est\'andar como $m_i = (i \times 5) \; mod \; 96$, para $i = 0, 1,..,n_c$ con $n_c = 1$, $2$, o $3$ seg\'un el modo de transmisi\'on. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{figuras/cap05/entrelazamiento_temporal}
+\caption{\label{f:entrelazamiento_temporal} Mecanismo de entrelazamiento temporal.}
+\end{figure}
+
+
+
 \section{Formacion de cuadros OFDM}
 El cuadro OFDM es una estructura de datos que agrupa los datos de carga \'util, portadoras piloto y señales de control. Tiene todo lo necesario para que un receptor compatible con ISDB-T sea capaz de decodificarlo en flujos MPEG y reproducir la informaci\'on.
 
