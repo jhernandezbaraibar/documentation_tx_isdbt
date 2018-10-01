@@ -143,6 +143,7 @@ El entrelazamiento intra-segmento se realiza permutando las portadoras de cada s
 
 Luego se realiza una aleatorizac\'on que est\'a determinada por \textit{Look Up Tables} que dependen del modo de transmisi\'on y puden consultarse en la referencia \cite{bb}.
 
+\subsection{Entrelazamiento temporal}
 
 \section{Entrelazamiento de bits}
 
@@ -193,17 +194,70 @@ QPSK 		& $1/ \sqrt{2}$\\
 
 
 \section{Formacion de cuadros OFDM}
-El cuadro OFDM es una estructura de datos que agrupa los datos de carga \'util, portadoras piloto y senales de control. Tiene todo lo necesario para que un receptor compatible con ISDB-T sea capaz de decodificarlo en flujos MPEG y reproducir la informaci\'on.
+El cuadro OFDM es una estructura de datos que agrupa los datos de carga \'util, portadoras piloto y señales de control. Tiene todo lo necesario para que un receptor compatible con ISDB-T sea capaz de decodificarlo en flujos MPEG y reproducir la informaci\'on.
 
-Se trata de un conjunto de 204 s\'imbolos OFDM, cada uno de ellos conformado por $13 \times 108 \times 2^{modo -1}$ s\'imbolos complejos. 
+Se trata de un conjunto de 204 s\'imbolos OFDM, cada uno de ellos conformado por $13 \times 108 \times 2^{modo -1}$ s\'imbolos complejos. Una de las particularidades del cuadro, es que su estructura tiene posiciones fijas, donde siempre viaja información con las características de la transmisión, y posiciones móviles, en las que viajan portadoras que estiman el efecto que tiene el canal sobre los datos, para poder, con esa información, robustecer al sistema. 
 
+Para cada segmento, la estructura del cuadro tiene su forma particular. En la siguiente figura presentamos un ejemplo para una modulación coherente, basada en un modo de transmisión 1.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{figuras/cap05/ofdm_frame}
+	\caption{\label{f:ofdm_frame} Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.}
+\end{figure}
 
+A nivel de codigo, la solucion que se implemento en este proyecto para el bloque, es bastante larga. Separamos el bloque en dos momentos, el transitorio y el regimen. Durante el transitorio, esto es, cuando se llama al bloque por primera vez y se crea en la memoria una instancia del mismo, se inicializan todas las variables. Entre ellas estan, la palabra TMCC para todo el cuadro, los valores iniciales de la secuencia PRBS que rige el movimiento de las portadoras SP y algunas variables generales que mantienen conteos de frames para seguimiento. 
 
+En el caso general de un llamado a operar del bloque, la escritura se diseño organizada por simbolos OFDM. En cada llamado al bloque, se completara un simbolo generico. Algunas estructuras de control mantendran el control de los cambios de palabras de control y otras variables. Los parametros genericos de transmision que dependen de parametros como el modo y las constelaciones de cada capa, se resuelven en el transitorio.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{figuras/cap05/bloque_ofdm}
+	\caption{\label{f:bloque_ofdm} Bloque de conformacion de cuadro OFDM.}
+\end{figure}
 
+La cadena de sucesos de un llamado genérico es la siguiente. Primero se inicializa un vector de complejos en salida con el tamaño suficiente para todas las portadoras y los intervalos de guarda. Luego, se entra en una estructura de control que se encargara de  repetir el proceso de escritura de símbolo OFDM cuantas veces el core de GNU Radio considere necesarios, a través del valor de \textit{noutputitems}. Dependiendo del modo en el que se trabaje, se llama para cada segmento una función que se encarga de rellenar el segmento, según sea el modo de trabajo.
 
-	\subsection{Las portadoras piloto}
-	\subsection{Las portadoras activas}
-\section{El prefijo ciclico}
+En caso de que se este trabajando en modo One-Seg, agregamos en este bloque un booleano que, en caso de estar en true, limita el rellenado de segmentos al segmento 0. 
+
+En el caso general, las funciones de llenado de segmento se llaman para todos los segmentos, en el orden lineal que tendran a la salida, el mismo que ya vimos en el capitulo 3.
+
+Las funciones de llenado de segmento, toman como parámetro de entrada el numero de segmento que se va a escribir. Con este numero, encuentran en función de su posición en el cuadro, los indices en donde van las portadoras auxiliares y los datos. Luego iteran punto a punto por todas las portadoras del segmento, asignando según corresponda. En el caso de los datos, se copian simplemente de la entrada. Para el caso de las portadoras auxiliares, cada una tiene una funcion que almacena el estado de las mismas, y con ayuda de los indices de posicion y de simbolo dentro del cuadro OFDM, evolucionan los datos dinámicos de las mismas y escriben en el segmento el dato correspondiente. 
+	
+\section{La transformada de Fourier}
+
+Una vez formado el cuadro OFDM, de forma correcta con todas las portadoras de datos y auxiliares completas, es el momento de pasar la señal al dominio del tiempo, para agregarle el prefijo cíclico y ponerla en el aire. 
+
+Utilizamos para esto uno de los bloques de GNU Radio que implementan el algoritmo \textit{Fast Fourier Transform}. Este algoritmo, que ya fue mencionado en el documento, permite realizar de forma rápida y suficientemente aproximada de la transformada de Fourier de una señal digital, siempre y cuando se maneje un tamaño de muestras que sea múltiplo de una potencia de 2.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{figuras/cap05/fft}
+	\caption{\label{f:fft} Bloque que implementa el algoritmo FFT.}
+\end{figure}
+
+El parámetro \textit{Reverse} del bloque, indica la dirección en la que se realiza la transformación. Dado que venimos trabajando en el dominio de la frecuencia y vamos a pasar al dominio temporal, debemos ejecutar el algoritmo en el sentido inverso.
+
+\section{El prefijo cíclico}
+
+Para sincronizar los relojes de transmision y recepción, y eliminar de forma suficiente la interferencia intersimbolica, es que en ISDBT se utiliza un prefijo cíclico. Esto es, las primeras N muestras de la señal, se copian tal cual están hacia el final de la señal. Esto hace que, al calcular la autocorrelacion de la señal en recepción, sea posible detectar de forma perfecta el comienzo de la señal, así como los parámetros de transmision en caso de que sean desconocidos. 
+
+Se repaso el fundamento teorico detras de esta practica en el capitulo 3, en caso de buscar profundizar en la misma, una clara explicación de estos conceptos esta en \cite{gr-isdbt}. No entraremos en mas detalles de este proceso para no ser repetitivos.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{figuras/cap05/cp}
+	\caption{\label{f:cp} Bloque que implementa prefijo cíclico.}
+\end{figure}
+
+Este bloque tampoco es desarrollo propio del proyecto gr-isdbt-tx. Si bien escribimos un bloque que realiza esta funcionalidad (a nivel de programación se resuelve con un memcpy) preferimos dejar la implementacion existente, que funciona muy bien y esta validada por la comunidad de usuarios de GNU Radio.
+
+De todos modos, la implementacion de este bloque es un problema que los tutores nos plantearon al inicio del proyecto, y es interesante como primer acercamiento al entorno de desarrollo de GNU Radio. La lógica detrás del funcionamiento del bloque es simple, por lo que el kid de la cuestión esta en manejar debidamente el movimiento de muestras entre el bloque y el core del software.
+
 \section{La transmision desde USRP}
+
+Como ya se discutió en secciones anteriores, para realizar la transmisión de la señal a través del equipo USRP, es necesario utilizar el bloque sink del complemento \textit{gr-uhd}. Siempre que se mantengan las condiciones para la buena transmision que se enumeraron en el capitulo 4, es esperable tener a la señal en el aire sin mayores problemas. 
+
+Como consideraciones generales, recomendamos verificar que el espectro a utilizar este disponible, de forma de no solaparse con la señal de alguno de los canales comerciales, que transmiten a alta potencia y podrían causar problemas para decodificar nuestra señal.
+
+Durante el desarrollo del transmisor, antes de probar la transmision contra un televisor comercial, una prueba bastante sencilla es la de transmitir hacia un archivo. Luego, podemos usar ese archivo como entrada de datos al receptor \textit{gr-isdbt} para corroborar que la transmision tenga todos los parámetros correctos. Disponer de todos los bloques del receptor para tomar medidas, es un excelente método de debugging.

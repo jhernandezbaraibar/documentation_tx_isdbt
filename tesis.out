@@ -38,16 +38,18 @@
 \BOOKMARK [2][-]{subsection.5.4.2}{Viterbi}{section.5.4}% 38
 \BOOKMARK [1][-]{section.5.5}{La\040modulacion}{chapter.5}% 39
 \BOOKMARK [1][-]{section.5.6}{El\040uso\040de\040los\040entrelazamientos}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.7}{Formacion\040de\040cuadros\040OFDM}{chapter.5}% 41
-\BOOKMARK [2][-]{subsection.5.7.1}{Las\040portadoras\040piloto}{section.5.7}% 42
-\BOOKMARK [2][-]{subsection.5.7.2}{Las\040portadoras\040activas}{section.5.7}% 43
-\BOOKMARK [1][-]{section.5.8}{El\040prefijo\040ciclico}{chapter.5}% 44
-\BOOKMARK [1][-]{section.5.9}{La\040transmision\040desde\040USRP}{chapter.5}% 45
-\BOOKMARK [0][-]{chapter.6}{Evaluacion\040del\040sistema}{}% 46
-\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 47
-\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 48
-\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 49
-\BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 50
-\BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 51
-\BOOKMARK [0][-]{appendix*.21}{Índice de tablas}{}% 52
-\BOOKMARK [0][-]{appendix*.22}{Índice de figuras}{}% 53
+\BOOKMARK [2][-]{subsection.5.6.1}{Entrelazamiento\040frecuencial}{section.5.6}% 41
+\BOOKMARK [2][-]{subsection.5.6.2}{Entrelazamiento\040temporal}{section.5.6}% 42
+\BOOKMARK [1][-]{section.5.7}{Entrelazamiento\040de\040bits}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.8}{Formacion\040de\040cuadros\040OFDM}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.9}{La\040transformada\040de\040Fourier}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.10}{El prefijo cíclico}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.11}{La\040transmision\040desde\040USRP}{chapter.5}% 47
+\BOOKMARK [0][-]{chapter.6}{Evaluacion\040del\040sistema}{}% 48
+\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 50
+\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 51
+\BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 52
+\BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 53
+\BOOKMARK [0][-]{appendix*.27}{Índice de tablas}{}% 54
+\BOOKMARK [0][-]{appendix*.28}{Índice de figuras}{}% 55
