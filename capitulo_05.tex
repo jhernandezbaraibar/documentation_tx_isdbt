@@ -201,7 +201,7 @@ La Figura \ref{f:entrelazamiento_temporal} describe esquem\'aticamente el mecani
 
 La implementaci\'on de estos retardos en \textit{gr-isdbt-tx} es llevada a cabo por medio de colas en las que, de manera secuencial, se empujan los s\'imbolos que van arribando correspondientes a las distintas capas jer\'arquicas. Desde el otro extremo se extrae un s\'imbolo de cada cola tambi\'en de manera secuencial. 
 
-Para una capa jer\'arquica con profundidad de entrelazamiento $I_L$, los retardos estipulados por ISDB-T para cada uno de sus segmentos se define de la siguiente manera:
+Para una capa jer\'arquica con profundidad de entrelazamiento $I_L$, que puede ser 0, 1,2 ,4, 8, 16 seg\'un el modo, los retardos estipulados por ISDB-T para cada uno de sus segmentos se define de la siguiente manera:
 
 \begin{equation}
 q_L(i) = I_L \times m_i = I_L \times ((i \times 5) \; mod \; 96)
@@ -214,6 +214,18 @@ Donde $q_L(i)$ representa el tamano de las colas o búfers; $m_i$ es definido po
 \includegraphics[scale=0.4]{figuras/cap05/entrelazamiento_temporal}
 \caption{\label{f:entrelazamiento_temporal} Mecanismo de entrelazamiento temporal.}
 \end{figure}
+
+El proceso de entrelazamiento introduce un retardo que debe ser ajustado de manera que el retardo total introducido por el proceso sea un m\'ultiplo de cuadro OFDM. Para ello \textit{gr-isdbt-tx} conforma colas m\'as largas de las especificadas en el esquema de la Figura \ref{f:entrelazamiento_temporal} logrando as\'i un retardo total de un cuadro OFDM.
+
+La cantidad de s\'imbolos OFDM que genera de atraso el proceso est\'a dada por:
+
+\begin{equation}
+95 \times I_L \; mod \; 204
+\end{equation}
+
+Entonces para completar un cuadro OFDM hacen falta $d_I = 204 - (95 \times I_L \; mod \; 204)$ s\'imbolos OFDM. Por lo tanto la cantidad de cuadros OFDM de retardo ser\'a $N_L = (95 \times I_L +d_I) \; mod \; 204$.
+
+La implementaci\'on en el transmisor de este ajuste de atraso consiste en empujar los s\'imbolos que arriban al bloque a cada una de las colas de tamaño $I_L \times m_i + d_I$. Del otro extremo de las colas se toman los s\'imbolos secuencialmente y se tiene la secuencia entrelazada. Este mecanismo, al igual que otros entrelazamientos, hace que en el arranque del sistema se tengan datos espurios en los registros. 
 
 
 
