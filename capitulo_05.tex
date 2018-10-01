@@ -1,7 +1,5 @@
 \chapter{Un transmisor ISDBT implementado en GNU Radio}
 
-\section{Generalidades del Transmisor}
-Por ejemplo algunas
 \section{El flujo de datos en GNU Radio}
 
 Para el desarrollo de los bloques de gr-isdbt-tx, fue necesario comprender el modo en el que los datos se mueven entre bloques en GNU Radio. El motor del programa realiza llamados de forma periódica a los bloques en el flowgraph, dependiendo de la cantidad de muestras que tenga en cola para procesar en cada bloque, y de la tasa de muestras que busque mantener constante a traves del sistema, le comunica a cada bloque, la cantidad de datos que necesita que le dejen en salida.  

@@ -30,26 +30,26 @@
 \BOOKMARK [1][-]{section.4.2}{Hardware}{chapter.4}% 30
 \BOOKMARK [2][-]{subsection.4.2.1}{USRP\040B100}{section.4.2}% 31
 \BOOKMARK [0][-]{chapter.5}{Un\040transmisor\040ISDBT\040implementado\040en\040GNU\040Radio}{}% 32
-\BOOKMARK [1][-]{section.5.1}{Generalidades\040del\040Transmisor}{chapter.5}% 33
-\BOOKMARK [1][-]{section.5.2}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 34
-\BOOKMARK [1][-]{section.5.3}{Obtencion\040de\040los\040TSP\040por\040capa}{chapter.5}% 35
-\BOOKMARK [1][-]{section.5.4}{Codificaciones\040de\040Canal}{chapter.5}% 36
-\BOOKMARK [2][-]{subsection.5.4.1}{Reed\040Solomon}{section.5.4}% 37
-\BOOKMARK [2][-]{subsection.5.4.2}{Viterbi}{section.5.4}% 38
-\BOOKMARK [1][-]{section.5.5}{La\040modulacion}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.6}{El\040uso\040de\040los\040entrelazamientos}{chapter.5}% 40
-\BOOKMARK [2][-]{subsection.5.6.1}{Entrelazamiento\040frecuencial}{section.5.6}% 41
-\BOOKMARK [2][-]{subsection.5.6.2}{Entrelazamiento\040temporal}{section.5.6}% 42
-\BOOKMARK [1][-]{section.5.7}{Entrelazamiento\040de\040bits}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.1}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.2}{Obtencion\040de\040los\040TSP\040por\040capa}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.3}{Codificaciones\040de\040Canal}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.3.1}{Reed\040Solomon}{section.5.3}% 36
+\BOOKMARK [2][-]{subsection.5.3.2}{Viterbi}{section.5.3}% 37
+\BOOKMARK [1][-]{section.5.4}{La\040modulacion}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.5}{El\040uso\040de\040los\040entrelazamientos}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.5.1}{Entrelazamiento\040frecuencial}{section.5.5}% 40
+\BOOKMARK [2][-]{subsection.5.5.2}{Entrelazamiento\040temporal}{section.5.5}% 41
+\BOOKMARK [1][-]{section.5.6}{Entrelazamiento\040de\040bits}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.7}{Entrelazamiento\040temporal}{chapter.5}% 43
 \BOOKMARK [1][-]{section.5.8}{Formacion\040de\040cuadros\040OFDM}{chapter.5}% 44
 \BOOKMARK [1][-]{section.5.9}{La\040transformada\040de\040Fourier}{chapter.5}% 45
 \BOOKMARK [1][-]{section.5.10}{El prefijo cíclico}{chapter.5}% 46
 \BOOKMARK [1][-]{section.5.11}{La\040transmision\040desde\040USRP}{chapter.5}% 47
-\BOOKMARK [0][-]{chapter.6}{Evaluacion\040del\040sistema}{}% 48
+\BOOKMARK [0][-]{chapter.6}{Evaluación del sistema}{}% 48
 \BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 49
 \BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 50
 \BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 51
 \BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 52
 \BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 53
-\BOOKMARK [0][-]{appendix*.27}{Índice de tablas}{}% 54
-\BOOKMARK [0][-]{appendix*.28}{Índice de figuras}{}% 55
+\BOOKMARK [0][-]{appendix*.30}{Índice de tablas}{}% 54
+\BOOKMARK [0][-]{appendix*.31}{Índice de figuras}{}% 55

@@ -14,6 +14,7 @@ A level-1 auxiliary file: capitulo_06.aux
 A level-1 auxiliary file: capitulo_07.aux
 The style file: plain.bst
 Database file #1: referencias.bib
+Warning--I didn't find a database entry for "bb"
 Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
 while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
@@ -23,41 +24,41 @@ Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gó
 while executing---line 1090 of file plain.bst
 Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
 while executing---line 1090 of file plain.bst
+Warning--empty journal in gr-isdbt
 Warning--empty journal in forney1965concatenated
-Warning--empty title in gr-isdbt
 You've used 13 entries,
             2118 wiz_defined-function locations,
-            569 strings with 5435 characters,
-and the built_in function-call counts, 3054 in all, are:
-= -- 287
+            572 strings with 5471 characters,
+and the built_in function-call counts, 3058 in all, are:
+= -- 288
 > -- 114
 < -- 1
 + -- 50
 - -- 34
-* -- 146
-:= -- 538
-add.period$ -- 37
+* -- 143
+:= -- 539
+add.period$ -- 38
 call.type$ -- 13
-change.case$ -- 54
+change.case$ -- 55
 chr.to.int$ -- 0
 cite$ -- 16
 duplicate$ -- 128
 empty$ -- 272
 format.name$ -- 34
-if$ -- 633
+if$ -- 634
 int.to.chr$ -- 0
 int.to.str$ -- 13
 missing$ -- 9
-newline$ -- 66
+newline$ -- 67
 num.names$ -- 26
 pop$ -- 83
 preamble$ -- 1
 purify$ -- 43
 quote$ -- 0
-skip$ -- 97
+skip$ -- 98
 stack$ -- 0
 substring$ -- 111
-swap$ -- 18
+swap$ -- 17
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
@@ -65,5 +66,5 @@ type$ -- 52
 warning$ -- 3
 while$ -- 30
 width$ -- 15
-write$ -- 129
+write$ -- 130
 (There were 4 error messages)

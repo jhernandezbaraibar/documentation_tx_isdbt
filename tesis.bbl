@@ -26,6 +26,11 @@ Gabriel Gómez Víctor González Barbone Pablo~Belzarena Federico~Larroca,
 \newblock An open and free isdb-t full seg receiver implemented in gnu radio.
 \newblock {\em Mathematical Methods and Algorithms. Jhon Wiley and Son}, 2015.
 
+\bibitem{gr-isdbt}
+Pablo Flores.
+\newblock La norma isdbt y un receptor implementado en sdr.
+\newblock 2016.
+
 \bibitem{multiplex-pattern}
 P.~Flores-Guridi and F.~Larroca.
 \newblock The isdb-t multiplex frame pattern explained.
@@ -45,10 +50,6 @@ Todd~K Moon.
 MPEG.
 \newblock Moving picture experts group, 1995.
 \newblock [Web; accedido el 06-11-2018].
-
-\bibitem{gr-isdbt}
-Federico~Larroca Pablo~Flores.
-\newblock {\em Encuesta Continua de Hogares}, 2017.
 
 \bibitem{UHD}
 Ettus Research.
