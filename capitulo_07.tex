@@ -1,1 +1,17 @@
 \chapter{Conclusiones y trabajo a futuro}
+
+Este proyecto tenia como objetivos, dos grandes items. Por un lado buscábamos implementar un transmisor de televisión digital basado en SDR, cuya validez estaría determinada por la capacidad de transmitir hacia un televisor comercial homologado por LATU. Por otro lado, también buscábamos echar luz sobre el conocimiento disponible en el país sobre la norma ISDB-T. 
+
+Si bien entendemos que no fuimos capaces de cumplir con el primer objetivo, ese incumplimiento llega mas por un problema de plazos que por un problema de conocimientos. Logramos transmitir televisión digital en una situación ideal, lo cual no es menor. Los problemas existentes en gr-isdbt-tx para la transmisión por aire, entendemos que responden a errores en el manejo de los dispositivos USRP, y por ende, son solucionables.
+
+En cuanto a este objetivo, entendemos que definitivamente no ha sido cumplido. Pero tampoco es justo decir que el grupo de trabajo fracaso en el objetivo. Puesto que dadas algunas condiciones de entorno, gr-isdbt-tx es capaz de transmitir televisión. 
+
+El funcionamiento del transmisor contra un televisor comercial, es cuestión de tiempo y de debugging. Por ende, consideramos que el objetivo principal del proyecto, se mantiene pendiente, a la espera de la resolución de los mencionados problemas.
+
+Por otro lado, sobre el objetivo de aumentar la cantidad y la calidad de la información sobre la norma disponible para los técnicos nacionales, consideramos que este objetivo ha sido cumplido. El repositorio con el proyecto esta disponible de forma gratuita para cualquier interesado en aprender mas de la norma ISDB-T, y en conjunto con gr-isdbt, se tiene una herramienta de análisis del sistema, que cuenta con control absoluto de todas las variables. 
+
+Esperamos que este proyecto pueda colaborar con el mejor desempeño de la red nacional de transmisoras de televisión abierta, y que se hagan uso de las herramientas que la norma incluye. 
+
+Queda pendiente, para este grupo de trabajo, el mejor desarrollo de algunos de los bloques del sistema. Algunos items, como la portabilidad del divisor jerárquico, sera necesario resolver cuanto antes, para robustecer el funcionamiento del transmisor. Otros, como la ya mencionada resolución de los problemas de implementación con el USRP, serán resueltos a la brevedad, no solo para dar cumplimiento al objetivo principal de este proyecto, sino también, para vencer la constante curiosidad que caracteriza a los ingenieros.
+
+Finalmente, nos gustaría plantear un objetivo a mediano o largo plazo, que es un pequeño proyecto que hubiese sido implementado de disponer con el tiempo suficiente. Este transmisor, necesita como fuente de datos un archivo en formato MPEG TS. Seria muy interesante crear un conversor de MPEG 4 a transport streams, de modo que el transmisor pueda  enviar al televisor cualquier video proveniente de la memoria del PC. Esta funcionalidad seria muy interesante y extendería el potencial del transmisor, ya que para este proyecto, obtener archivos en formato TS nos fue bastante complicado.

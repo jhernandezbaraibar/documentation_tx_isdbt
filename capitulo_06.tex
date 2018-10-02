@@ -8,6 +8,37 @@ Finalmente, nos planteamos el objetivo final, la decodificación contra un telev
 
 \section{Pruebas sobre gr-isdbt}
 
+Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de gr-isdbt, no parecería en principio un desafió mayor lograr la decodificacion punta a punta. Pero en si, lo es, y eso es parte de la potencia del desarrollo con código abierto desde el otro lado. 
+
+Como receptor, gr-isdbt esta homologado por LATU, por lo tanto, podemos considerarlo como una simulación de un televisor comercial valida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor gr-isdbt-tx conectado a la entrada del receptor gr-isdbt.
+
 \subsubsection{Pruebas flowgraph}
+
+En este caso ideal, contenido en un mismo flowgraph y con nula variabilidad de las muestras, el transmisor se comporta de forma perfecta. Si encontramos, algunos problemas de consumo de CPU, seguramente debidos a problemas de optimización del código. 
+Pero yendo estrictamente a las señales y a su procesamiento, entendemos que la decodificación correcta por parte de gr-isdbt, constituye un éxito para el transmisor. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{figuras/cap06/const_rec}
+	\caption{\label{f:const_rec} Constelación en recepción. Caso ideal.}
+\end{figure}
+
+Como se puede ver en la figura \ref{f:const_rec}, el receptor gr-isdbt se sincroniza perfectamente con la señal transmitida, y en la constelación de recepción, vemos la misma constelación que en transmision. Esto no debe sorprender, ya que en esta prueba, el canal esta representado por un cable ideal. 
+
 \subsubsection{Pruebas en el aire}
+
+Realizamos la misma prueba de antes, pero en lugar de simular un canal por un conector ideal del flowgraph de GNU Radio, utilizamos el aire y transmitimos en una linea vista, a través de 10 cm. 
+
+El resultado fue interesante. Si bien no es posible decodificar las señales todavía, intermitentemente es posible observar la constelación en recepción, como se ve en la figura \ref{f:aire}. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.25]{figuras/cap06/aire}
+	\caption{\label{f:aire} Constelación en recepción. Por linea vista.}
+\end{figure}
+
+Entendemos que tenemos algún problema de sincronismo, surgido seguramente por el uso del USRP. Dado que es el único cambio entre la prueba anterior y esta. 
+
 \section{Pruebas sobre televisores comerciales}
+
+Dado que las pruebas contra gr-isdbt con canal no ideal no fueron exitosas, no pasamos a las pruebas contra un televisor comercial. Hasta no resolver el problema de sincronismo encontrado en la prueba contra gr-isdbt usando el USRP como transmisor, no sera prosible lograr el objetivo planteado al comenzar este proyecto. 

@@ -1,55 +1,52 @@
-\BOOKMARK [0][-]{chapter*.2}{Agradecimientos}{}% 1
-\BOOKMARK [0][-]{chapter*.4}{Resumen}{}% 2
-\BOOKMARK [0][-]{chapter.1}{Introducción}{}% 3
-\BOOKMARK [0][-]{chapter.2}{Fundamento Teórico}{}% 4
-\BOOKMARK [1][-]{section.2.1}{Modelado\040del\040canal}{chapter.2}% 5
-\BOOKMARK [2][-]{subsection.2.1.1}{Canales\040Continuos}{section.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.1.2}{Canales\040Discretos}{section.2.1}% 7
-\BOOKMARK [2][-]{subsection.2.1.3}{Las\040no\040idealidades\040del\040Canal}{section.2.1}% 8
-\BOOKMARK [1][-]{section.2.2}{Estrategias\040para\040mitigar\040los\040efectos\040del\040canal}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.2.1}{Códigos de detección y correción de errores}{section.2.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.2}{Códigos Cíclicos}{section.2.2}% 11
-\BOOKMARK [1][-]{section.2.3}{Modulación OFDM}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.4}{MPEG\040y\040sus\040Estandares}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.4.1}{MPEG\0402\040Transport\040Stream}{section.2.4}% 14
-\BOOKMARK [2][-]{subsection.2.4.2}{Tablas\040PMT}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.3}{Tablas\040PAT}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.4}{Paquetes\040Nulos}{section.2.4}% 17
-\BOOKMARK [0][-]{chapter.3}{El Sistema de Televisión Digital Terrestre ISDB-T}{}% 18
-\BOOKMARK [1][-]{section.3.1}{BTS\040como\040fuente\040de\040datos}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.2}{Robustecimiento\040frente\040a\040las\040no\040idealidades\040del\040canal}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.3}{Formacion\040de\040los\040cuadros\040OFDM}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.4}{Las\040portadoras\040y\040la\040modulacion}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.5}{La puesta en el aire de la señal}{chapter.3}% 23
-\BOOKMARK [2][-]{subsection.3.5.1}{Necesidad del prefijo cíclico}{section.3.5}% 24
-\BOOKMARK [2][-]{subsection.3.5.2}{La\040potencia\040requerida\040para\040transmitir}{section.3.5}% 25
-\BOOKMARK [0][-]{chapter.4}{Radio\040definida\040por\040Software}{}% 26
-\BOOKMARK [1][-]{section.4.1}{GNU\040Radio}{chapter.4}% 27
-\BOOKMARK [2][-]{subsection.4.1.1}{Flowgraphs}{section.4.1}% 28
-\BOOKMARK [2][-]{subsection.4.1.2}{Bloques}{section.4.1}% 29
-\BOOKMARK [1][-]{section.4.2}{Hardware}{chapter.4}% 30
-\BOOKMARK [2][-]{subsection.4.2.1}{USRP\040B100}{section.4.2}% 31
-\BOOKMARK [0][-]{chapter.5}{Un\040transmisor\040ISDBT\040implementado\040en\040GNU\040Radio}{}% 32
-\BOOKMARK [1][-]{section.5.1}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 33
-\BOOKMARK [1][-]{section.5.2}{Obtencion\040de\040los\040TSP\040por\040capa}{chapter.5}% 34
-\BOOKMARK [1][-]{section.5.3}{Codificaciones\040de\040Canal}{chapter.5}% 35
-\BOOKMARK [2][-]{subsection.5.3.1}{Reed\040Solomon}{section.5.3}% 36
-\BOOKMARK [2][-]{subsection.5.3.2}{Viterbi}{section.5.3}% 37
-\BOOKMARK [1][-]{section.5.4}{La\040modulacion}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.5}{El\040uso\040de\040los\040entrelazamientos}{chapter.5}% 39
-\BOOKMARK [2][-]{subsection.5.5.1}{Entrelazamiento\040frecuencial}{section.5.5}% 40
-\BOOKMARK [2][-]{subsection.5.5.2}{Entrelazamiento\040temporal}{section.5.5}% 41
-\BOOKMARK [1][-]{section.5.6}{Entrelazamiento\040de\040bits}{chapter.5}% 42
-\BOOKMARK [1][-]{section.5.7}{Entrelazamiento\040temporal}{chapter.5}% 43
-\BOOKMARK [1][-]{section.5.8}{Formacion\040de\040cuadros\040OFDM}{chapter.5}% 44
-\BOOKMARK [1][-]{section.5.9}{La\040transformada\040de\040Fourier}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.10}{El prefijo cíclico}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.11}{La\040transmision\040desde\040USRP}{chapter.5}% 47
-\BOOKMARK [0][-]{chapter.6}{Evaluación del sistema}{}% 48
-\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 49
-\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 50
-\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 51
-\BOOKMARK [0][-]{appendix.Alph1}{Algo\040que\040agregar}{}% 52
-\BOOKMARK [0][-]{appendix.Alph1}{Referencias}{}% 53
-\BOOKMARK [0][-]{appendix*.30}{Índice de tablas}{}% 54
-\BOOKMARK [0][-]{appendix*.31}{Índice de figuras}{}% 55
+\BOOKMARK [0][-]{chapter*.1}{Resumen}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Introducción}{}% 2
+\BOOKMARK [0][-]{chapter.2}{Fundamento Teórico}{}% 3
+\BOOKMARK [1][-]{section.2.1}{Modelado\040del\040canal}{chapter.2}% 4
+\BOOKMARK [2][-]{subsection.2.1.1}{Canal\040de\040Gauss}{section.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.1.2}{Canal\040de\040Rice}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.3}{Canal\040de\040Rayleigh}{section.2.1}% 7
+\BOOKMARK [1][-]{section.2.2}{Estrategias\040para\040mitigar\040los\040efectos\040del\040canal}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.1}{Códigos de detección y correción de errores}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.2}{Códigos Cíclicos}{section.2.2}% 10
+\BOOKMARK [1][-]{section.2.3}{Modulación OFDM}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.4}{MPEG\040y\040sus\040Estandares}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.4.1}{MPEG\0402\040Transport\040Stream}{section.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.4.2}{Tablas\040PMT}{section.2.4}% 14
+\BOOKMARK [2][-]{subsection.2.4.3}{Tablas\040PAT}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.4}{Paquetes\040Nulos}{section.2.4}% 16
+\BOOKMARK [0][-]{chapter.3}{El Sistema de Televisión Digital Terrestre ISDB-T}{}% 17
+\BOOKMARK [1][-]{section.3.1}{BTS\040como\040fuente\040de\040datos}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.2}{Robustecimiento\040frente\040a\040las\040no\040idealidades\040del\040canal}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.3}{Formacion\040de\040los\040cuadros\040OFDM}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.4}{Las\040portadoras\040y\040la\040modulacion}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.5}{La puesta en el aire de la señal}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.5.1}{Necesidad del prefijo cíclico}{section.3.5}% 23
+\BOOKMARK [2][-]{subsection.3.5.2}{La\040potencia\040requerida\040para\040transmitir}{section.3.5}% 24
+\BOOKMARK [0][-]{chapter.4}{Radio\040definida\040por\040Software}{}% 25
+\BOOKMARK [1][-]{section.4.1}{GNU\040Radio}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.1.1}{Flowgraphs}{section.4.1}% 27
+\BOOKMARK [2][-]{subsection.4.1.2}{Bloques}{section.4.1}% 28
+\BOOKMARK [1][-]{section.4.2}{Hardware}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.2.1}{USRP\040B100}{section.4.2}% 30
+\BOOKMARK [0][-]{chapter.5}{Un\040transmisor\040ISDBT\040implementado\040en\040GNU\040Radio}{}% 31
+\BOOKMARK [1][-]{section.5.1}{El\040flujo\040de\040datos\040en\040GNU\040Radio}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Obtencion\040de\040los\040TSP\040por\040capa}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Codificaciones\040de\040Canal}{chapter.5}% 34
+\BOOKMARK [2][-]{subsection.5.3.1}{Reed\040Solomon}{section.5.3}% 35
+\BOOKMARK [2][-]{subsection.5.3.2}{Viterbi}{section.5.3}% 36
+\BOOKMARK [1][-]{section.5.4}{La\040modulacion}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.5}{El\040uso\040de\040los\040entrelazamientos}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.5.1}{Entrelazamiento\040frecuencial}{section.5.5}% 39
+\BOOKMARK [2][-]{subsection.5.5.2}{Entrelazamiento\040temporal}{section.5.5}% 40
+\BOOKMARK [1][-]{section.5.6}{Entrelazamiento\040de\040bits}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.7}{Formacion\040de\040cuadros\040OFDM}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.8}{La\040transformada\040de\040Fourier}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.9}{El prefijo cíclico}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.10}{La\040transmision\040desde\040USRP}{chapter.5}% 45
+\BOOKMARK [0][-]{chapter.6}{Evaluación del sistema}{}% 46
+\BOOKMARK [1][-]{section.6.1}{Pruebas\040sobre\040gr-isdbt}{chapter.6}% 47
+\BOOKMARK [1][-]{section.6.2}{Pruebas\040sobre\040televisores\040comerciales}{chapter.6}% 48
+\BOOKMARK [0][-]{chapter.7}{Conclusiones\040y\040trabajo\040a\040futuro}{}% 49
+\BOOKMARK [0][-]{chapter.7}{Referencias}{}% 50
+\BOOKMARK [0][-]{chapter*.29}{Índice de tablas}{}% 51
+\BOOKMARK [0][-]{chapter*.30}{Índice de figuras}{}% 52

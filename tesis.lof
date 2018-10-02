@@ -1,26 +1,27 @@
 \select@language {spanish}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Distribución de las estaciones transmisoras de TV digital en el Uruguay.\relax }}{2}{figure.caption.6}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Distribución de las estaciones transmisoras de TV digital en el Uruguay.\relax }}{2}{figure.caption.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Esquema básico de codificación de canal.\relax }}{7}{figure.caption.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Esquema básico de codificación de canal.\relax }}{7}{figure.caption.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.\relax }}{13}{figure.caption.8}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de bloques del transmisor ISDB-T definido por la ARIB.\relax }}{15}{figure.caption.9}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Inserción del prefijo cíclico.\relax }}{20}{figure.caption.11}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.\relax }}{13}{figure.caption.5}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de bloques del transmisor ISDB-T definido por la ARIB.\relax }}{15}{figure.caption.6}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Inserción del prefijo cíclico.\relax }}{20}{figure.caption.8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP\relax }}{23}{figure.caption.12}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Bloque sink al equipo USRP\relax }}{25}{figure.caption.14}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP\relax }}{23}{figure.caption.9}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Bloque sink al equipo USRP\relax }}{25}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloque Reed Solomon Encoder de gr-dvb.\relax }}{29}{figure.caption.16}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Circuito del codigo madre del Viterbi que implementa ISDBT.\relax }}{30}{figure.caption.17}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Bloque de gr-dvb que implementa el codificador Viterbi.\relax }}{30}{figure.caption.18}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementacion de la modulacion e interleaving a nivel de bits en gr-isdbt-tx.\relax }}{31}{figure.caption.19}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Mapeo de la constelaci\'on 64QAM.\relax }}{34}{figure.caption.21}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Mecanismo de entrelazamiento temporal.\relax }}{35}{figure.caption.23}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }}{36}{figure.caption.24}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Bloque de conformacion de cuadro OFDM.\relax }}{37}{figure.caption.25}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Bloque que implementa el algoritmo FFT.\relax }}{37}{figure.caption.26}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Bloque que implementa prefijo cíclico.\relax }}{38}{figure.caption.27}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloque Reed Solomon Encoder de gr-dvb.\relax }}{29}{figure.caption.13}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Circuito del codigo madre del Viterbi que implementa ISDBT.\relax }}{30}{figure.caption.14}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Bloque de gr-dvb que implementa el codificador Viterbi.\relax }}{30}{figure.caption.15}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementacion de la modulacion e interleaving a nivel de bits en gr-isdbt-tx.\relax }}{31}{figure.caption.16}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Mecanismo de entrelazamiento temporal.\relax }}{33}{figure.caption.18}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Mapeo de la constelaci\'on 64QAM.\relax }}{35}{figure.caption.19}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }}{36}{figure.caption.21}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Bloque de conformacion de cuadro OFDM.\relax }}{37}{figure.caption.22}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Bloque que implementa el algoritmo FFT.\relax }}{38}{figure.caption.23}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Bloque que implementa prefijo cíclico.\relax }}{38}{figure.caption.24}
 \addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Constelación en recepción. Caso ideal.\relax }}{42}{figure.caption.26}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Constelación en recepción. Por linea vista.\relax }}{43}{figure.caption.28}
 \addvspace {10\p@ }

@@ -15,11 +15,26 @@ Cuando una señal viaja a través del aire, sufrirá una serie de modificaciones
 De forma teórica, se podrían plantear las ecuaciones de Maxwell, definir condiciones de borde que modelen de manera fiel los obstáculos en el camino y calcular en cada momento y en cada lugar del espacio, la atenuación que afectara nuestra señal. Pero el canal cambia constantemente, las diferentes señales que comparten el medio también están en constante transformación, y por lo tanto no seria ni practico, ni útil seguir un camino como este para comprender el canal, mucho menos basarse en el para robustecer a la señal frente a los atenuantes que surgirán. 
 
 Es por eso que se realiza un modelado del canal. Una forma mas simple de entender al medio, donde consideramos modelos puntuales de las fuentes de interferencia, para obtener una idea general del comportamiento del mismo, y modelamos el éxito en recepción mediante una función de probabilidad. Este modelo del canal podrá ser mas o menos complejo, dependerá del técnico que se enfrente al problema decidir que herramientas incluir en función de los efectos que desea mitigar en su señal.
+	
+Existen tres grandes modelos de canal. Son los modelos de Gauss, Rice y Rayleigh. El primero, se utiliza fuertemente para el calculo de enlaces punto a punto. Por su parte, el modelo de Rice, es bueno para modelar los enlaces punto a multipunto, por lo tanto se utiliza ampliamente en el mundo del broadcasting. Finalmente el modelo de Rayleigh considera los efectos de la difracción y los ecos producidos por las múltiples trayectorias.
 
-	\subsection{Canales Continuos}
-	\subsection{Canales Discretos}
-	\subsection{Las no idealidades del Canal}
+\subsection{Canal de Gauss}
 
+El canal de Gauss es el modelo mas sencillo de canal que se trabaja. En particular, es el modelo que se utiliza para calcular los enlaces punto a punto con linea vista. Generalmente, también se presenta la hipótesis de que el resto de las interferencias del canal, pueden modelarse como un ruido aditivo Gaussiano.
+
+\subsection{Canal de Rice}
+
+El modelo de canal de Rice considera que un receptor estará expuesto primero hacia un haz directo, en lo que puede ser una transmision por linea vista, pero también considera otras trayectorias, debidas a los rebotes del haz original con los distintos obstáculos del entorno. Estos rayos secundarios generalmente vendrán acompañados de un determinado delay, de dimensión considerable.
+
+\subsection{Canal de Rayleigh}
+
+En ISDB-T la transmision en la capa A esta orientada a la recepción en dispositivos móviles. De estos temas hablaremos mas adelante en el capitulo 3, pero por el momento, presentar esta idea nos da pie a plantear un modelo distinto de canal, uno en el que el receptor se mueve. 
+
+El canal de Rayleigh tiene en cuenta las atenuaciones que se producen por lo que se conoce como Difracción Combinada, esto es, señales que sortean obstáculos perdiendo mucha de su potencia inicial en el proceso. Este fenómeno es interesante, puesto que puede llegar a existir transmision, pese a que no haya linea vista. 
+
+Este modelo de canal toma mucha relevancia en ISDB-T, no solo porque la mayoría de los televisores tienen antenas internas, sino que tenemos que modelar el canal para resolver el problema de la recepción móvil. Es posible robustecer a la señal de forma tal que un teléfono móvil pueda decodificar datos multimedia en alta definición y con poca latencia en todo momento, sin perder la continuidad del servicio. 
+
+Existen una serie de estrategias, implementadas en la norma ISDB-T, orientadas a resolver estos mismos problemas.
 
 \section{Estrategias para mitigar los efectos del canal}
 
@@ -27,7 +42,7 @@ Es por eso que se realiza un modelado del canal. Una forma mas simple de entende
 
 La comunicación entre emisor y receptor puede modelarse mediante el proceso de la Figura \ref{diagrama_codificacion}. La situación es la siguiente, una fuente emisora envía mensajes $m$ (palabras fuente) al receptor a través de un canal de comunicación. El mensaje debe ser traducido a algún mensaje que el canal esté capacitado para enviar, estos mensajes se conocen como palabras código.
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.45]{figuras/cap02/diagrama_codificacion}
 \caption{\label{diagrama_codificacion} Esquema básico de codificación de canal.}
