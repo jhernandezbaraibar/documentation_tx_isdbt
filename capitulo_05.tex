@@ -238,7 +238,69 @@ Para cada segmento, la estructura del cuadro tiene su forma particular. En la si
 	\caption{\label{f:ofdm_frame} Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.}
 \end{figure}
 
-A nivel de codigo, la solucion que se implemento en este proyecto para el bloque, es bastante larga. Separamos el bloque en dos momentos, el transitorio y el regimen. Durante el transitorio, esto es, cuando se llama al bloque por primera vez y se crea en la memoria una instancia del mismo, se inicializan todas las variables. Entre ellas estan, la palabra TMCC para todo el cuadro, los valores iniciales de la secuencia PRBS que rige el movimiento de las portadoras SP y algunas variables generales que mantienen conteos de frames para seguimiento. 
+A nivel de codigo, la solucion que se implemento en este proyecto para el bloque, es bastante larga. Separamos el bloque en dos momentos, el transitorio y el regimen. Durante el transitorio, esto es, cuando se llama al bloque por primera vez y se crea en la memoria una instancia del mismo, se inicializan todas las variables. Entre ellas estan, la palabra TMCC para todo el cuadro, los valores iniciales de la secuencia PRBS que rige el movimiento de las portadoras SP y algunas variables generales que mantienen conteos de frames para seguimiento.
+
+La implementación de la TMCC se puede desarrollar en dos etapas. En primera instancia se toman los valores seteados en el bloque \verb|OFDM Frame Structure| y a partir de ello se codifican los primeros 122 bits de la TMCC como se indica en la Tabla \ref{t:bits_TMCC}. Luego, en una segunda etapa, se lleva a cabo el proceso de generación de los bits de paridad. Este proceso es tal cual se describió en la sección de Códigos Cíclicos; en el caso de la TMCC los coeficientes del polinomio $m(x)$ están dados por los bits $B_{20}$ a $B_{121}$, que son los que estarán protegidos por el código. Ambas partes, transmisor y receptor, conocen el polinomio generador $g(x)$ definido por el estándar ISDB-T como:
+
+\begin{equation}
+g(x) = x^{82}+x^{77}+x^{76}+x^{71}+x^{67}+x^{66}+x^{56}+x^{48}+x^{40}+x^{36}+x^{34}+x^{24}+x^{22}+x^{18}+x^{10}+x^{4}+1
+\end{equation}
+
+Con esto es posible calcular el polinomio de paridadd que será 
+
+\begin{equation}
+r(x)= resto \left\{ \dfrac{x^{(n-k)}m(x)}{g(x)} \right\}
+\end{equation}
+
+La implementación de la división de polinomios utilizada se basa en la \textit{división sintética} de polinomios. Este método permite realizar la división utilizando operaciones de "XOR" reduciendo enormemente el tiempo de ejecución del algoritmo.
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Bit} 	& \multicolumn{2}{|c|}{\textbf{Descripción}} \\
+\hline
+$B_0$ & \multicolumn{2}{|c|}{Referencia para la modulaci\'on diferencial} \\
+ \hline
+$B_1 \; - \; B_{16}$ & \multicolumn{2}{|c|}{Señal de sincronismo ($w_0$, $w_1$)} \\
+ \hline
+$B_{17} \; - \; B_{19}$ & \multicolumn{2}{|c|}{Id. de tipo de segmento (diferencial o síncrono)} \\
+ \hline
+$B_{20} \; - \; B_{21}$ & \multicolumn{2}{|c|}{Identificación del sistema (00 este estándar)} \\
+ \hline
+$B_{22} \; - \; B_{25}$ & \multicolumn{2}{|c|}{Indicador de cambio de parámetro en la transmisión} \\
+ \hline
+$B_{26}$ & \multicolumn{2}{|c|}{Flag para difundir alarma de emergencia} \\
+ \hline
+$B_{27}$ & \multirow{4}{*}{Informaci\'on actual} & Flag de recepción parcial\\
+ \cline{3-3} \cline{1-1}
+$B_{28} \; - \; B_{40}$ &  & Parámetros de transmisión capa A \\
+ \cline{3-3} \cline{1-1}
+ $B_{41} \; - \; B_{53}$ & & Parámetros de transmisión capa B \\
+ \cline{3-3} \cline{1-1}
+ $B_{54} \; - \; B_{66}$ &  & Parámetros de transmisión capa C \\
+ \hline
+ $B_{67}$ & \multirow{4}{*}{Informaci\'on pr\'oxima} & Flag de recepción parcial\\
+ \cline{3-3} \cline{1-1}
+$B_{68} \; - \; B_{80}$ &  & Parámetros de transmisión capa A \\
+ \cline{3-3} \cline{1-1}
+ $B_{81} \; - \; B_{93}$ & & Parámetros de transmisión capa B \\
+ \cline{3-3} \cline{1-1}
+ $B_{94} \; - \; B_{106}$ &  & Parámetros de transmisión capa C \\
+ \hline
+  $B_{106} \; - \; B_{109}$ &  \multicolumn{2}{|c|}{Correcci\'on de corrimiento de fase (para radiodifusi\'on)}  \\
+ \hline
+  $B_{110} \; - \; B_{121}$ &  \multicolumn{2}{|c|}{Reservados}  \\
+ \hline
+   $B_{121} \; - \; B_{203}$ &  \multicolumn{2}{|c|}{Paridad}  \\
+ \hline  
+\end{tabular}
+\caption{\label{t:bits_TMCC} Asignación de bits de la TMCC information.}
+\end{table}
+
+La información que transporta la TMCC es crítica, y debe ser transmitida con una mayor confiabilidad que el resto de las señales. Al momento de ser insertada la TMCC el resto de las señales ya han sido codificadas en cuanto a protección contra errores. Esto es así porque codificar la TMCC con códigos cíclicos acortados reduce el tiempo de decodificación y la complejidad en el receptor, con lo cual se opta por transmitir la TMCC en varias portadoras a lo largo del cuadro OFDM. La recepción de la TMCC requiere una relación \textit{Carrier-to-Noise} (C/N) menor que el resto de las señales, con lo cual es normal que se pueda recibir la TMCC en escenarios menos favorables.
+
 
 En el caso general de un llamado a operar del bloque, la escritura se diseño organizada por simbolos OFDM. En cada llamado al bloque, se completara un simbolo generico. Algunas estructuras de control mantendran el control de los cambios de palabras de control y otras variables. Los parametros genericos de transmision que dependen de parametros como el modo y las constelaciones de cada capa, se resuelven en el transitorio.
 

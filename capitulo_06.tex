@@ -12,6 +12,19 @@ Considerando que realizamos la mayoría del desarrollo contrastando los bloques 
 
 Como receptor, gr-isdbt esta homologado por LATU, por lo tanto, podemos considerarlo como una simulación de un televisor comercial valida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor gr-isdbt-tx conectado a la entrada del receptor gr-isdbt.
 
+Existen varios indicadores de calidad en una transmisión digital, en este caso definiremos y utilizaremos el \textit{Bit Error Rate} (BER), y el \textit{Modulation Error Rate} (MER).
+
+\subsection{BER}
+
+
+\subsection{MER}
+La tasa de error de modulación (MER) es una medida de la suma de todas las interferencias que afectan a una señal de TV digital. Se registra la desviación de los puntos del diagrama de constelación de su posición teórica. Esto da una manera de realizar una evaluación cuantitativa sobre la calidad de la señal. Usualmente el MER se expresa en dB como la tasa logarítmica entre el valor RMS de la amplitud de la señal y el módulo del vector error.
+
+
+\begin{equation}
+MER_{RMS} = 20 \log \sqrt{\sum_{k=0}^N}
+\end{equation}
+
 \subsubsection{Pruebas flowgraph}
 
 En este caso ideal, contenido en un mismo flowgraph y con nula variabilidad de las muestras, el transmisor se comporta de forma perfecta. Si encontramos, algunos problemas de consumo de CPU, seguramente debidos a problemas de optimización del código. 
