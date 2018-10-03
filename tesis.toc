@@ -1,56 +1,57 @@
 \select@language {spanish}
-\contentsline {chapter}{Resumen}{\es@scroman {i}}{chapter*.1}
+\contentsline {chapter}{Agradecimientos}{\es@scroman {i}}{chapter*.1}
+\contentsline {chapter}{Resumen}{\es@scroman {v}}{chapter*.3}
 \contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Fundamento Teórico}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Modelado del canal}{6}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Canal de Gauss}{6}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Canal de Rice}{6}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Canal de Rayleigh}{7}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Estrategias para mitigar los efectos del canal}{7}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}C\'odigos de detecci\'on y correci\'on de errores}{7}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Códigos Cíclicos}{8}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Modulación OFDM}{10}{section.2.3}
+\contentsline {section}{\numberline {2.2}Modulación OFDM}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Estrategias para mitigar los efectos del canal}{8}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}C\'odigos de detecci\'on y correci\'on de errores}{8}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Códigos Cíclicos}{9}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Códigos Convolucionales}{11}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}MPEG y sus Estandares}{11}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}MPEG 2 Transport Stream}{11}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Tablas PMT}{12}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Tablas PAT}{12}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}Paquetes Nulos}{12}{subsection.2.4.4}
-\contentsline {chapter}{\numberline {3}El Sistema de Televisión Digital Terrestre ISDB-T}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}BTS como fuente de datos}{14}{section.3.1}
-\contentsline {section}{\numberline {3.2}Robustecimiento frente a las no idealidades del canal}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Formacion de los cuadros OFDM}{17}{section.3.3}
-\contentsline {section}{\numberline {3.4}Las portadoras y la modulacion}{17}{section.3.4}
-\contentsline {section}{\numberline {3.5}La puesta en el aire de la señal}{18}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Necesidad del prefijo cíclico}{18}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}La potencia requerida para transmitir}{20}{subsection.3.5.2}
-\contentsline {chapter}{\numberline {4}Radio definida por Software}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}GNU Radio}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Flowgraphs}{22}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Bloques}{22}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Hardware}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}USRP B100}{24}{subsection.4.2.1}
-\contentsline {subsubsection}{Interfaz con GNU Radio}{25}{section*.10}
-\contentsline {chapter}{\numberline {5}Un transmisor ISDBT implementado en GNU Radio}{27}{chapter.5}
-\contentsline {section}{\numberline {5.1}El flujo de datos en GNU Radio}{27}{section.5.1}
-\contentsline {section}{\numberline {5.2}Obtencion de los TSP por capa}{28}{section.5.2}
-\contentsline {section}{\numberline {5.3}Codificaciones de Canal}{29}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Reed Solomon}{29}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Viterbi}{29}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}La modulacion}{30}{section.5.4}
-\contentsline {section}{\numberline {5.5}El uso de los entrelazamientos}{32}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Entrelazamiento frecuencial}{32}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Entrelazamiento temporal}{32}{subsection.5.5.2}
-\contentsline {section}{\numberline {5.6}Entrelazamiento de bits}{34}{section.5.6}
-\contentsline {section}{\numberline {5.7}Formacion de cuadros OFDM}{36}{section.5.7}
-\contentsline {section}{\numberline {5.8}La transformada de Fourier}{37}{section.5.8}
-\contentsline {section}{\numberline {5.9}El prefijo cíclico}{38}{section.5.9}
-\contentsline {section}{\numberline {5.10}La transmision desde USRP}{39}{section.5.10}
-\contentsline {chapter}{\numberline {6}Evaluación del sistema}{41}{chapter.6}
-\contentsline {section}{\numberline {6.1}Pruebas sobre gr-isdbt}{41}{section.6.1}
-\contentsline {subsubsection}{Pruebas flowgraph}{41}{section*.25}
-\contentsline {subsubsection}{Pruebas en el aire}{42}{section*.27}
-\contentsline {section}{\numberline {6.2}Pruebas sobre televisores comerciales}{43}{section.6.2}
-\contentsline {chapter}{\numberline {7}Conclusiones y trabajo a futuro}{45}{chapter.7}
-\contentsline {chapter}{Referencias}{47}{chapter.7}
-\contentsline {chapter}{\'Indice de tablas}{48}{chapter*.29}
-\contentsline {chapter}{\'Indice de figuras}{50}{chapter*.30}
+\contentsline {chapter}{\numberline {3}El Sistema de Televisión Digital Terrestre ISDB-T}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}BTS como fuente de datos}{16}{section.3.1}
+\contentsline {section}{\numberline {3.2}Robustecimiento frente a las no idealidades del canal}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Formacion de los cuadros OFDM}{19}{section.3.3}
+\contentsline {section}{\numberline {3.4}Las portadoras y la modulacion}{19}{section.3.4}
+\contentsline {section}{\numberline {3.5}La puesta en el aire de la señal}{20}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Necesidad del prefijo cíclico}{20}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}La potencia requerida para transmitir}{22}{subsection.3.5.2}
+\contentsline {chapter}{\numberline {4}Radio definida por Software}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}GNU Radio}{23}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Flowgraphs}{24}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Bloques}{24}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Hardware}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}USRP B100}{26}{subsection.4.2.1}
+\contentsline {subsubsection}{Interfaz con GNU Radio}{27}{section*.12}
+\contentsline {chapter}{\numberline {5}Un transmisor ISDBT implementado en GNU Radio}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}El flujo de datos en GNU Radio}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}Obtencion de los TSP por capa}{30}{section.5.2}
+\contentsline {section}{\numberline {5.3}Codificaciones de Canal}{31}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Reed Solomon}{31}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Viterbi}{31}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}La modulacion}{32}{section.5.4}
+\contentsline {section}{\numberline {5.5}El uso de los entrelazamientos}{34}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Entrelazamiento frecuencial}{34}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Entrelazamiento temporal}{34}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}Entrelazamiento de bits}{36}{section.5.6}
+\contentsline {section}{\numberline {5.7}Formacion de cuadros OFDM}{38}{section.5.7}
+\contentsline {section}{\numberline {5.8}La transformada de Fourier}{41}{section.5.8}
+\contentsline {section}{\numberline {5.9}El prefijo cíclico}{41}{section.5.9}
+\contentsline {section}{\numberline {5.10}La transmision desde USRP}{42}{section.5.10}
+\contentsline {chapter}{\numberline {6}Evaluación del sistema}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}Pruebas sobre gr-isdbt}{43}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}BER}{44}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}MER}{44}{subsection.6.1.2}
+\contentsline {subsubsection}{Pruebas flowgraph}{44}{section*.28}
+\contentsline {subsubsection}{Pruebas en el aire}{44}{section*.30}
+\contentsline {section}{\numberline {6.2}Pruebas sobre televisores comerciales}{44}{section.6.2}
+\contentsline {chapter}{\numberline {7}Conclusiones y trabajo a futuro}{47}{chapter.7}
+\contentsline {chapter}{Referencias}{49}{chapter.7}
+\contentsline {chapter}{\'Indice de tablas}{50}{chapter*.32}
+\contentsline {chapter}{\'Indice de figuras}{52}{chapter*.33}
