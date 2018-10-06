@@ -12,18 +12,35 @@ Considerando que realizamos la mayoría del desarrollo contrastando los bloques 
 
 Como receptor, gr-isdbt esta homologado por LATU, por lo tanto, podemos considerarlo como una simulación de un televisor comercial valida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor gr-isdbt-tx conectado a la entrada del receptor gr-isdbt.
 
-Existen varios indicadores de calidad en una transmisión digital, en este caso definiremos y utilizaremos el \textit{Bit Error Rate} (BER), y el \textit{Modulation Error Rate} (MER).
+Existen varios indicadores de calidad en una transmisión digital, en este caso nos basaremos en dos de ellos que son ampliamente utilizados y proporcionan una medida cuantitativa de la calidad de la señal. A continuación definiremos y el \textit{Bit Error Rate} (BER), y el \textit{Modulation Error Rate} (MER).
 
 \subsection{BER}
+El estándar ISDB-T en su etapa de codificación de canal hace uso de una combinación de códigos de Reed-Solomon junto con códigos convolucionales. En recepción se utilizan los decodificadores Viterbi y Reed-Solomon, ambos códigos están orientados a la corrección de errores de bits. Resulta importante cuantificar esos errores que se producen así como conocer la proporción de ellos que se han podido recuperar. Es de interés conocer tanto la cantidad de errores que hay antes del Viterbi, luego del Viterbi (antes del Reed-Solomon) y luego del Reed-Solomon.
 
+Se define la tasa de error de bits (BER) como el cociente entre la cantidad de bits erróneos que se recibieron y la cantidad de bits totales.
+
+Para realizar una medición del BER hay que elegir un intervalo de tiempo determinado sobre el cual se va a promediar. En pruebas de aceptación de equipos comerciales se suelen realizar tests que duran varias horas, mientras que para pruebas de monitoreo los tests suelen ser de algunos minutos.
+
+
+
+
+
+ 
 
 \subsection{MER}
 La tasa de error de modulación (MER) es una medida de la suma de todas las interferencias que afectan a una señal de TV digital. Se registra la desviación de los puntos del diagrama de constelación de su posición teórica. Esto da una manera de realizar una evaluación cuantitativa sobre la calidad de la señal. Usualmente el MER se expresa en dB como la tasa logarítmica entre el valor RMS de la amplitud de la señal y el módulo del vector error.
 
 
 \begin{equation}
-MER_{RMS} = 20 \log \sqrt{\sum_{k=0}^N}
+MER_{RMS} = 10 \log_{10} \left( \dfrac{\sum_{j = 0}^{N-1} I_{j}^{2}+ Q_{j}^{2}}{\sum_{j = 0}^{N-1}\delta I_{j}^{2}+\delta Q_{j}^{2}} \right )
 \end{equation}
+
+
+Tener un MER alto indica una buena calidad en la señal, para los equipos transmisores comerciales se considera un MER de 35dB como muy bueno. Las señales recibidas en un hogar a través de una antena instalada en el techo tienen un MER que se ubica entre los 20dB y 30dB aproximadamente. 
+
+El MER se puede medir de varias maneras según lo que interese considerar. Es común muy calcular el MER para cada una de las capas por separado, pero también es posible considerar todas las señales incluyendo las portadoras piloto. Tener en cuenta las portadoras piloto para el cálculo del MER puede provocar que el promedio esté un poco por encima del MER de las tres capas por separado.
+
+
 
 \subsubsection{Pruebas flowgraph}
 
