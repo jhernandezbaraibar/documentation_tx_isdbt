@@ -171,47 +171,42 @@ Los bits de paridad se obtienen calculando el resto de la division $x^{(7-4)}m(x
 
 \section{MPEG y sus Estandares}
 
-El Moving Picture Experts Group (MPEG)\cite{MPEG} es un grupo de trabajo conformado por expertos internacionales, formado por la Organizacion Internacional de Normalizacion (ISO) en conjunto con la Comision Electrotecnica Internacional (IEC), con el objetivo de desarrollar estandares para la codificacion, compresion y transmision de audio y video.
+El Moving Picture Experts Group (MPEG)\cite{MPEG} es un grupo de trabajo conformado por expertos internacionales, formado por la Organización Internacional de Normalización (ISO) en conjunto con la Comisión Electrotécnica Internacional (IEC), con el objetivo de desarrollar estándares para la codificación, compresión y transmisión de audio y video.
 
-Uno de los estándares publicados por el MPEG, es MPEG-4. Consta de metodos para la compresion digital de contenidos audiovisuales,  y abarca la difusión de los mismos a traves de una amplia gama de tecnologías, desde el streaming de datos a través de la web, codificacion de voz y video para telefonia y videoconferencias, comercializacion de discos compactos (CD) y hasta formatos para la transmision de televisión. 
+Uno de los estándares publicados por el MPEG, es MPEG-4. Consta de métodos para la compresión digital de contenidos audiovisuales,  y abarca la difusión de los mismos a través de una amplia gama de tecnologías, desde el streaming de datos a través de la web, codificación de voz y video para telefonía y videoconferencias, comercialización de discos compactos (CD) y hasta formatos para la transmision de televisión. 
 
-Es en este ultimo punto donde se vincula con ISDB-T Internacional, puesto que para la codificación de fuente en la norma, fue seleccionado el Estándar MPEG-4 Parte 10 “Advanced Video Coding”, también denominado H.264.
+Es en este ultimo punto donde se vincula con ISDB-T Internacional, puesto que para la codificación de fuente en la norma, fue seleccionado el Estándar MPEG-4 Parte 10 “Advanced Video Coding”, también denominado H.264 \cite{mpeg4_10}.
 
-Para garantizar que los receptores de television digital ISDB-T también sean compatibles con los transmisores tanto de ISDB-T como de ISDB-T International, se encapsulan los videos codificados en H.264 dentro de un formato denominado “Transport Stream” que se define en la norma MPEG-2 Parte 1 – Sistemas.
+Para garantizar que los receptores de televisión digital ISDB-T también sean compatibles con los transmisores tanto de ISDB-T como de ISDB-T International, se encapsulan los videos codificados en H.264 dentro de un formato denominado “Transport Stream” que se define en la norma MPEG-2 Parte 1 – Sistemas \cite{mpeg2_1}.
 
 En el transmisor gr-isdbt-tx, tomamos como fuente de datos un archivo codificado como Transport Stream, para garantizar esta compatibilidad.
 
 	\subsection{MPEG 2 Transport Stream}
 	
-	Un Transport Stream (TS) es un contenedor de datos en el que se encapsulan en conjunto uno o más PES (Paquetized Elementary Streams), junto con códigos de corrección de errores y flags de sincronismo. La combinación de esta información, permite mantener la continuidad de la decodificación incluso cuando cuando el canal se degrada fuertemente.
+	A la hora de transmitir televisión, los datos a transmitir son un conjunto de lo que se denomina \textit{programas}, que son datos de video, audio, ocasionalmente subtítulos y otros datos de interés del broadcaster.  
 	
-	Un Paquetized Elementary Stream (PES), es una especificación de MPEG 2 para el transporte de flujos elementales, generalmente las salidas del codificadores de audio y video. En ISDB-T, los Elementary Streams generalmente contienen video, audios en mas de un idioma, archivos de subtitulo, grillas de programación y tablas de información de transmisión.
+	Cada programa es comprimido de forma independiente, formando lo que se denomina \textit{Elementary Stream (ES)} o flujo elemental. Para poder ser multiplexados y transmitidos, los ES se packetizan para formar estructuras denominadas \textit{Packetized Elementary Stream (PES)}. Dependiendo del tipo de transmision a realizar, los PES pueden sufrir dos tipos de modificaciones. En caso de orientarse a un entorno poco ruidoso, los PES se codifican en los llamados Program Streams, que en general son contenedores donde los paquetes de datos pueden ser de tamaño y bitrate variable. En caso de que la transmision sea a través de un medio muy ruidoso, como es el caso de la televisión digital terrestre, los PES deben ser codificados en los llamados \textit{Transport Streams}. Básicamente, para convertir un PES a un TS se reduce el tamaño de los paquetes a un contenedor fijo de 188 bytes, sobre los cuales se ejecutaran posteriormente códigos correctores de errores de tipo FEC, como los vistos en la sección anterior.
 	
-	Al comienzo de la cadena de transmisión, en ISDB-T, se multiplexan varios TS, para crear un único TS sobre el cual se va a trabajar. El mismo sera sometido luego a varias capas de codificaciones de canal, para robustecerlo aún más frente a las pérdidas. Este proceso se discutirá luego en el capitulo 3.
+	Al comienzo de la cadena de transmisión, en ISDB-T, se multiplexan varios TS, junto con tablas de información que contienen la información y posición de los programas en el flujo. Se crea entonces un único TS de transmision sobre el cual se van a realizar las tareas de codificación, robustecimiento ante perdidas y posteriormente la modulación y otras técnicas que se verán mas adelante.
 	
-	Los datos de los elementary streams se recortan en secciones de 188 bytes, este tamaño tan pequeño, permite que se realice un entrelazamiento con otros ES con muy baja latencia, y con una mayor resistencia ante las pérdidas.
+	Cuando un receptor obtenga el TS en cuestión, no tendrá en principio información alguna sobre el contenido del flujo. Dicha información existe en las tablas, pero en un momento inicial de la recepción, tampoco están disponibles puesto que están multiplexadas con todos los demás paquetes del TS. Cada paquete contiene un identificador único denominado Packet Identifier (PID). Como las tablas contienen información vital para la decodificación, sus números PID son bien conocidos por el receptor, de forma que puede buscar entre todos los paquetes aquellos que le darán la información para comenzar la decodificación. La primera tabla que el receptor busca en el TS, es la tabla PAT, que tiene asignado el PID 0x0000. 
+	
+	\subsection{Tabla PAT}
+	La Program Association Table (PAT), es una tabla que contiene una lista de todos los programas disponibles en el TS. Está formada por valores de 16 bits denominados Program Number, asociados cada uno de ellos con el PID correspondiente a la tabla PMT de cada uno de los programas dentro del stream. 
+	
+	De este modo, el receptor que se conecta al stream en cualquier momento de la transmisión, lee la tabla PAT y obtiene un listado de los programas existentes en el TS y los PIDs de sus correspondientes PMTs. 
 
 	\subsection{Tablas PMT}
 
-	Dentro de los Transport Streams se define el concepto de Programas. Cada programa esta definido en una tabla denominada PMT (Program Map Table), que viaja multiplexada en el TS de transmisión, identificada por un PID único. Los Elementary Streams asociados con el programa en cuestión, tienen sus PIDs listados en la PMT. En general, se asocia cada canal con un programa, aunque también podrían utilizarse programas para (completar)
+	Cada programa del TS tiene su tabla PMT (Program Map Table), identificada tambien por su PID único. En la tabla PMT, esta la informacion correspondiente a los PIDs de los paquetes que pertenecen al programa en cuestion.
 	
-	Cuando un receptor decide reproducir un canal en particular, lo que tiene que hacer es decodificar los payloads contendidos en los TS cuyos PIDs están en la tabla PMT
-	
-	Ademas de la tabla PMT, existen otros tipos de tablas en MPEG-2. Para el alcance de este documento, nos interesa detallar solo dos mas.
-	La Program Asociation Table (PAT), contiene una lista con todos los programas 
-
-	
-	\subsection{Tablas PAT}
-	La Program Association Table (PAT), es una tabla que contiene una lista de todos los programas disponibles en el TS. Está formada por valores de 16 bits denominados Program Number, asociados cada uno de ellos con un PID correspondiente a su tabla PMT dentro del stream. 
-	
-	De este modo, el receptor que se conecta al stream en cualquier momento de la transmisión, pueda hallar el programa de interés y sintonizarlo. Las tablas PAT siempre van contenidas en paquetes de PID 0x0000.
-	
-	Habiendo identificado la PAT por su PID bien conocido, el receptor selecciona un programa de la lista y guarda el PID de su tabla PMT. Luego filtrando todos los paquetes cuyo identificador difiera del identificador del programa elegido, se hace con toda la información de decodificación del programa contenida en la PMT, y luego podrá discriminar entre todos los paquetes del TS, los del contenido audiovisual que le son de interés para decodificarlo. 
- 
+	Una vez obtenida la tabla PMT del programa que se desea decodificar, el receptor debe almacenar los PIDs que estan contenidos en ella. Luego, basta con filtrar los paquetes del TS para obtener solo los datos del programa a decodificar. 
+		
+	Ademas de la tabla PAT y las PMT, existen otros tipos de tablas en MPEG-2. Para el alcance de este documento, con la descripcion de estas dos es suficiente, pero si nos interesa destacar otro tipo de paquete del TS con un PID bien conocido.
 	
 	\subsection{Paquetes Nulos}
 	
-	Resulta vital para un esquema de transmisión de televisión mantener el bitrate constante, puesto que esto mantiene el ancho de banda de tamaño constante. En una transmision de datos multimedia, hay variabilidad en la tasa de bits todo el tiempo, por lo que puede ocurrir que en algún momento falten datos para contemplar esa tasa. Es por eso que se definen los paquetes nulos. Un multiplexor completa con los paquetes necesarios para mantener la tasa constante.
+	Resulta vital para un esquema de transmisión de televisión mantener el bitrate constante, puesto que esto mantiene el ancho de banda de tamaño constante. En una transmision de datos multimedia, hay variabilidad en la tasa de bits todo el tiempo, por lo que puede ocurrir que en algún momento falten datos para contemplar esa tasa. Es por eso que se definen los paquetes nulos. Un multiplexor completa con paquetes ``dummy" cuando ocurre esta deficiencia, y así logra para mantener la tasa constante.
 	
-	Para diferenciar los datos validos de los paquetes de relleno, al igual que lo que sucede con la tabla PAT, es que se usa para identificar los paquetes nulos un PID bien conocido, que en este caso es el 0x1FFF.
+	El PID de los paquetes nulos es el 0x1FFF.
 
