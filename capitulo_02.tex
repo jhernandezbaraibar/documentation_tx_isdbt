@@ -44,23 +44,49 @@ Existen una serie de estrategias, implementadas en la norma ISDB-T, orientadas a
 
 \section{Modulación OFDM}
 
-En 1966, Chang presenta un método para lograr la multiplexion canales de datos a través de un medio de frecuencia acotada\cite{chang-ofdm}, que elimina los efectos de interferencia intersimbolica e intercanal. Implico un cambio importante en la teoría de telecomunicaciones de la época, pues hasta entonces, los resultados existentes tomaban como funciones modulantes ortogonales, señales limitadas en el tiempo, lo que implica grandes anchos de banda en frecuencia, y en los canales de banda acotada implementados en la practica se traducían en interferencias producto de los recortes en banda. 
+En 1966, Chang presenta un método para lograr la multiplexión de canales de datos a través de un medio de frecuencia acotada, que elimina los efectos de interferencia intersimbólica e intercanal\cite{chang-ofdm}. Implicó un cambio importante en la teoría de telecomunicaciones de la época, pues hasta entonces, los resultados existentes tomaban como funciones modulantes ortogonales, señales limitadas en el tiempo, lo que implica infinitos anchos de banda en frecuencia, lo cual en la práctica, con espectros de banda acotada se traducían en interferencias producto de los recortes en banda. 
 
-En el paper, Chang postula la idea de una nueva clase de funciones modulantes acotadas en frecuencia, que ademas, permite modular de manera independiente amplitud y frecuencia. En ese momento se sentaban las bases de la modulacion OFDM (Orthogonal Frecuency-Division Multiplexing).
+En el paper, Chang postula la idea de una nueva clase de funciones modulantes acotadas en frecuencia. Lo que permite transmitir a través de un medio lineal a la máxima tasa posible, eliminando ademas la interferencia intersimbólica e intercanal. Además, con estas nuevas funciones modulantes, es posible alterar de manera independiente las características de amplitud y fase, lo que abrió la puerta a la transmisión de números reales. En ese momento se sentaban las bases de una modulación OFDM (Orthogonal Frecuency-Division Multiplexing) que podría ser implementada de forma práctica.
 
-Uno de los mayores problemas de los sistemas FDM, era la incapacidad para escalar en cantidad de canales. La complejidad y el costo de construir los osciladores para la cantidad de portadoras necesarias, mantenían la brecha entre la teoría y la practica. 
+Utilizando las nuevas funciones modulantes introducidas por Chang, las señales OFDM quedan definidas de la siguiente manera:
 
-La solución a estos problemas, llega cuando se logra programar computadoras capaces de procesar grandes cantidades de datos, mediante la implementación del algoritmo de “Fast Fourier Transform”. 
+\begin{equation}
+s(t) = \sum_{i=-\frac{N}{2}}^{\frac{N}{2} - 1} d_{i} e^{j2\pi(f_c + \frac{i}{T_s})t}
+\end{equation}
 
-Weinstein y Ebert, resolvieron en \cite{discrete-ofdm} el problema de la escalabilidad de los sistemas OFDM, mediante la conjugacion de los mencionados avances tecnologicos, discretizando las señales a transmitir, y modulandolas por computadora, en lugar de usar los bancos de osciladores. 
+Donde N es la cantidad de portadoras en paralelo con las que se va a trabajar, $d_i$ es el símbolo i-ésimo, que lleva la información a transmitir, $f_c$ es la frecuencia central sobre la que se transmitirá y $T_s$ es el periodo del símbolo. 
 
-Una señal multitonal, puede ser vista como la transformada de fourier de un tren de pulsos, y la demodulacion coherente a su vez puede entenderse como la aplicación en tiempo continuo de una transformada inversa de Fourier. Entonces, probaron que muestreando la señal de origen, y mediante la implementación de un modem sobre una computadora que ejecute el algoritmo de la transofrmada rápida de Fourier, se pueden obtener aproximaciones suficientemente cercanas a los de la señal original. 
+Dentro de la señal OFDM, se pueden definir dos estructuras que serán de interés mayúsculo a la hora de transmitir. A cada intervalo de tamaño $T_s$ se le denominara símbolo OFDM. En los sistemas de transmision digital de datos, se suele encapsular pequeñas cantidades de símbolos en estructuras denominadas \textit{cuadros} o \textit{frames}. A lo largo de los cuadros, se suele incluir información relevante de la transmision, utilizando pocos bits por simbolos, ya que la lectura de esos datos se hará a lo largo del cuadro. Al ser información persistente en el tiempo, esa definicion a lo largo del cuadro será suficiente para transportarla hacia el receptor de forma eficiente. Para el caso de ISDB-T, como se vera mas adelante, definiremos un cuadro OFDM como el conjunto de 204 símbolos OFDM consecutivos.
 
-En principio el resultado es válido para un sistema OFDM con N canales simultáneos, con portadoras separadas en frecuencia en distancias suficientemente cercanas, como para aproximar la respuesta al impulso del canal, como si fuese de modulo constante sobre cada uno de los N canales. 
+Volviendo sobre la implementacion de OFDM en los años 60, uno de los mayores problemas de los sistemas multiportadora, era la gran dificultad para escalar en cantidad de portadoras. La complejidad y el costo de construir los osciladores para la cantidad de canales necesarias, mantenían la brecha entre la teoría y la ejecución práctica. 
 
-Pero falta un paso mas, pues la hipótesis del comportamiento del canal constante, se aleja bastante de la realidad. Plantearon entonces un canal de respuesta al impulso lineal en frecuencia.
+La solución a estos problemas, llegó cuando se logró programar computadoras capaces de procesar grandes cantidades de datos, mediante la implementación del algoritmo de “Fast Fourier Transform”. 
 
-En estas condiciones, y atendiendo ademas que la señal discreta a transmitir solo “vive” en el ancho de banda de transmisión, consideraron a la señal a transmitir como una transformada de Fourier enventanada. Desarrollando estas ideas lograron probar que, si la ventana es plana en las frecuencias de interés, y se agregan “guardas” de seguridad a ambos lados de las portadoras activas, de modo que las colas del enventanado caigan de forma continua, (alejando el enventanado de la idealidad de las ventanas rectangulares) se logran condiciones para reducir la distorsión generada por la respuesta al impulso del canal, a efectos transitorios de dispersión rápida, y la señal en recepción sigue convergiendo a la señal transmitida.
+Weinstein y Ebert, resolvieron en  su publicación de 1971 \cite{discrete-ofdm} el mencionado problema de la escalabilidad, mediante la utilización de los avances tecnológicos de la época. Discretizando las señales a transmitir, y modulándolas por computadora, lograron formar sistemas multicanal para la transmision en tiempo discreto en lugar de recurrir a los bancos de osciladores que se usaban hasta el momento. 
+
+Su argumento provenía de la siguiente idea, una señal multitonal, puede ser vista como la transformada de Fourier de un tren de pulsos, y la demodulación coherente a su vez puede entenderse como la aplicación en tiempo continuo de una transformada inversa de Fourier. Entonces, probaron que muestreando la señal de origen, y mediante la implementación de un modem sobre una computadora que ejecute el algoritmo de la transofrmada rápida de Fourier, se pueden obtener aproximaciones suficientemente cercanas a los de la señal original. 
+
+En principio el resultado es válido para cualquier sistema OFDM con N canales simultáneos, con portadoras equiespaciadas en frecuencia, transmitiendo a la misma tasa. Si todos los canales están suficientemente cerca, es posible considerar que la respuesta en frecuencia del canal es plana para cada uno, y la ecualización del canal se vuelve muy sencilla.
+
+La propagación de la señal a través del canal, se realiza a través de múltiples caminos, puesto que a medida que avanza por el medio, la señal rebota en distintos obstáculos, que a su vez se comportan como nuevos emisores. Esto produce que en recepción se obtengan varias copias de la señal original, con distintos retardos. Este problema ocasiona lo que se demonina Interferencia Intersimbólica (ISI), es decir, la recepción y decodificación de cada símbolo, esta afectada por los símbolos vecinos en el cuadro.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.65]{figuras/cap03/prefijo_ciclico}
+	\caption{\label{f:prefijo_ciclico} Inserción del prefijo cíclico.}
+\end{figure}
+
+Para reducir el ISI, se implementa en cada símbolo OFDM lo que se denomina un prefijo cíclico. Las ultimas muestras del símbolo se copian al principio, de forma que al recibir, se calcula la autocorrelación del símbolo, que tendrá su pico en el comienzo de los datos validos. Un ejemplo del prefijo cíclico se encuentra en la figura \ref{f:prefijo_ciclico}
+
+La cantidad de muestras que se copian en el prefijo cíclico es un parámetro del sistema con el que los diseñadores pueden determinar según sea la aplicación. Generalmente se le denomina profundidad, y cuanto mayor sea la profundidad del prefijo, mas robusto sera el sistema frente a la ISI, pero dejara disponible un menor ancho de banda.
+
+En síntesis, el esquema de un sistema transmisor OFDM tiene una forma similar a la presentada en la figura \ref{f:ofdm_system}. En la misma, el bloque $CP$ identifica la inserción del prefijo cíclico, y el bloque \xcancel{CP} identifica la remoción del mismo por parte del receptor.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.65]{figuras/cap02/ofdm_system}
+	\caption{\label{f:ofdm_system} Esquema básico de un sistema OFDM.}
+\end{figure}
 
 \section{Estrategias para mitigar los efectos del canal}
 
@@ -140,6 +166,8 @@ Por ejemplo, para un código cíclico (7, 4) con polinomio generador $g(x) = x^3
 Los bits de paridad se obtienen calculando el resto de la division $x^{(7-4)}m(x)/g(x)$, los coeficientes de ese resto seran los bits de la paridad buscada. Operando se llega a que la paridad es 011 y el mensaje codificado queda 0111001.
 
 \subsection{Códigos Convolucionales}
+
+
 
 \section{MPEG y sus Estandares}
 

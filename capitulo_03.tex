@@ -195,11 +195,7 @@ r[n] = \sum_{k = 0}^{L-1} h_k x[n-k] + w[n]
 
 La señal resultante tendrá $N+L-1$ dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias, sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la Figura \ref{f:prefijo_ciclico}.
 
-\begin{figure}[!h]
-\centering
-\includegraphics[scale=0.65]{figuras/cap03/prefijo_ciclico}
-\caption{\label{f:prefijo_ciclico} Inserción del prefijo cíclico.}
-\end{figure}
+
 
 El estándar ISDB-T ofrece la posibilidad de utilizar distintos largos de prefijo cíclico. Una manera de establecer sincronismo, y también poder conocer los parámetros básicos de transmisión desde el lado del receptor como el modo y el largo del prefijo cíclico, consiste en tomar símbolos OFDM consecutivos que van arribando y retardarlos una cierta cantidad de símbolos. Luego se calcula una función de verosimilitud propuesta por Van de Beek en \cite{van1997ml} y según su característica es que se puede determinar el largo del prefijo cíclico y el modo de transmisión.  
 
