@@ -2,28 +2,28 @@
 
 Cuando en telecomunicaciones se habla de radio, se hace referencia al hardware necesario para transmitir o recibir información, haciendo uso de la banda del espectro radioeléctrico ubicado en radiofrecuencia (RF).
 
-La mayoría de los sistemas de comunicación de hoy en día necesitan de un radio, la telefonía móvil,  la navegación por satélite, la aviación comercial, la televisión abierta, son todos ejemplos. En general los radios varían en dimensiones y costos según la aplicación, pero son muy poco versátiles en cuanto a sus capacidades. Con cada actualización tecnológica que reciben las redes, por ejemplo la modernización de la red móvil de 3G a LTE, implica una renovación total del equipamiento de radio. 
+La mayoría de los sistemas de comunicación de hoy en día necesitan de un radio: la telefonía móvil,  la navegación por satélite, la aviación comercial, la televisión abierta, son todos ejemplos. En general los radios varían en dimensiones y costos según la aplicación, pero son muy poco versátiles en cuanto a sus capacidades. Con cada actualización tecnológica que reciben las redes, por ejemplo la modernización de la red móvil de 3G a LTE, implica una renovación total del equipamiento de radio. 
 
-El concepto de Radio Definida por Software no es nuevo, algunas de sus ideas fundacionales se publicaron en la década de los 70. Pero ha sido el masivo desarrollo de la industria tecnológica el que ha impulsado en los últimos años la implementación de sistemas basados en SDR. 
+El concepto de Radio Definida por Software no es nuevo, algunas de sus ideas fundacionales se publicaron en la década de los 80, impulsadas por algunos de los trabajos de Joseph Mitola \cite{mitola_SDR}. Pero ha sido el masivo desarrollo de la industria tecnológica el que ha impulsado en los últimos años la implementación de sistemas basados en SDR. 
 
-Para implementar un equipo de radio definida por software, solo es necesario contar con una antena de radiofrecuencia, capaz de transmitir/emitir señales analógicas, y un conversor analógico-digital que alimenta de muestras a un procesador de propósito general. Es aquí donde radica la diferencia con los radios implementados en hardware, en los cuales se implementa toda una circuiteria electrónica para realizar el procesamiento. La masividad de los procesadores y el auge de la programación de hoy en día, permiten implementar fácilmente un SDR, y realizar todo tipo de proyectos de distinta escala, reutilizando el equipamiento. 
+Para implementar un equipo de radio definida por software, solo es necesario contar con una antena de radiofrecuencia, capaz de transmitir/emitir señales analógicas, y un conversor analógico-digital que alimenta de muestras a un procesador de propósito general. Es aquí donde radica la diferencia con los radios implementados en hardware, en los cuales se implementa toda una circuitería electrónica para realizar el procesamiento. La masividad de los procesadores y el auge de la programación de hoy en día, permiten implementar fácilmente un SDR, y realizar todo tipo de proyectos de distinta escala, reutilizando el equipamiento. 
 
-Durante la realización de este proyecto, utilizamos como entorno de desarrollo para crear los bloques de procesamiento de señales al software GNU Radio, y como antena utilizamos un equipo N200 del fabricante Ettus Research. 
+Durante la realización de este proyecto, utilizamos como entorno de desarrollo para crear los bloques de procesamiento de señales al software GNU Radio\cite{GNURadio}, y como hardware utilizamos un equipo B200 del fabricante Ettus Research\cite{EttusResearch} junto con una antena telescópica genérica. 
 
 \section{GNU Radio}
 
-GNU Radio es un entorno de desarrollo orientado a procesamiento de señales, es gratuito y de código abierto. Mediante la interconexion de bloques de procesamiento, puede usarse en conjunto con antenas de RF para desarrollar SDRs, o en una versión local en modo de simulación de sistemas.
+GNU Radio es un entorno de desarrollo orientado a procesamiento de señales, gratuito y de código abierto. Mediante la interconexion de bloques de procesamiento, puede usarse en conjunto con antenas de RF para desarrollar SDRs, o en una versión local en modo de simulación de sistemas.
  
-La aplicación por defecto trae una amplia gama de bloques funcionales para trabajar, desde herramientas simples como filtros y ecualizadores, hasta estructuras complicadas, como lo es un transmisor DTV completo.  Existe ademas una gran comunidad, muy activa, que esta permanentemente publicando nuevos contenidos, para ampliar la gama de herramientas existentes en la actualidad. 
+La aplicación por defecto trae una amplia gama de bloques funcionales para trabajar, desde herramientas simples como filtros y ecualizadores, hasta estructuras complicadas, como lo es un transmisor DTV completo.  Existe además una gran comunidad, muy activa, que esta permanentemente publicando nuevos contenidos, para ampliar la gama de herramientas existentes en la actualidad. 
 
-Esto se da porque al ser de código abierto, es relativamente sencillo crear bloques nuevos. El entorno soporta desarrollos de código en python y en C++, siendo este ultimo el lenguaje con el que hemos implementado nuestro transmisor gr-isdbt-tx. Si bien puede parecer un poco complejo comprender la metódica de GNURadio en un principio,  una vez que comenzamos a trabajar con el y atravesamos la curva de aprendizaje, nos encontramos con una herramienta muy poderosa, y con la que es mas sencillo comprender algunos de los conceptos teóricos establecidos en la norma.
+Esto se da porque al ser de código abierto, es relativamente sencillo crear bloques nuevos. El entorno soporta desarrollos de código en python y en C++, siendo este ultimo el lenguaje con el que hemos implementado nuestro transmisor gr-isdbt-tx. Si bien puede parecer un poco complejo comprender la metódologia de trabajo en GNU Radio en un principio,  una vez que comenzamos a trabajar con él y atravesamos la curva de aprendizaje, nos encontramos con una herramienta muy poderosa, y con la que es más sencillo comprender algunos de los conceptos teóricos establecidos en la norma.
 Durante la carrera, nos habíamos encontrado con GNU Radio en algunas ocasiones, donde pusimos en practica algunos conceptos básicos de sistemas de comunicación. No fue hasta esta instancia, en la que pudimos encontrarnos con el potencial total de la herramienta. 
 
 Pasaremos a desarrollar algunos de los conceptos clave para comprender el uso de GNU Radio, ejemplificando con nuestro transmisor gr-isdbt-tx
 
 \subsection{Flowgraphs}
 
-El flowgraph es la estructura de datos mas básica del programa. Puede entenderse al mismo como si fuera una mesa de trabajo. Dentro de un flowgraph, vamos a insertar nuestras muestras desde la fuente, las vamos a procesar y las vamos a exportar, ya sea hacia un archivo o hacia el canal a través de una antena. 
+El flowgraph es la estructura de datos más básica del programa. Puede entenderse al mismo como si fuera una mesa de trabajo. Dentro de un flowgraph, vamos a insertar nuestras muestras desde la fuente, las vamos a procesar y las vamos a exportar, ya sea hacia un archivo o hacia el canal a través de una antena. 
 
 \subsection{Bloques}
 
@@ -34,56 +34,37 @@ Existen cuatro tipos de bloques, y de diferencian por la tasa de muestras que at
 
 \textit{Bloques Decimadores (N:1)}, son los que producen menos muestras de las que consumen, y de forma análoga, existen también los \textit{Bloques Interpoladores (1:M)}.
 
-Finalmente tenemos el caso general, \textit{Bloques Generales (N:M)}, en el cual no existe a priori una relación entre muestras de entrada y de salida, y cada usuario debe definirlo para el bloque en particular que esta creando mediante una función llamada forecast. Uno de los mas claros casos de bloque general en nuestro transmisor, es el bloque que crea el cuadro OFDM. En tiempo de compilación, no sabemos los parámetros de transmisión que determinan la tasa de muestras. Es en tiempo de ejecución que estos valores quedan definidos, el propio motor de GNU Radio se encarga de orquestar el flujo de datos para que todo funcione en régimen, 
-Para implementar el transmisor, tuvimos que separar las funcionalidades en bloques de procesamiento, e implementar aquellos bloques que no estuviesen ya presentes en el repositorio. Algunos ejemplos como conversores serie a paralelo, el codificador Reed Solomon, el codificador Viterbi, existían ya como bloques funcionales del programa, y fueron re utilizados. 
+Finalmente tenemos el caso general, \textit{Bloques Generales (N:M)}, en el cual no existe a priori una relación entre muestras de entrada y salida, y cada usuario debe definirlo para el bloque en particular que esta creando mediante una función llamada forecast. Uno de los mas claros casos de bloque general en nuestro transmisor, es el bloque que crea el cuadro OFDM. En tiempo de compilación, no sabemos los parámetros de transmisión que determinan la tasa de muestras. Es en tiempo de ejecución que estos valores quedan definidos, y el propio motor de GNU Radio se encarga de orquestar el flujo de datos para que todo funcione en régimen.
+
+Para implementar el transmisor, tuvimos que separar las funcionalidades en bloques de procesamiento, e implementar aquellos bloques que no estuviesen ya presentes en el software. Algunos ejemplos como conversores serie a paralelo, el codificador Reed Solomon, el codificador Viterbi, existían ya como bloques funcionales del programa, y fueron re utilizados. 
 
 \section{Hardware}
-Universal Software Radio Peripheral (USRP) es una linea de plataformas de hardware para SDRs diseñados y comercializados por la empresa Ettus Research. Gran parte de la arquitectura de estos equipos es de código abierto, y puede ser descargada desde la web de la empresa. Con estos equipos se logra poner en funcionamiento soluciones de radio definida por software por costo accesible. 
+Universal Software Radio Peripheral (USRP) es una linea de plataformas de hardware para SDRs diseñados y comercializados por la empresa Ettus Research. Gran parte de la arquitectura de estos equipos es de código abierto, y puede ser descargada desde la web de la empresa. Con estos equipos se logra poner en funcionamiento soluciones de radio definida por software por costo accesible, ya que la gama de precios de los equipos de la compañia oscila en un entorno de 1000 dólares. 
 
-En lineas generales, se componen de una placa madre en la que conviven varios subsistemas, como lo son un generador y sincronizador de señales de reloj, conversores analógico digitales y FPGAs, que se encargan de realizar tareas de procesamiento de señal en banda base. Se complementa con una placa modular de[h!]nominada “daugtherband” que realiza tareas como filtrado, condicionamiento de señal y modulación las señales en frecuencias de hasta 6 GHz.
+Tambien existen otros proveedores de menor renombre, con equipos que presentan un desempeño un poco mas ruidoso, como es el caso del HackRF que comercializa Great Scott Gadgets\cite{GreatScottGadgets}, en el entorno de los 300 dólares. Durante el desarrollo de gr-isdbt-tx experimentamos con el modelo HackRF One, con magros resultados, por lo que no consideramos pertinente detallar mas sobre el mismo. Aunque para otras aplicaciones de SDR, se ha probado que funciona de manera correcta.
+
+En lineas generales, se componen de una placa madre en la que conviven varios subsistemas, como lo son un generador y sincronizador de señales de reloj, conversores analógico digitales y FPGAs, que se encargan de realizar tareas de procesamiento de señal en banda base. Se complementa con una placa modular denominada “daughterboard” que realiza tareas como filtrado, condicionamiento de señal y modulación las señales en frecuencias de hasta 6 GHz.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.55]{figuras/cap04/usrp_arq}
-	\caption{\label{f:usrp_arq} Arquitectura general de un equipo USRP}
+	\caption{\label{f:usrp_arq} Arquitectura general de un equipo USRP\cite{USRP_arch}}
 \end{figure}
 
-Durante este proyecto, trabajamos con el modelo USRP B100.
+Durante este proyecto, trabajamos con el modelo USRP B100 de Ettus Research. A continuación presentamos una breve reseña del equipo.
 
 \subsection{USRP B100}
 
-En este modelo, las muestras llegan al equipo a traves de una interfaz USB 2.0 y tiene una capacidad para transmitir en velocidades de hasta 16 MS/s, cuando se trabaja con muestras de 8 bits. 
+En este modelo, las muestras llegan al equipo a través de una interfaz USB 2.0 y tiene una capacidad para transmitir en velocidades de hasta 128 MS/s (Mega Samples per Second), cuando se trabaja con muestras de 14 bits. Esta limitacion del equipo viene del conversor DAC con el que convertiremos las muestras para transmitir, para trabajar en recepcion, el limite se da por el conversor ADC que soporta hasta 64 MS/s con muestras de hasta 12 bits. Por ultimo, el ancho de banda con el que se puede trabajar con el B100 es de hasta 8MHz, trabajando con muestras de 16 bits.\cite{b100}  
 
 Este modelo en particular esta actualmente discontinuado, pero su precio en el mercado rondaba los 700 dolares. Para el desarrollo del proyecto, recibimos en calidad de préstamo uno de estos equipos para las pruebas
 
 Para poder levantar el equipo desde una PC, es necesario instalar el driver universal de Ettus, “USRP Hardware Driver”. La mejor forma de hacer esto es instalarlo desde su repositorio oficial \cite{UHD}. El driver es gratuito y de codigo abierto, y soporta todos los equipos de radio de Ettus.
 
-La forma mas sencilla de instalar el driver, es ejecutar en una linea de comandos \textit{sudo apt-get install uhd}. Pero este comando instalara por defecto, el ultimo release estable del controlador. Puede suceder que se desee trabajar con un release en particular, para eso, se debe realizar una copia del repositorio con las herramientas de linea de comando de \textit{git}.\\
-
-\textit{git clone https://github.com/EttusResearch/uhd}\\
-
-Nos creara una copia del repositorio entero del driver. Una vez ahi, es necesario moverse hacia el commit donde se encuentra el release que nos interesa instalar, para eso, nos movemos entre las branchs del repositorio con el comando:\\
-
-\textit{git tag -l}\\
-
-
-Obtenemos una lista de los releases publicados en el repositorio, para movernos al de interes, utilziamos el comando \\
-
-\textit{git checkout nombre\_release\_deseado} \\
-
-Una vez parados en el release a instalar, simplemente instalamos con el uso de la herramienta \textit{make}
-
-Con el driver instalado, para verificar que este funcionando correctamente, debemos realizar los siguientes pasos.\\
-
-\textit{uhd\_usrp\_probe}\\
-
-Muestra una lista de los dispositivos soportados que esten conectados a la pc. En nuestro caso, el equipo es el B100 y la salida del comando es la siguiente:\\
-
-Tambien se puede configurar antenas que no esten directamente conectadas a la pc, pero si en una direccion de red. No vamos a entrar en mas detalles con respecto a este punto, pero vale la pena mencionarlo.
 
 \subsubsection{Interfaz con GNU Radio}
 
-Para intercomunicar al equipo con el software de procesamiento de datos, es necesario incluir en el flowgraph, bloques del complemento gr-uhd (en las versiones actuales de GNURadio ya vienen incluidos). Este complemento, vincula a la interfaz con el driver que se instalo segun los detalles en la seccion anterior. En gr-isdbt-tx, las muestras ya procesadas se enviaban al equipo a traves de un bloque sink.  
+Para intercomunicar al equipo con el software de procesamiento de datos, es necesario incluir en el flowgraph los bloques del complemento gr-uhd (en las versiones actuales de GNU Radio ya vienen incluidos). El bloque sink de este complemento vincula al flujo de datos del software con el puerto receptor de datos del equipo, y permite especificar los parámetros de transmision como frecuencia central y ancho de banda.
 
 \begin{figure}[h!]
 	\centering
@@ -97,8 +78,6 @@ Los argumentos con los que funciona son la tasa de muestras, la frecuencia de de
 	f_{IFFT} = \frac{portadoras}{T_{s}} = \frac{512}{63} \approx 8.127 MHz
 \end{gather*}
 
-Para verificar que la tasa de muestras sea soportada por el transmisor, primero debemos verificar el tamaño de los datos. En nuestro caso, el tipo es \textit{grc::complex}, el cual es un tipo propietario de GNU Radio, formado por dos variables \textit{std::complex} cada una de 32 bits representadas en punto flotante. Es decir que cada una de las muestras de nuestro transmisor se compone de 64 bits.
+Para verificar que la tasa de muestras sea soportada por el transmisor, primero debemos verificar el tamaño de los datos. En nuestro caso, el tipo es \textit{grc::complex}, el cual es un tipo propio de GNU Radio, formado por una unión de dos variables \textit{std::complex} cada una de 32 bits representadas en punto flotante. Es decir que cada una de las muestras de nuestro transmisor se compone de 64 bits.
 
-Recordando que el B100 tiene una capacidad de $61.44 MS\bar{s} @ 16 bit I/Q$, si le imponemos nuestra tasa de $32 bit I/Q$ tendremos un ancho de banda disponible aproximado de $\approx 32 MS\bar{s}@32 bit$ lo cual es muy superior a nuestra tasa objetivo. Esto nos garantiza que podremos transmitir sin problemas de aliasing.
-
-Otro aspecto a tener en cuenta con el transmisor, es verificar que la amplitud de las muestras este normalizada, a modo de evitar un efecto de \textit{clipping} a la salida, esto es, que todas las muestras superiores a 1, terminaran con la misma amplitud en recepcion, lo que nos dejara una señal trunca en amplitud. Evitar este problema resulta sencillo, basta con agregar una ganancia a la salida del sistema de factor 0.5, para que las amplitudes que llegan al bloque de sink, y van hacia el equipo esten lejos de los umbrales de clipping.
+Un aspecto a tener en cuenta con el transmisor, es verificar que la amplitud de las muestras esté normalizada, a modo de evitar un efecto de \textit{clipping} a la salida, esto es, que todas las muestras superiores a 1, terminaran con la misma amplitud en recepción, lo que nos dejará una señal trunca en amplitud. Evitar este problema resulta sencillo, basta con agregar una ganancia a la salida del sistema controlado por una variable, y verificar para que valores de la misma que la señal en el tiempo este en el rango esperado.
