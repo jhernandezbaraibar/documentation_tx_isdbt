@@ -1,6 +1,6 @@
 \chapter{Fundamento Teórico}
 
-Entendemos al proyecto gr-isdbt-tx como un complemento al trabajo de maestría presentado por Pablo Flores, por lo que nos parece reiterativo explicar en sumo detalle algunos de los fundamentos de telecomunicaciones sobre los que se construye la norma ISDB-T. Los mismos ya fueron explicados con gran claridad y nivel de detalle en la documentación de aquel proyecto. Quizás algunos de los lectores encuentren insuficiente el desarrollo de algunos de los conceptos incluidos en este capitulo. A ellos los invitamos a complementar la lectura de esta documentación con la tesis de maestría de Pablo Flores.
+Entendemos al proyecto \textit{gr-isdbt-tx} como un complemento al trabajo de maestría presentado por Pablo Flores, por lo que nos parece reiterativo explicar en sumo detalle algunos de los fundamentos de telecomunicaciones sobre los que se construye la norma ISDB-T. Los mismos ya fueron explicados con gran claridad y nivel de detalle en la documentación de aquel proyecto. Quizás algunos de los lectores encuentren insuficiente el desarrollo de algunos de los conceptos incluidos en este capitulo. A ellos los invitamos a complementar la lectura de esta documentación con la tesis de maestría de Pablo Flores.
 
 Es posible también que entre los lectores se encuentren técnicos vinculados al área de sistemas y programación.  Encontraran ellos, seguramente, mayor interés y profundidad de conceptos en los capítulos 4 y 5, donde detallamos el uso de GNU Radio como plataforma de SDR, y la estructura funcional de nuestro transmisor, así como los desafíos de programación a los que nos enfrentamos implementando cada uno de sus bloques. 
 
@@ -88,7 +88,7 @@ En síntesis, el esquema de un sistema transmisor OFDM tiene una forma similar a
 	\caption{\label{f:ofdm_system} Esquema básico de un sistema OFDM.}
 \end{figure}
 
-\section{Estrategias para mitigar los efectos del canal}
+\section{Codificación de canal}
 
 	\subsection{C\'odigos de detecci\'on y correci\'on de errores}
 
@@ -110,13 +110,6 @@ La transmisión inalámbrica de una señal la expone a diversas fuentes de ruido
 
 El estándar ISDB-T hace uso de distintas técnicas para la protección de los datos en transmisión. De hecho para proteger los datos en los ejemplos mencionados el estándar utiliza las técnicas de \textit{entrelazamiento de bits y bytes} y la aplicación de códigos \textit{forward error correction} o FEC como es el caso de Reed Solomon. Para la comprensión del estándar y el desarrollo de \textit{gr-isdbt-tx}, es importante conocer el funcionamiento de estas técnicas. Profundizar en estos temas escapa los objetivos de este trabajo, por lo cual los detalles técnicos se pueden encontrar en las bibliografías mencionadas.
 
-Para asegurarse que el receptor pueda llevar a cabo satisfactoriamente la demodulación y decodificación en una transmisión jerárquica, en la cual se utilizan múltiples parámetros de transmisión, se utiliza una señal denominada Transmission and Multiplexing Configuration Control (TMCC).
-
-Como se verá en el Capítulo XX, la TMCC junto con otras señales piloto y las señales correspondientes a la transmisión de los datos útiles, conforman el cuadro OFDM.
-
-Al tratarse de una señal que contiene información crítica sobre la transmisión se la debe proteger fuertemente frente a los distintos tipos de errores que podría sufrir durante su transmisión.
-
-En particular ISDB-T establece que para la TMCC se debe utilizar el código acortado (200,118) del \textit{difference-set cyclic code} (273,191) como código corrector de errores.
 
 \subsection{Códigos Cíclicos}
 El conjunto $GF(2) \triangleq \{0,1\}$, con las operaciones de suma $" + "$ y producto $" \times "$ usuales módulo 2, cumple con la propiedad de que cualquier elemento de $GF(2)$ distinto de cero tiene inverso. Esta propiedad se cumple trivialmente en este conjunto y es la condición necesaria para que $GF(2)$ sea un \textit{Campo de Galois}. Es común encontrar que a este campo también se lo llame \textit{campo binario} y se lo denote como $\mathbb {F}_2$.
@@ -166,6 +159,23 @@ Por ejemplo, para un código cíclico (7, 4) con polinomio generador $g(x) = x^3
 Los bits de paridad se obtienen calculando el resto de la division $x^{(7-4)}m(x)/g(x)$, los coeficientes de ese resto seran los bits de la paridad buscada. Operando se llega a que la paridad es 011 y el mensaje codificado queda 0111001.
 
 \subsection{Códigos Convolucionales}
+
+Los \textit{códigos convolucionales} son un tipo de códigos lineales que debido a su estructura, la codificación mediante estos códigos puede ser vista como un proceso de filtrado o convolución, de ahí su nombre. 
+
+A diferencia de los códigos de bloque que toman bloques de k-símbolos y devuelven bloques de n-símbolos, los códigos convoulcionales funcionan como códigos de flujos. Esto significa que operan en flujos continuos de símbolos y no en paquetes discretizados. De hecho se define la tasa del código como el cociente $k/n$.
+
+El funcionamiento del codificador convolucional consiste en una serie de $k$ registros inicializados en algún valor. La salida de cada uno de estos registros ingresa a $n$ sumadores binarios (\textit{xor}). Los registros que intervienen en cada operación de suma están determinados por los polinomios generadores. Cada rama tiene asociada un polinomio generador y es común encontrar que se refiere a ellos en notación octal. Por ejemplo ISDB-T utiliza $G_1 = 171_{OCT} (1111001_b)$ y $G_2 = 133_{OCT} (1011011_b)$, significa que $G_1$ utiliza el bit de entrada, los primeros tres registros y el último registro. La figura \ref{f:cod_conv} representa el código convolucional utilizado por ISDB-T.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.45]{figuras/cap02/codificador_convolucional}
+	\caption{\label{f:cod_conv} Circuito del codificador convolucional usado por ISDB-T para una tasa de 1/2.}
+\end{figure}
+
+\subsection{Códigos de Reed-Solomon}
+
+Los códigos de Reed-Solomon son un tipo de códigos FEC no binario que corrigen los datos erróneos recibidos durante una transmisión. Se caracterizan por utilizar símbolos en lugar de bits, es decir que un conjunto de $m$ bits consecutivos forman un símbolo. Se dice que el símbolo es erróneo si al menos un bit del símbolo es incorrecto. Las palabras del código estan formadas por $n = k +r $ símbolos, donde $r$ son de paridad. La longitud del bloque de información es $r$ y el código es capaz de corregir hasta $r/2$ símbolos erróneos. 
+Debido a su capacidad de corrección de errores son especialmente indicados para tratar los errores en ráfagas.
 
 
 
