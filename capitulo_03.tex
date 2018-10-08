@@ -3,18 +3,28 @@
 El esquema de transmisión del estándar ISDB-T que se presenta en la Figura \ref{f:esquema-tx} puede ser caracterizado en cuatro grandes etapas que serán presentadas en este capítulo: el flujo de transporte BTS (\textit{Broadcast Transport Stream}), la etapa de robustecimiento de la señal, la formación de los Cuadros OFDM con sus señales piloto y la puesta en el aire de la señal.
 
 \begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.55]{figuras/cap03/segmentos_isdbt}
-	\caption{\label{segmentos_isdbt} Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.}
+\centering
+\includegraphics[scale=0.46]{figuras/cap03/esquema-tx}
+\caption{\label{f:esquema-tx} Diagrama de bloques del transmisor ISDB-T definido por la ARIB.}
 \end{figure}
+
+
 
 Cada una de esas etapas tiene a su vez varias subetapas, o bloques fundamentales, que se enfocan en resolver los distintos problemas discutidos que surgen al transmitir una señal inalámbrica. Esto dá como resultado una variedad de parámetros de operación presentados en la Tabla \ref{parametros_ISDBT} que permitirán por ejemplo, la transmisión jerárquica en distintas capas, cada una con su propia configuración; o enfocarse en robustecer la transmisión frente al \textit{multipath} o al efecto Doppler.
 
 A nivel de la distribuci\'on en el espectro, el estándar utiliza 6 MHz de ancho de banda de canal distribu\'ido en 14 segmentos de los cuales sólo 13 son utilizados para enviar datos, el restante se utiliza como guarda a ambos lados del canal. Tambi\'en se incluye un piloto continuo que se trata de una portadora modulada en BPSK ubicada a continuaci\'on del Segmento 12.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.55]{figuras/cap03/segmentos_isdbt}
+	\caption{\label{segmentos_isdbt} Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.}
+\end{figure}
+
 Tener un esquema de transmisi\'on jer\'arquica permite asignar a cada capa jer\'arquica la cantidad de segmentos que uno quiera. El est\'andar de la ARIB denomina a estas capas como A, B y C, y es posible tener configurac\'ones con solamente 2 capas presentes tal como la de la Figura \ref{segmentos_isdbt} en la que la capa A corresponde al segmento 0 y el resto de los segmentos forman la capa B.
 
 En los comienzos de la televisi\'on digital en el Uruguay los operadores que prestaban servicios de televisi\'on digital deb\'ian transmitir su señal en calidad HD, en SD y \textit{oneseg}, es decir en tres capas jer\'arquicas. Esto era as\'i porque se entend\'ia que en el mercado circulaba una gran cantidad de receptores que no eran capaces de procesar la calidad HD. Posteriormente esa directiva fu\'e suprimida y al d\'ia de hoy los operadores no est\'an obligados a transmitir en SD.
+
+
 
 El sistema puede operar en tres \textit{modos de transmisi\'on} diferentes que se caracterizan por la cantidad de portadoras utilizadas, siempre en el mismo ancho de banda de 6 MHz. Las portadoras utilizadas son $2^{10+modo}$ donde el modo puede ser 1, 2 o 3.
 
@@ -23,12 +33,6 @@ Se define la frecuencia de muestreo de la IFFT como $f_{IFFT} \triangleq \frac{5
 Cada segmento a su vez est\'a conformado por dos tipos de señales portadoras. Las primeras son las correspondientes a los datos, y las otras son las denominadas \textit{portadoras piloto} que cumplen se utilizan para la estimaci\'on del canal y transmisi\'on de par\'ametros de control e informaci\'on del sistema.
 De manera general, los segmentos tienen $96 \times 2^{modo-1}$ portadoras de datos $12 \times 2^{modo-1}$ portadoras piloto dependiendo del modo de transmisi\'on. En la Tabla \ref{parametros_ISDBT} se eval\'uan estos par\'ametros para los distintos modos de transmisi\'on. 
 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.5]{figuras/cap03/esquema-tx}
-\caption{\label{f:esquema-tx} Diagrama de bloques del transmisor ISDB-T definido por la ARIB.}
-\end{figure}
 
 
 \begin{table}[h!]
@@ -44,8 +48,8 @@ Cantidad de segmentos 			& 13 \\
 Ancho de banda de cada segmento & $6000/14 \approx 428.57kHz$ \\
 \hline
   											& 96 de datos y 12 pilotos (Modo 1) \\
-Cantidad de portadoras activas por segmento & 192 de datos y 24 pilotos (Modo 2) \\
- 											& 384 de datos y 48 pilotos (Modo 3)\\
+Cantidad de portadoras activas  & 192 de datos y 24 pilotos (Modo 2) \\
+ 		por segmento									& 384 de datos y 48 pilotos (Modo 3)\\
 \hline
  								& $252 \mu s$ (Modo 1)\\
 Duración de símbolo activo 		& $504 \mu s$ (Modo 2) \\
@@ -58,9 +62,9 @@ Tasa de codigo convolucional 	& 1/2, 2/3, 3/4, 5/6, 7/8\\
 \hline
 Tasa de codigo Reed-Solomon 	& (188, 204) \\
 \hline
- 								& 0, 1, 2, 4 (Modo 1) \\
-Profundidad del entrelazamiento temporal & 0, 2, 4, 8 (Modo 2) \\
- & 0, 4, 8, 16 (Modo 3)\\
+ 	Profundidad del			& 0, 1, 2, 4 (Modo 1) \\
+entrelazamiento temporal & 0, 2, 4, 8 (Modo 2) \\
+		 & 0, 4, 8, 16 (Modo 3)\\
 \hline
 Esquemas de modulacion & DQPSK, QPSK,\\
  & 16QAM, 64QAM\\
@@ -100,43 +104,43 @@ Al transmitir en m\'ultiples portadoras ortogonales se corre el riesgo de atrave
 
 \section{Formacion de los cuadros OFDM}
 
-El estándar define una estructura de cuadro OFDM formada por un conjunto de 204 símbolos OFDM consecutivos, es decir que, por ejemplo, para el modo 1 se tienen 108 símbolos complejos por segmento con lo cual un cuadro OFDM en modo 1 está compuesto por $108 \times 13 \times 204$ complejos. Esta estructura facilita las tareas de sincronización en el receptor.
+Es usual encontrar que en los sistemas de comunicación digitales se delimiten los datos transmitidos dándoles forma de cuadros con una duración fija. Esto vuelve más sencillas las tareas de sincronización dado que en recepción se sabe en qué momento comienza un cuadro. Particularmente en los sistemas OFDM estos cuadros se denominan precisamente \textit{cuadros OFDM}. 
 
+En ISDB-T la tasa de transmisión de datos, en bits por segundo, depende de las relaciones de codificación introducidas por los códigos correctores, de la modulación, de la cantidad de portadoras utilizadas y del tiempo de símbolo OFDM.
 
-\section{Las portadoras y la modulacion}
+Se puede calcular esta tasa a partir de todos esos parámetros de la siguiente manera:
 
-Cada segmento OFDM está conformado por una cantidad de portadoras en función del modo de transmisión. La mayor cantidad de portadoras está destinada a la transmisión de los datos mientras que algunas otras son utilizadas como mecanismos para la estimación del canal, sincronización, transmisión de parámetros de funcionamiento entre otros.
+\begin{equation}
+R = k_o k_i b_p \dfrac{ (13 \times L_D)}{T_s}
+\end{equation}
 
+Donde $k_o = 188/204$ es la relación del código exterior (Reed-Solomon), $k_i$ la de código convolucional (1/2, 2/3, 3/4, 5/6 ó 7/8), $b_p$ la cantidad de bits utilizados por la modulación (2-QPSK, 4-16QAM, 6-64QAM), $L_D$ la cantidad de portadoras de datos por segmento y $T_s$ el tiempo de símbolo OFDM.
 
+Sea $F$ la cantidad de símbolos OFDM que entran en un cuadro, entonces la duración de un cuadro OFDM está dada por $T_F = F \times T_s$.
 
-Scattered Pilot
-Las portadoras piloto son señales moduladas en BPSK que se generan a partir de una secuencia pseudoaleatoria PRBS (Pseudo Random Binary Sequence). El procedimiento para generar estas portadoras consiste en evolucionar el circuito de la Figura XX y tomar Wi para la modulación BPSK. El índice de la portadora SP dentro del símbolo OFDM es el que determina la cantidad de veces que se debe evolucionar el registro para obtener $W_i$.
-Por último la modulación se realiza como $(4/3, 0)$ si $W_i = 0$, y $(-4/3, 0)$ si $W_i = 1$.
+La cantidad de bits de datos que se pueden transmitir por segmento está dada entonces por la siguiente expresión:
 
-Las SP se ubican cada 12 portadoras y a medida que transucrren los símbolos OFDM las mismas van rotando $3 \times n MOD 4$, donde $n$ es el número de símbolo OFDM. Esto sucede así puesto que la función de estas portadoras es justamente la estimación del canal y por lo tanto para contemplar la situación de todo el canal de 6MHz es necesario ir rotándolas. 
+\begin{equation}
+b_T = R \dfrac{T_F}{13}
+\end{equation}
 
+Un TSP está conformado por 188 bytes de datos, con lo cual la cantidad de bits $b_T$ expresada en términos de TSPs queda de la siguiente manera:
 
-% Circuito generador y portadoras
+\begin{equation}
+b_T = (188 \times 8 ) \times N
+\end{equation}
 
-Portadora TMCC
-Las portadoras TMCC son las que transportan toda la información de las capas jerárquicas y la información de control. Si bien en los cuadros OFDM se transmiten varias TMCC estas tienen exactamente el mismo contenido, lo que da al receptor la posibilidad de ponderar todas las TMCC que recibe para quedarse con las que tienen mayor porcentaje de coincidencia entre sí.
-Se compone de 204 bits modulados en DBPSK de los cuales el primero es un bit de referencia para realizar la modulación diferencial. Este bit coincide con el valor de la $W_i$ correspondiente al primer símbolo del cuadro OFDM.
-Los siguientes 16 bits son utilizados por una señal de sincronismo que puede tomar los valores $w_0 = 0011010111101110$ y $w_1 = 1100101000010001$, alternándose entre una y otra en cada cuadro OFDM.
-A continuación se encuentran los datos de la información jerárquica y otros parámetros para los que se dedican 105 bits. Estos 105 bits son protegidos por un código cíclico acortado (200,118) con lo cual se dedican los siguientes 82 bits para la paridad. 
-  
-Portadoras Auxiliares
+Igualando las dos expresiones para $b_T$ se llega a que
 
-Las portadoras auxiliares están pensadas para transmitir información complementaria del control de transmisión. Utilizan modulación diferencial DBPSK con referencia $W_i$ al igual que la TMCC. Su uso es opcional y el sistema puede trabajar perfectamente prescindiendo de ellas; en caso de no ser usadas los bits correspondientes a las portadoras AC se rellenan con "1".
+\begin{equation}
+N = \dfrac{ k_i b_p L_D F}{204 \times 8}
+\end{equation}
 
-Piloto Continuo
-Al igual que las SP, se agrega un piloto continuo a la derecha del segmento 12 con propósitos de sincronismo en recepción. Su modulación también es BPSK y toma el valor de $(-4/3, 0)$, $(4/3, 0)$, $(4/3, 0)$ para los modos 1, 2 y 3 respectivamente.
+De todos los casos posibles, y considerando que $N$ debe ser entero, el valor más pequeño para un cuadro OFDM resulta ser $F=204$ símbolos OFDM.
 
+Luego de conformarse el cuadro OFDM los datos ya están listos para ser transmitidos mediante la modulación OFDM. En este punto los símbolos son procesados por el bloque de la IFFT y a continuación es necesario agregar el prefijo cíclico. Una vez agregado el prefijo las muestras ya estan prontas para ser dirigidas al conversor D/A, a una tasa de $\dfrac{64}{63} \times 8MHz \approx 8.127 MSamples/s$, para la transmisión en ondas electromagnéticas.
 
-\section{La puesta en el aire de la señal}
-
-Luego de conformarse el cuadro OFDM los datos ya están listos para ser transmitidos mediante la modulación OFDM. En este punto los símbolos son procesados por el bloque de la IFFT y a continuación es necesario agregar el prefijo cíclico. Una vez agregado el prefijo las muestras ya estan prontas para ser dirigidas al conversor D/A para la transmisión en ondas EM.
-
-\subsection{Necesidad del prefijo cíclico}
+\section{Necesidad del prefijo cíclico}
 
 Cuando se pasa de trabajar en el dominio continuo al dominio discreto muchas cosas no funcionan igual. Si bien es cierto que en el dominio continuo la transformada de Fourier de un producto convolución coincide con la transformada de cada factor, esto deja de ser válido en tiempo discreto; si $y[n] = x[n]\ast h[n] \Rightarrow DFT \left\{ y[n] \right\} \neq X[q]H[q]$.
 Sería bueno poder tener una relación similar a la que ocurre en tiempo continuo y así poder separar fácilmente las muestras que se enviaron de la respuesta del canal. 
@@ -145,10 +149,10 @@ Afortunadamente existe un tipo de producto convolución especial llamado \textit
 Supongamos que la señal que enviamos es $x[n]$ y la respuesta del canal $h[n]$ con $n = 0,..,N-1$. La convolución circular de dos señales $x[n]$ y $h[n]$ se define de la siguiente manera:
 
 \begin{equation}
-x[n] \circledast h[n] = \sum_{k = 0}^{N-1} x[(n-k) \enskip MOD \enskip N]h[k]
+x[n] \circledast h[n] = \sum_{k = 0}^{N-1} x[(n-k) \enskip mod \enskip N]h[k]
 \end{equation} 
 
-Para evitar sobrecargar la notación se suele utilizar la siguiente nomenclatura $x_N[n-k] \triangleq x[(n-k) \enskip MOD \enskip N]$. Con lo cual la convolución circular queda expresada:
+Para evitar sobrecargar la notación se suele utilizar la siguiente nomenclatura $x_N[n-k] \triangleq x[(n-k) \enskip mod \enskip N]$. Con lo cual la convolución circular queda expresada:
 
 \begin{equation}
 x[n] \circledast h[n] = \sum_{k = 0}^{N-1} x_N[n-k] h[k]
@@ -187,13 +191,13 @@ Pasemos a ver qué sucede con la señal OFDM cuando se propaga por el canal inal
 r[n] = \sum_{k = -\infty}^{\infty} h_k[n]x[n-k] + w[n]
 \end{equation}
 
-Donde $w[n]$ corresponde al ruido gaussiano aditivo que introduce el canal, y $h_k[n]$ es la respuesta al impulso del canal que en principio puede ser una función del tiempo. Para el estudio que realizaremos se asumirá que el canal es un sistema lineal invatiante en el tiempo y su respuesta está definida por $L$ muestras, con lo cual se elimina la dependencia de $n$:
+Donde $w[n]$ corresponde al ruido gaussiano aditivo que introduce el canal, y $h_k[n]$ es la respuesta al impulso del canal que en principio puede ser una función del tiempo. Para el estudio que realizaremos se asumirá que el canal es un sistema lineal invariante en el tiempo y su respuesta está definida por $L$ muestras, con lo cual se elimina la dependencia de $n$:
 
 \begin{equation}
 r[n] = \sum_{k = 0}^{L-1} h_k x[n-k] + w[n]
 \end{equation}
 
-La señal resultante tendrá $N+L-1$ dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias, sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la Figura \ref{f:prefijo_ciclico}.
+La señal resultante tendrá $N+L-1$ muestras dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias. Sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la Figura \ref{f:prefijo_ciclico}.
 
 
 
@@ -215,7 +219,7 @@ Ahora con esta nueva señal que hemos definido, en recepción llegará la siguie
 v[n] = \sum_{k = 0}^{L-1}h[k]u[n-k] + w[n] = \sum_{k = 0}^{L-1}h[k]x[n-L-k] + w[n]
 \end{equation}
 
-La superposición de las primeras $L-1$ de $v$ hace que deban descartarse. Por lo tanto se considerarán las muestas con $n = L,..., L+N-1$ y entonces es posible considerar un $n'$ el cual contempla que las muestras indicadas ya han sido descartadas. Como este es un proceso cíclico símbolo a símbolo, la ecuación \ref{eq:pref_convolucion} queda así: 
+La superposición de las primeras $L-1$ muestras de $v$ hace que deban descartarse. Por lo tanto se considerarán las muestas con $n = L,..., L+N-1$ y entonces es posible considerar un $n'$ el cual contempla que las muestras indicadas ya han sido descartadas. Como este es un proceso cíclico símbolo a símbolo, la ecuación \ref{eq:pref_convolucion} queda así: 
 
 \begin{equation}
 v[n'] = \sum_{k = 0}^{N-1}h[k]x_N[n'- k] + w[n'] \text{ con } n' = [0, ..., N-1]
@@ -224,6 +228,43 @@ v[n'] = \sum_{k = 0}^{N-1}h[k]x_N[n'- k] + w[n'] \text{ con } n' = [0, ..., N-1]
 Esta última ecuación no es otra cosa que la convolución circular $h \circledast x$ y que, como se vió anteriormente, su transformada de Fourier resulta ser $Y[q] = H[q]X[q]$.
 De esta manera el receptor una vez que realizó su estimación del canal es capaz de separar las muestras $X[q]$ y así recuperar la señal transmitida.
 
-\subsection{La potencia requerida para transmitir}
-- Relación entre la potencia necesaria segun la modulación
-- SNR Necesario para decodificar
+\section{Las portadoras y la modulacion}
+
+Cada segmento OFDM está conformado por una cantidad de portadoras en función del modo de transmisión. La mayor cantidad de portadoras está destinada a la transmisión de los datos mientras que algunas otras son utilizadas como mecanismos para la estimación del canal, sincronización, transmisión de parámetros de funcionamiento entre otros.
+
+
+
+\subsubsection{Scattered Pilot}
+Las portadoras piloto son señales moduladas en BPSK que se generan a partir de una secuencia pseudoaleatoria PRBS (Pseudo Random Binary Sequence). El procedimiento para generar estas portadoras consiste en evolucionar el circuito de la figura \ref{f:prbs} y tomar $W_i$ para la modulación BPSK. El índice de la portadora SP dentro del símbolo OFDM es el que determina la cantidad de veces que se debe evolucionar el registro para obtener $W_i$.
+Por último la modulación se realiza como $(4/3, 0)$ si $W_i = 0$, y $(-4/3, 0)$ si $W_i = 1$.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.55]{figuras/cap03/circuito_prbs}
+	\caption{\label{f:prbs} Circuito generador de la PRBS para la scattered pilot.}
+\end{figure}
+
+Las SP se ubican cada 12 portadoras y a medida que transcurren los símbolos OFDM las mismas van rotando $3 \times (n \; mod \; 4)$, donde $n$ es el número de símbolo OFDM. Esto es así ya que el objetivo de estas portadoras es la estimación del canal y por lo tanto conviene rotarlas para evitar que caigan siempre en un lugar que presente fade en frecuencia.
+
+
+% Circuito generador y portadoras
+
+\subsubsection{Portadoras TMCC}
+
+Las portadoras TMCC son las que transportan toda la información de las capas jerárquicas y la información de control. Si bien en los cuadros OFDM se transmiten varias TMCC estas tienen exactamente el mismo contenido, lo que da al receptor la posibilidad de ponderar todas las TMCC que recibe para quedarse con las que tienen mayor porcentaje de coincidencia entre sí.
+Se compone de 204 bits modulados en DBPSK de los cuales el primero es un bit de referencia para realizar la modulación diferencial. Este bit coincide con el valor de la $W_i$ correspondiente al primer símbolo del cuadro OFDM.
+Los siguientes 16 bits son utilizados por una señal de sincronismo que puede tomar los valores $w_0 = 0011010111101110$ y $w_1 = 1100101000010001$, alternándose entre una y otra en cada cuadro OFDM.
+A continuación se encuentran los datos de la información jerárquica y otros parámetros para los que se dedican 105 bits. Estos 105 bits son protegidos por un código cíclico acortado (200,118) con lo cual se dedican los siguientes 82 bits para la paridad. 
+  
+\subsubsection{Portadoras Auxiliares}
+
+Las portadoras auxiliares están pensadas para transmitir información complementaria del control de transmisión. Utilizan modulación diferencial DBPSK con referencia $W_i$ al igual que la TMCC. Su uso es opcional y el sistema puede trabajar perfectamente prescindiendo de ellas; en caso de no ser usadas los bits correspondientes a las portadoras AC se rellenan con "1".
+
+Piloto Continuo
+Al igual que las SP, se agrega un piloto continuo a la derecha del segmento 12 con propósitos de sincronismo en recepción. Su modulación también es BPSK y toma el valor de $(-4/3, 0)$, $(4/3, 0)$, $(4/3, 0)$ para los modos 1, 2 y 3 respectivamente.
+
+
+
+
+
+
