@@ -10,7 +10,7 @@ Comenzaremos explicando aquí como se modela el canal inalámbrico para trabajar
 
 \section{Modelado del canal}
 
-Cuando una señal viaja a través del aire, sufrirá una serie de modificaciones a causa de muchos factores. El clima, el ruido generado por otras señales que también viajan por el mismo medio, los rebotes de la señal contra edificios, autos o cualquier objeto que se encuentre en el camino, son todos aspectos que modificarán la señal, y por lo que la señal recibida sera distinta de la transmitida. 
+Cuando una señal viaja a través del aire, sufrirá una serie de modificaciones a causa de muchos factores. El clima, el ruido generado por otras señales que también viajan por el mismo medio, los rebotes de la señal contra edificios, autos o cualquier objeto que se encuentre en el camino, son todos aspectos que afectarán de distinta forma la señal, y por lo que la señal recibida sera distinta de la transmitida. 
 
 De forma teórica, se podrían plantear las ecuaciones de Maxwell, definir condiciones de borde que modelen de manera fiel los obstáculos en el camino y calcular en cada momento y en cada lugar del espacio, la atenuación que afectará nuestra señal. Pero el canal cambia constantemente, las diferentes señales que comparten el medio también están en constante transformación, y por lo tanto no sería ni practico, ni útil seguir un camino como este para comprender el canal, mucho menos basarse en él para robustecer a la señal frente a los atenuantes que surgirán. 
 
@@ -161,13 +161,7 @@ Los \textit{códigos convolucionales} son un tipo de códigos lineales que debid
 
 A diferencia de los códigos de bloque que toman bloques de k-símbolos y devuelven bloques de n-símbolos, los códigos convoulcionales funcionan como códigos de flujos. Esto significa que operan en flujos continuos de símbolos y no en paquetes discretizados. De hecho se define la tasa del código como el cociente $k/n$.
 
-El funcionamiento del codificador convolucional consiste en una serie de $k$ registros inicializados en algún valor. La salida de cada uno de estos registros ingresa a $n$ sumadores binarios (\textit{xor}). Los registros que intervienen en cada operación de suma están determinados por los polinomios generadores. Cada rama tiene asociada un polinomio generador y es común encontrar que se refiere a ellos en notación octal. Por ejemplo ISDB-T utiliza $G_1 = 171_{OCT} (1111001_b)$ y $G_2 = 133_{OCT} (1011011_b)$, significa que $G_1$ utiliza el bit de entrada, los primeros tres registros y el último registro. La figura \ref{f:cod_conv} representa el código convolucional utilizado por ISDB-T.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.45]{figuras/cap02/codificador_convolucional}
-	\caption{\label{f:cod_conv} Circuito del codificador convolucional usado por ISDB-T para una tasa de 1/2.}
-\end{figure}
+El funcionamiento del codificador convolucional consiste en una serie de $k$ registros inicializados en algún valor. La salida de cada uno de estos registros ingresa a $n$ sumadores binarios (\textit{xor}). Los registros que intervienen en cada operación de suma están determinados por los polinomios generadores. Cada rama tiene asociada un polinomio generador y es común encontrar que se refiere a ellos en notación octal. Por ejemplo ISDB-T utiliza $G_1 = 171_{OCT} (1111001_b)$ y $G_2 = 133_{OCT} (1011011_b)$, significa que $G_1$ utiliza el bit de entrada, los primeros tres registros y el último registro. 
 
 \subsection{Códigos de Reed-Solomon}
 
@@ -180,7 +174,7 @@ Debido a su capacidad de corrección de errores son especialmente indicados para
 
 El Moving Picture Experts Group (MPEG)\cite{MPEG} es un grupo de trabajo conformado por expertos internacionales, formado por la Organización Internacional de Normalización (ISO) en conjunto con la Comisión Electrotécnica Internacional (IEC), con el objetivo de desarrollar estándares para la codificación, compresión y transmisión de audio y video.
 
-Uno de los estándares publicados por el MPEG, es MPEG-4. Consta de métodos para la compresión digital de contenidos audiovisuales,  y abarca la difusión de los mismos a través de una amplia gama de tecnologías, desde el streaming de datos a través de la web, codificación de voz y video para telefonía y videoconferencias, comercialización de discos compactos (CD) y hasta formatos para la transmision de televisión. 
+Uno de los estándares publicados por el MPEG, es MPEG-2. Consta de métodos para la compresión digital de contenidos audiovisuales,  y abarca la difusión de los mismos a través de una amplia gama de tecnologías, desde el streaming de datos a través de la web, codificación de voz y video para telefonía y videoconferencias, comercialización de discos compactos (CD) y hasta formatos para la transmision de televisión. 
 
 Es en este ultimo punto donde se vincula con ISDB-T Internacional, puesto que para la codificación de fuente en la norma, fue seleccionado el Estándar MPEG-4 Parte 10 “Advanced Video Coding”, también denominado H.264 \cite{mpeg4_10}.
 
