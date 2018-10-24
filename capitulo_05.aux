@@ -1,56 +1,65 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Un transmisor ISDBT implementado en GNU Radio}{29}{chapter.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}gr-isdbt-tx: un transmisor ISDB-T implementado en GNU Radio}{31}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}El flujo de datos en GNU Radio}{29}{section.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Obtencion de los TSP por capa}{30}{section.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces  Par\'ametro indicador de capa en el IIP.\relax }}{30}{table.caption.15}}
-\newlabel{Identificador de capa para TSP}{{5.1}{30}{Par\'ametro indicador de capa en el IIP.\relax }{table.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces  Flowgraph del transmisor gr-isdbt-tx.\relax }}{31}{figure.caption.21}}
+\newlabel{f:flowgraphEdited}{{5.1}{31}{Flowgraph del transmisor gr-isdbt-tx.\relax }{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Obtención de los TS por capa}{32}{section.5.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces  Par\'ametro indicador de capa en el IIP.\relax }}{32}{table.caption.22}}
+\newlabel{Identificador de capa para TSP}{{5.1}{32}{Par\'ametro indicador de capa en el IIP.\relax }{table.caption.22}{}}
 \citation{gr-dvb}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Codificaciones de Canal}{31}{section.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Reed Solomon}{31}{subsection.5.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces  Bloque Reed Solomon Encoder de gr-dvb.\relax }}{31}{figure.caption.16}}
-\newlabel{f:RSencoder}{{5.1}{31}{Bloque Reed Solomon Encoder de gr-dvb.\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Viterbi}{31}{subsection.5.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces  Circuito del codigo madre del Viterbi que implementa ISDBT.\relax }}{32}{figure.caption.17}}
-\newlabel{f:viterbi}{{5.2}{32}{Circuito del codigo madre del Viterbi que implementa ISDBT.\relax }{figure.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces  Bloque de gr-dvb que implementa el codificador Viterbi.\relax }}{32}{figure.caption.18}}
-\newlabel{f:inner}{{5.3}{32}{Bloque de gr-dvb que implementa el codificador Viterbi.\relax }{figure.caption.18}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}La modulacion}{32}{section.5.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces  Implementacion de la modulacion e interleaving a nivel de bits en gr-isdbt-tx.\relax }}{33}{figure.caption.19}}
-\newlabel{f:modulacion}{{5.4}{33}{Implementacion de la modulacion e interleaving a nivel de bits en gr-isdbt-tx.\relax }{figure.caption.19}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces  Bits por símbolo según modulación.\relax }}{33}{table.caption.20}}
-\newlabel{Bits por simbolo segun modulacion}{{5.2}{33}{Bits por símbolo según modulación.\relax }{table.caption.20}{}}
-\citation{bb}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}El uso de los entrelazamientos}{34}{section.5.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Entrelazamiento frecuencial}{34}{subsection.5.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Entrelazamiento temporal}{34}{subsection.5.5.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  Mecanismo de entrelazamiento temporal.\relax }}{35}{figure.caption.21}}
-\newlabel{f:entrelazamiento_temporal}{{5.5}{35}{Mecanismo de entrelazamiento temporal.\relax }{figure.caption.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Entrelazamiento de bits}{36}{section.5.6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  Mapeo de la constelaci\'on 64QAM.\relax }}{37}{figure.caption.22}}
-\newlabel{f:mapeo_64QAM}{{5.6}{37}{Mapeo de la constelaci\'on 64QAM.\relax }{figure.caption.22}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces  Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }}{37}{table.caption.23}}
-\newlabel{t:factor_normalizacion}{{5.3}{37}{Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }{table.caption.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Formacion de cuadros OFDM}{38}{section.5.7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces  Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }}{38}{figure.caption.24}}
-\newlabel{f:ofdm_frame}{{5.7}{38}{Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }{figure.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces  Asignación de bits de la TMCC information.\relax }}{39}{table.caption.25}}
-\newlabel{t:bits_TMCC}{{5.4}{39}{Asignación de bits de la TMCC information.\relax }{table.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces  Bloque de conformacion de cuadro OFDM.\relax }}{40}{figure.caption.26}}
-\newlabel{f:bloque_ofdm}{{5.8}{40}{Bloque de conformacion de cuadro OFDM.\relax }{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Codificaciones de Canal}{33}{section.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Reed Solomon}{33}{subsection.5.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces  Bloque Reed Solomon Encoder de gr-dvb.\relax }}{33}{figure.caption.23}}
+\newlabel{f:RSencoder}{{5.2}{33}{Bloque Reed Solomon Encoder de gr-dvb.\relax }{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Viterbi}{34}{subsection.5.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces  Circuito del código madre del Viterbi que implementa ISDB-T.\relax }}{34}{figure.caption.24}}
+\newlabel{f:viterbi}{{5.3}{34}{Circuito del código madre del Viterbi que implementa ISDB-T.\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces  Bloque de gr-dvb que implementa el codificador Viterbi.\relax }}{34}{figure.caption.25}}
+\newlabel{f:inner}{{5.4}{34}{Bloque de gr-dvb que implementa el codificador Viterbi.\relax }{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Dispersor de Energía}{34}{section.5.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  Bloque dispersor de energía de gr-isdbt-tx.\relax }}{35}{figure.caption.26}}
+\newlabel{f:energy}{{5.5}{35}{Bloque dispersor de energía de gr-isdbt-tx.\relax }{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}La modulación}{35}{section.5.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  Implementación de la modulación e interleaving a nivel de bits en gr-isdbt-tx.\relax }}{36}{figure.caption.27}}
+\newlabel{f:modulacion}{{5.6}{36}{Implementación de la modulación e interleaving a nivel de bits en gr-isdbt-tx.\relax }{figure.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces  Bits por símbolo según modulación.\relax }}{36}{table.caption.28}}
+\newlabel{Bits por simbolo segun modulacion}{{5.2}{36}{Bits por símbolo según modulación.\relax }{table.caption.28}{}}
+\citation{norma}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}El uso de los entrelazamientos}{37}{section.5.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Entrelazamiento frecuencial}{37}{subsection.5.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Entrelazamiento temporal}{37}{subsection.5.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces  Mecanismo de entrelazamiento temporal.\relax }}{38}{figure.caption.29}}
+\newlabel{f:entrelazamiento_temporal}{{5.7}{38}{Mecanismo de entrelazamiento temporal.\relax }{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Entrelazamiento de bytes}{39}{section.5.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces  Bloque entrelazamiento de bytes.\relax }}{39}{figure.caption.30}}
+\newlabel{f:byteint}{{5.8}{39}{Bloque entrelazamiento de bytes.\relax }{figure.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces  Asignación de valor de $m_L$ según modulación\relax }}{40}{table.caption.31}}
+\newlabel{corr_ml}{{5.3}{40}{Asignación de valor de $m_L$ según modulación\relax }{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Entrelazamiento de bits}{40}{section.5.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces  Mapeo de la constelaci\'on 64QAM.\relax }}{41}{figure.caption.32}}
+\newlabel{f:mapeo_64QAM}{{5.9}{41}{Mapeo de la constelaci\'on 64QAM.\relax }{figure.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces  Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }}{42}{table.caption.33}}
+\newlabel{t:factor_normalizacion}{{5.4}{42}{Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }{table.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Formacion de cuadros OFDM}{42}{section.5.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces  Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }}{42}{figure.caption.34}}
+\newlabel{f:ofdm_frame}{{5.10}{42}{Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.\relax }{figure.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces  Asignación de bits de la TMCC information.\relax }}{44}{table.caption.35}}
+\newlabel{t:bits_TMCC}{{5.5}{44}{Asignación de bits de la TMCC information.\relax }{table.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces  Bloque de conformacion de cuadro OFDM.\relax }}{44}{figure.caption.36}}
+\newlabel{f:bloque_ofdm}{{5.11}{44}{Bloque de conformacion de cuadro OFDM.\relax }{figure.caption.36}{}}
 \citation{gr-isdbt}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}La transformada de Fourier}{41}{section.5.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces  Bloque que implementa el algoritmo FFT.\relax }}{41}{figure.caption.27}}
-\newlabel{f:fft}{{5.9}{41}{Bloque que implementa el algoritmo FFT.\relax }{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.9}El prefijo cíclico}{41}{section.5.9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces  Bloque que implementa prefijo cíclico.\relax }}{41}{figure.caption.28}}
-\newlabel{f:cp}{{5.10}{41}{Bloque que implementa prefijo cíclico.\relax }{figure.caption.28}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.10}La transmision desde USRP}{42}{section.5.10}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.9}La transformada de Fourier}{45}{section.5.9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.12}{\ignorespaces  Bloque que implementa el algoritmo FFT.\relax }}{45}{figure.caption.37}}
+\newlabel{f:fft}{{5.12}{45}{Bloque que implementa el algoritmo FFT.\relax }{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.10}El prefijo cíclico}{45}{section.5.10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces  Bloque que implementa prefijo cíclico.\relax }}{46}{figure.caption.38}}
+\newlabel{f:cp}{{5.13}{46}{Bloque que implementa prefijo cíclico.\relax }{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.11}La transmision desde USRP}{46}{section.5.11}}
 \@setckpt{capitulo_05}{
-\setcounter{page}{43}
-\setcounter{equation}{6}
+\setcounter{page}{47}
+\setcounter{equation}{7}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -59,13 +68,13 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{5}
-\setcounter{section}{10}
+\setcounter{section}{11}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{10}
-\setcounter{table}{4}
+\setcounter{figure}{13}
+\setcounter{table}{5}
 \setcounter{FP@figureC}{0}
 \setcounter{FP@tableC}{0}
 \setcounter{ContinuedFloat}{0}
@@ -80,6 +89,6 @@
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
 \setcounter{Hy@AnnotLevel}{0}
-\setcounter{bookmark@seq@number}{44}
+\setcounter{bookmark@seq@number}{45}
 \setcounter{section@level}{1}
 }

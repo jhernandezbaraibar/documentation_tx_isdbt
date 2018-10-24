@@ -1,0 +1,21 @@
+\beamer@sectionintoc {1}{Introducción}{3}{0}{1}
+\beamer@sectionintoc {2}{La Norma ISDB-T}{4}{0}{2}
+\beamer@sectionintoc {3}{Radio Definida por Software}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{SDR, surgimiento y utilizacion actual}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{GNU Radio}{8}{0}{3}
+\beamer@subsectionintoc {3}{3}{El hardware utilizado}{10}{0}{3}
+\beamer@sectionintoc {4}{gr-isdbt-Tx Un transmisor ISDB-T implementado en GNU Radio}{12}{0}{4}
+\beamer@subsectionintoc {4}{1}{La entrada de datos}{12}{0}{4}
+\beamer@subsectionintoc {4}{2}{La división en capas jerárquicas}{14}{0}{4}
+\beamer@subsectionintoc {4}{3}{El robustecimiento a nivel de datos}{16}{0}{4}
+\beamer@subsectionintoc {4}{4}{Mapeo y recombinación jerárquica}{17}{0}{4}
+\beamer@subsectionintoc {4}{5}{El robustecimiento a nivel de portadoras}{18}{0}{4}
+\beamer@subsectionintoc {4}{6}{Formación del cuadro OFDM}{19}{0}{4}
+\beamer@subsectionintoc {4}{7}{La puesta en el aire}{20}{0}{4}
+\beamer@sectionintoc {5}{Pruebas y Resultados}{21}{0}{5}
+\beamer@subsectionintoc {5}{1}{Pruebas en ambiente controlado}{21}{0}{5}
+\beamer@subsectionintoc {5}{2}{Pruebas en canal real}{23}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones y Trabajo a Futuro}{25}{0}{6}
+\beamer@subsectionintoc {6}{1}{Conclusiones}{25}{0}{6}
+\beamer@subsectionintoc {6}{2}{Trabajo a Futuro}{27}{0}{6}
+\beamer@sectionintoc {7}{Espacio Para Preguntas}{29}{0}{7}

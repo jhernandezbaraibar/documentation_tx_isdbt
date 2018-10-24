@@ -5,25 +5,24 @@ ARIB.
 \newblock Association of radio industries and businesses, 1995.
 \newblock [Web; accedido el 06-11-2018].
 
-\bibitem{gr-dvb}
-Git~User BogdanDIA.
-\newblock Dvb-t implementation in gnuradio, 2015.
-\newblock [Web; accedido el 06-11-2018].
-
-\bibitem{chang-ofdm}
-Robert~W Chang.
-\newblock Synthesis of band-limited orthogonal signals for multichannel data
-  transmission.
-\newblock {\em Agregar Luego}, 1966.
-
-\bibitem{ine2017}
-Instituto~Nacional de~Estadística.
-\newblock {\em Encuesta Continua de Hogares}, 2017.
+\bibitem{norma}
+ARIB.
+\newblock Transmission system for digital terrestrial television broadcasting,
+  2001.
 
 \bibitem{decreto_apagon}
 Presidencia de~la Republica.
 \newblock Decreto de presidencia n° 153/12, 2012.
 \newblock [Web; accedido el 24-11-2018].
+
+\bibitem{cancelacion_decreto_apagon}
+MIEM.
+\newblock Decreto n° 585/12, 2015.
+\newblock [Web; accedido el 24-11-2018].
+
+\bibitem{ine2017}
+Instituto~Nacional de~Estadística.
+\newblock {\em Encuesta Continua de Hogares}, 2017.
 
 \bibitem{winCom16}
 Gabriel Gómez Víctor González Barbone Pablo~Belzarena Federico~Larroca,
@@ -36,20 +35,17 @@ Pablo Flores.
 \newblock La norma isdbt y un receptor implementado en sdr.
 \newblock 2016.
 
-\bibitem{multiplex-pattern}
-P.~Flores-Guridi and F.~Larroca.
-\newblock The isdb-t multiplex frame pattern explained.
-\newblock In {\em 2017 IEEE URUCON}, pages 1--4, Oct 2017.
+\bibitem{chang-ofdm}
+Robert~W Chang.
+\newblock Synthesis of band-limited orthogonal signals for multichannel data
+  transmission.
+\newblock {\em Agregar Luego}, 1966.
 
-\bibitem{forney1965concatenated}
-G~David Forney.
-\newblock Concatenated codes.
-\newblock 1965.
-
-\bibitem{cancelacion_decreto_apagon}
-MIEM.
-\newblock Decreto n° 585/12, 2015.
-\newblock [Web; accedido el 24-11-2018].
+\bibitem{discrete-ofdm}
+Weinstein and Edbert.
+\newblock Data transmission by frequency-division multiplexing using the
+  discrete fourier transform.
+\newblock {\em Agregar Luego}, 1971.
 
 \bibitem{moon2005error}
 Todd~K Moon.
@@ -61,20 +57,71 @@ MPEG.
 \newblock Moving picture experts group, 1995.
 \newblock [Web; accedido el 06-11-2018].
 
-\bibitem{UHD}
-Ettus Research.
-\newblock The usrp™ hardware driver repository, 2018.
-\newblock [Web; accedido el 24-11-2018].
+\bibitem{mpeg4_10}
+MPEG.
+\newblock Mpeg 4 part 10, 2009.
+\newblock [Web; accedido el 5-10-2018].
+
+\bibitem{mpeg2_1}
+MPEG.
+\newblock Mpeg 2 part 1, 2010.
+\newblock [Web; accedido el 5-10-2018].
+
+\bibitem{multiplex-pattern}
+P.~Flores-Guridi and F.~Larroca.
+\newblock The isdb-t multiplex frame pattern explained.
+\newblock In {\em 2017 IEEE URUCON}, pages 1--4, Oct 2017.
+
+\bibitem{forney1965concatenated}
+G~David Forney.
+\newblock Concatenated codes.
+\newblock 1965.
 
 \bibitem{van1997ml}
 Jan-Jaap Van~de Beek, Magnus Sandell, and Per~Ola Borjesson.
 \newblock Ml estimation of time and frequency offset in ofdm systems.
 \newblock {\em IEEE transactions on signal processing}, 45(7):1800--1805, 1997.
 
-\bibitem{discrete-ofdm}
-Weinstein and Edbert.
-\newblock Data transmission by frequency-division multiplexing using the
-  discrete fourier transform.
-\newblock {\em Agregar Luego}, 1971.
+\bibitem{mitola_SDR}
+Allan~S. Margulies and Joseph~Mitola III.
+\newblock Software defined radios: A technical challenge and a migration
+  strategy.
+\newblock 1988.
+
+\bibitem{GNURadio}
+GNU Radio.
+\newblock Gnu radio software, 2016.
+\newblock [Web; accedido el 01-10-2018].
+
+\bibitem{EttusResearch}
+Ettus Research, 2010.
+\newblock [Web; accedido el 01-10-2018].
+
+\bibitem{GreatScottGadgets}
+Great~Scott Gadgets, 2019-2018.
+\newblock [Web; accedido el 01-10-2018].
+
+\bibitem{USRP_arch}
+Ettus Research.
+\newblock Usrp general architecture, 2016.
+\newblock [Web; accedido el 01-10-2018].
+
+\bibitem{b100}
+Ettus Research, 2010.
+\newblock [Web; accedido el 01-10-2018].
+
+\bibitem{UHD}
+Ettus Research.
+\newblock The usrp™ hardware driver repository, 2018.
+\newblock [Web; accedido el 24-11-2018].
+
+\bibitem{gr-dvb}
+Git~User BogdanDIA.
+\newblock Dvb-t implementation in gnuradio, 2015.
+\newblock [Web; accedido el 06-11-2018].
+
+\bibitem{Rohde}
+Rohde Schwarz, 2018.
+\newblock [Web; accedido el 8-10-2018].
 
 \end{thebibliography}

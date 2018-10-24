@@ -2,12 +2,14 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Par\'ametros relevantes en el est\'andar ISDB-T.\relax }}{17}{table.caption.11}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Par\'ametros relevantes en el est\'andar ISDB-T.\relax }}{17}{table.caption.12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Par\'ametro indicador de capa en el IIP.\relax }}{30}{table.caption.15}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Bits por símbolo según modulación.\relax }}{33}{table.caption.20}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }}{37}{table.caption.23}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Asignación de bits de la TMCC information.\relax }}{39}{table.caption.25}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Par\'ametro indicador de capa en el IIP.\relax }}{32}{table.caption.22}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Bits por símbolo según modulación.\relax }}{36}{table.caption.28}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Asignación de valor de $m_L$ según modulación\relax }}{40}{table.caption.31}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Factores de normalizaci\'on para los distintos esquemas de modulaci\'on.\relax }}{42}{table.caption.33}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Asignación de bits de la TMCC information.\relax }}{44}{table.caption.35}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Valores de BER en los bloques correctores de errores.\relax }}{50}{table.caption.41}
 \addvspace {10\p@ }

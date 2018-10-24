@@ -86,16 +86,16 @@ Una vez que se agregan estos datos los paquetes de cada capa son multiplexados s
 
 Como primer medida para proteger los datos del BTS se aplica un c\'odigo Reed-Solomon (204, 188). El proceso de codificaci\'on consiste en sustituir los \'ultimos 16 bytes de los TSP por una paridad que permite corregir hasta 8 bytes de error en el paquete. 
 
-Este bloque remueve la informaci\'on jer\'arquica agregada por el TS Remux con lo cual una vez que los TSP son codificados por el Reed-Solomon en principio ya no es posible distinguir a qu\'e capa pertenece cada paquete, es decir que al llegar al bloque de divisi\'on jer\'arquica ya no se cuenta con esa informaci\'on. Una estrategia para sortear este problema, y de hecho la que se implementa en \textit{gr-isdbt-tx}, consiste en separar primero los paquetes correspondientes a cada capa jer\'arquica y luego codificar los paquetes. Una vez encaminados los paquetes se puede prescindir de la informaci\'on jer\'arquica. El diagrama de bloques presentado en la Figura \ref{f:esquema-tx} corresponde al esquema original de la ARIB en la que se define el est\'andar ISDB-T, mientras que la Figura \ref{f:esquema-tx} se encuentra la implementaci\'on utilizada en \textit{gr-isdbt-tx}. 
+Este bloque remueve la informaci\'on jer\'arquica agregada por el TS Remux con lo cual una vez que los TSP son codificados por el Reed-Solomon en principio ya no es posible distinguir a qu\'e capa pertenece cada paquete, es decir que al llegar al bloque de divisi\'on jer\'arquica ya no se cuenta con esa informaci\'on. Una estrategia para sortear este problema, y de hecho la que se implementa en \textit{gr-isdbt-tx}, consiste en separar primero los paquetes correspondientes a cada capa jer\'arquica y luego codificar los paquetes. Una vez encaminados los paquetes se puede prescindir de la informaci\'on jer\'arquica. El diagrama de bloques presentado en la Figura \ref{f:esquema-tx} corresponde al esquema original de la ARIB en la que se define el est\'andar ISDB-T, mientras que la Figura \ref{f:flowgraphEdited} se encuentra la implementaci\'on utilizada en \textit{gr-isdbt-tx}. 
 
 % Dispersor de energia
-Para evitar los problemas de sincronismo que podr\'ia ocasionar una se\'al con muchos ceros o unos consecutivos, se utiliza un \textit{dispersor de energ\'ia} que se encarga de generar un flujo pseudoaleatorio. Este proceso se define de manera tal que resulta ser totalmente invertible y por lo tanto aplicando el mismo proceso en recepc\'ion se obtiene la secuencia original.
+Para evitar los problemas de sincronismo que podr\'ia ocasionar una señal con muchos ceros o unos consecutivos, se utiliza un \textit{dispersor de energ\'ia} que se encarga de generar un flujo pseudoaleatorio. Este proceso se define de manera tal que resulta ser totalmente invertible y por lo tanto aplicando el mismo proceso en recepc\'ion se obtiene la secuencia original.
 
 
 
 % Entrelazamiento
 Los canales inal\'ambricos son propensos a una multiplicidad de fuentes de error. Un tipo de errores muy comunes en estos canales son los \textit{errores en r\'afaga} provocando que una secuencia consecutiva de bits se corrompan. El impacto de estos tipos de errores crece con la velocidad de transmisi\'on; a mayor velocidad de transmisi\'on un mismo error afecta a una mayor cantidad de bits.
-Resulta necesario lograr alg\'un tipo de inmunidad ante estos errores, es por ello que en muchos sistemas, y en particular en ISDB-T, se suelen concatenar c\'odigos correctores de errores. David Forney en su trabajo \textit{Concatenated Codes} \cite{forney1965concatenated} estudia el compromiso que existe en la utilizaci\'on de sucesivos c\'odigos concatenados, y en especial la performance que pueden llegar a alcanzar los c\'odigos Reed-Solomon concatenados.
+Resulta necesario lograr alg\'un tipo de inmunidad ante estos errores, es por ello que en muchos sistemas, y en particular en ISDB-T, se suelen concatenar c\'odigos correctores de errores con entrelazamientos de datos, para dispersar los eventuales errores puntuales y aumentar la potencia de la corrección. David Forney en su trabajo \textit{Concatenated Codes} \cite{forney1965concatenated} estudia el compromiso que existe en la utilizaci\'on de sucesivos c\'odigos concatenados, y en especial la performance que pueden llegar a alcanzar los c\'odigos Reed-Solomon concatenados.
 El est\'andar ISDB-T utiliza este enfoque a trav\'es de la implementaci\'on de un c\'odigo Reed-Solomon como \textit{outer code} y un c\'odigo convolucional como \textit{inner code}.
 Como medida adicional para contrarrestar los efectos del canal se utiliza el \textit{entrelazamiento de bits} que esencialmente consiste en introducir retardos variables en los bits que se transmiten.
 
@@ -260,7 +260,8 @@ A continuación se encuentran los datos de la información jerárquica y otros p
 
 Las portadoras auxiliares están pensadas para transmitir información complementaria del control de transmisión. Utilizan modulación diferencial DBPSK con referencia $W_i$ al igual que la TMCC. Su uso es opcional y el sistema puede trabajar perfectamente prescindiendo de ellas; en caso de no ser usadas los bits correspondientes a las portadoras AC se rellenan con "1".
 
-Piloto Continuo
+
+\subsubsection{Piloto Continuo}
 Al igual que las SP, se agrega un piloto continuo a la derecha del segmento 12 con propósitos de sincronismo en recepción. Su modulación también es BPSK y toma el valor de $(-4/3, 0)$, $(4/3, 0)$, $(4/3, 0)$ para los modos 1, 2 y 3 respectivamente.
 
 

@@ -1,6 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tesis.aux
+A level-1 auxiliary file: quotes.aux
 A level-1 auxiliary file: agradecimientos.aux
 A level-1 auxiliary file: dedicatoria.aux
 A level-1 auxiliary file: resumen.aux
@@ -11,59 +12,55 @@ A level-1 auxiliary file: capitulo_04.aux
 A level-1 auxiliary file: capitulo_05.aux
 A level-1 auxiliary file: capitulo_06.aux
 A level-1 auxiliary file: capitulo_07.aux
-The style file: plain.bst
+The style file: unsrt.bst
 Database file #1: referencias.bib
-Warning--I didn't find a database entry for "bb"
-Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
-while executing---line 1049 of file plain.bst
-Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
-while executing---line 1049 of file plain.bst
 Warning--empty title in ine2017
 Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
-while executing---line 1090 of file plain.bst
+while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
-while executing---line 1090 of file plain.bst
+while executing---line 944 of file unsrt.bst
 Warning--empty journal in gr-isdbt
 Warning--empty journal in forney1965concatenated
-You've used 15 entries,
-            2118 wiz_defined-function locations,
-            578 strings with 5587 characters,
-and the built_in function-call counts, 3470 in all, are:
-= -- 326
-> -- 128
+Warning--empty journal in mitola_SDR
+You've used 25 entries,
+            1791 wiz_defined-function locations,
+            560 strings with 5668 characters,
+and the built_in function-call counts, 3475 in all, are:
+= -- 270
+> -- 119
 < -- 1
-+ -- 56
-- -- 38
-* -- 155
-:= -- 607
-add.period$ -- 44
-call.type$ -- 15
-change.case$ -- 63
++ -- 55
+- -- 30
+* -- 86
+:= -- 553
+add.period$ -- 69
+call.type$ -- 25
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 142
-empty$ -- 316
-format.name$ -- 38
-if$ -- 724
+cite$ -- 29
+duplicate$ -- 165
+empty$ -- 441
+format.name$ -- 30
+if$ -- 792
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 9
-newline$ -- 77
-num.names$ -- 30
-pop$ -- 101
+int.to.str$ -- 25
+missing$ -- 10
+newline$ -- 122
+num.names$ -- 25
+pop$ -- 143
 preamble$ -- 1
-purify$ -- 49
+purify$ -- 0
 quote$ -- 0
-skip$ -- 112
+skip$ -- 93
 stack$ -- 0
-substring$ -- 121
-swap$ -- 19
+substring$ -- 43
+swap$ -- 28
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
-warning$ -- 3
-while$ -- 34
-width$ -- 17
-write$ -- 150
-(There were 4 error messages)
+type$ -- 0
+warning$ -- 4
+while$ -- 29
+width$ -- 27
+write$ -- 239
+(There were 2 error messages)
