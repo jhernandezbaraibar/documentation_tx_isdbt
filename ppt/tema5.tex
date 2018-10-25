@@ -1,12 +1,12 @@
 \section{Pruebas y Resultados}
 
-\subsection{Pruebas en ambiente controlado}
+%\subsection{Pruebas en ambiente controlado}
 \begin{frame}{Pruebas en ambiente controlado}
-\begin{block}{Caso ideal, conexion directa}
+\begin{block}{Caso ideal, conexión directa}
 	\begin{itemize}
 		%\subsection{ISDB-T (International Standard for Digital Broadcasting - Terrestrial)}	
-		\item { Se decodificaoron las tres capas exitosamente }
-		\item { Verificamos la funcionalidad basica del sistema }
+		\item { Se decodificaron las tres capas exitosamente }
+		\item { Verificamos la funcionalidad básica del sistema }
 	\end{itemize}
 \end{block}
 
@@ -19,30 +19,50 @@
 \end{block}
 \end{frame}
 
-\subsection{Pruebas en canal real}
+\begin{frame}{Pruebas en ambiente controlado}
+	\begin{figure}
+		\includegraphics[scale=0.35]{calidad_imagen}
+		\caption{Umbral de ruido encontrado en ambiente controlado}
+	\end{figure}
+\end{frame}
+
+%\subsection{Pruebas en canal real}
 
 \begin{frame}{Pruebas en canal real}
 \begin{block}{Pruebas contra gr-isdbt en otra PC}
-	\begin{itemize}
-		%\subsection{ISDB-T (International Standard for Digital Broadcasting - Terrestrial)}	
+	\begin{itemize}	
 		\item { Encontramos  }
 		\item { Verificamos la funcionalidad basica del sistema }
 	\end{itemize}
 \end{block}
 
 \begin{block}{Pruebas contra equipo comercial Rohde-Schwarz}
-	\begin{itemize}
-		%\subsection{ISDB-T (International Standard for Digital Broadcasting - Terrestrial)}	
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}	
 		\item {	Observamos la constelación recibida, detectamos un bug importante }
 		\item { Primeras diferencias notorias entre gr-isdbt-tx y los transmisores comerciales }
 	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{figure}
+		\includegraphics[scale=0.25]{constelacion_eth}
+		\caption{GNU Radio}
+	\end{figure}
+\end{columns}
 \end{block}
+\end{frame}
 
+\begin{frame}{Pruebas en canal real}
 \begin{block}{Pruebas contra televisor comercial}
-	\begin{itemize}
-		%\subsection{ISDB-T (International Standard for Digital Broadcasting - Terrestrial)}	
+	\begin{itemize}	
 		\item { Comprobamos que funcionan las tres capas correctamente  }
 		\item { Se cumple con los objetivos planteados al principio del proyecto }
 	\end{itemize}
 \end{block}
+
+	\begin{figure}
+	\includegraphics[scale=0.11]{contra_tele}
+	\caption{GNU Radio}
+	\end{figure}
+
 \end{frame}

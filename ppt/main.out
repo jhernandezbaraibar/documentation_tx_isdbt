@@ -1,21 +1,6 @@
 \BOOKMARK [2][]{Outline0.1}{Introducción}{}% 1
 \BOOKMARK [2][]{Outline0.2}{La\040Norma\040ISDB-T}{}% 2
 \BOOKMARK [2][]{Outline0.3}{Radio\040Definida\040por\040Software}{}% 3
-\BOOKMARK [3][]{Outline0.3.1.6}{SDR,\040surgimiento\040y\040utilizacion\040actual}{Outline0.3}% 4
-\BOOKMARK [3][]{Outline0.3.2.8}{GNU\040Radio}{Outline0.3}% 5
-\BOOKMARK [3][]{Outline0.3.3.10}{El\040hardware\040utilizado}{Outline0.3}% 6
-\BOOKMARK [2][]{Outline0.4}{gr-isdbt-Tx\040Un\040transmisor\040ISDB-T\040implementado\040en\040GNU\040Radio}{}% 7
-\BOOKMARK [3][]{Outline0.4.1.12}{La\040entrada\040de\040datos}{Outline0.4}% 8
-\BOOKMARK [3][]{Outline0.4.2.14}{La división en capas jerárquicas}{Outline0.4}% 9
-\BOOKMARK [3][]{Outline0.4.3.16}{El\040robustecimiento\040a\040nivel\040de\040datos}{Outline0.4}% 10
-\BOOKMARK [3][]{Outline0.4.4.17}{Mapeo y recombinación jerárquica}{Outline0.4}% 11
-\BOOKMARK [3][]{Outline0.4.5.18}{El\040robustecimiento\040a\040nivel\040de\040portadoras}{Outline0.4}% 12
-\BOOKMARK [3][]{Outline0.4.6.19}{Formación del cuadro OFDM}{Outline0.4}% 13
-\BOOKMARK [3][]{Outline0.4.7.20}{La\040puesta\040en\040el\040aire}{Outline0.4}% 14
-\BOOKMARK [2][]{Outline0.5}{Pruebas\040y\040Resultados}{}% 15
-\BOOKMARK [3][]{Outline0.5.1.21}{Pruebas\040en\040ambiente\040controlado}{Outline0.5}% 16
-\BOOKMARK [3][]{Outline0.5.2.23}{Pruebas\040en\040canal\040real}{Outline0.5}% 17
-\BOOKMARK [2][]{Outline0.6}{Conclusiones\040y\040Trabajo\040a\040Futuro}{}% 18
-\BOOKMARK [3][]{Outline0.6.1.25}{Conclusiones}{Outline0.6}% 19
-\BOOKMARK [3][]{Outline0.6.2.27}{Trabajo\040a\040Futuro}{Outline0.6}% 20
-\BOOKMARK [2][]{Outline0.7}{Espacio\040Para\040Preguntas}{}% 21
+\BOOKMARK [2][]{Outline0.4}{gr-isdbt-Tx\040Un\040transmisor\040ISDB-T\040implementado\040en\040SDR}{}% 4
+\BOOKMARK [2][]{Outline0.5}{Pruebas\040y\040Resultados}{}% 5
+\BOOKMARK [2][]{Outline0.6}{Conclusiones\040y\040Trabajo\040a\040Futuro}{}% 6
