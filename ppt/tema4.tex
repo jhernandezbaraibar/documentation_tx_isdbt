@@ -10,15 +10,15 @@
 
 %\subsection{La entrada de datos}
 \begin{frame}
-\frametitle{El divisor jerarquico}
+\frametitle{El divisor jerárquico}
 	\begin{itemize}	
-		\item { Separa TS validos por capa}
+		\item { Separa TS válidos por capa}
 		\item {	Descarta TSP nulos }
-		\item { Cada TS continua a procesamiento individual }
+		\item { Cada TS continúa a procesamiento individual }
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.25]{h_div}
-		\caption{GNU Radio}
+		\caption{Divisor jerárquico}
 	\end{figure}
 \end{frame}
 
@@ -32,20 +32,20 @@
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.22]{rob_datos}
-	\caption{GNU Radio}
+	\caption{Codificación de canal}
 \end{figure}
 \end{frame}
 %\subsection{Mapeo y recombinación jerárquica}
 \begin{frame}
 \frametitle{Recombinacion jerárquica}
 \begin{itemize}	
-	\item { Se vuelven a entrelazar los datos, ahora mapeados en numeros complejos}
+	\item { Se vuelven a entrelazar los datos, ahora mapeados en números complejos}
 	\item {	Para aumentar la eficacia del código, se utilizan entrelazamientos}
 	\item { Entrelazar implica agregar un retardo, que debe ser corregido }
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.55]{h_conv}
-	\caption{GNU Radio}
+	\caption{Combinador jerárquico}
 \end{figure}
 \end{frame}
 %\subsection{El robustecimiento a nivel de portadoras}
@@ -58,16 +58,15 @@
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.55]{rob_port}
-	\caption{GNU Radio}
+	\caption{Bloques de entrelazamiento}
 \end{figure}
 \end{frame}
 %\subsection{Formación del cuadro OFDM}
 \begin{frame}
 \frametitle{Formación del cuadro OFDM}
 \begin{itemize}	
-	\item { Se ubican los datos dentro de cada simbolo}
-	\item {	Se agregan las portadoras piloto. informacion de transmision en las portadoras TMCC}
-	\item { Agregamos portadoras dispersas para estimar el efecto del canal }
+	\item { Se ubican los datos dentro de cada símbolo}
+	\item {	Se agregan las portadoras piloto. Información de transmisión en las portadoras TMCC}
 	\item { Agregamos portadoras dispersas para estimar el efecto del canal }
 \end{itemize}
 \begin{figure}
