@@ -86,9 +86,18 @@ En la figura 5.1, mostramos el bloque y la configuración paramétrica del mismo
 
 \section{Dispersor de Energía}
 
-Es muy probable que en algunos de los bytes del flujo de datos, las cadenas de bits que están en los TSPs contengan largas secuencias de unos o de ceros. Esto puede presentar un problema a la hora de sincronizarse con el receptor, ya que generalmente, los cambios de flancos al medir los datos en recepcion suelen utilizarse para sincronizarse con el reloj de transmision. Para evitar que esto suceda, se implementa en ISDB-T un dispersor de energía. 
+Es muy probable que los flujos de transporte contengan largas secuencias de unos o ceros. Esto puede presentar un problema a la hora de sincronizarse con el receptor, ya que generalmente, los cambios de flancos al medir los datos en recepción suelen utilizarse para sincronizarse con el reloj de transmisión. Por otra parte, los patrones repetitivos en las cadenas de bits darían lugar a acumulaciones de energía en ciertos puntos del espectro, dejando espacios subutilizados en la banda. Para evitar estas cosas es que ISDB-T utiliza un dispersor de energía.
 
-El funcionamiento detrás del dispersor, es la generación de una secuencia pseudo-randomica de bits, que se logra haciendo un XOR de los bits de entrada contra un circuito que evoluciona constantemente. Para el byte de sincronismo, el XOR no se realiza, pues este byte es una referencia también para otros bloques y permanece incambiado, pero de todos modos el circuito se continua actualizando. Es necesario que tanto transmision como recepción estén sincronizados en la evolución de la palabra, pues de lo contrario los bits decodificados no serán los mismos que los originales. Para asegurarnos de eso, es que se reinicia el circuito generador con cada frame que se completa.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{figuras/cap05/dispersor_energia}
+	\caption{\label{f:diagrama_energy} Circuito generador de la secuencia pseudoaleatoria.}
+\end{figure}
+
+
+El funcionamiento del dispersor consiste en la generación de una secuencia pseudo-randómica de bits. Esto se logra realizando un XOR de los bits de entrada contra un circuito que evoluciona constantemente. El circuito se inicializa con la palabra "100101010000000", que es conocida tanto por el transmisor como por el receptor. Para el byte de sincronismo, el XOR no se realiza, pues este byte es una referencia también para otros bloques y permanece incambiado, pero de todos modos el circuito se continúa actualizando.
+Para recuperar la secuencia original, el receptor utiliza exactamente el mismo circuito. Supongamos que $r = d \oplus g$ es un bit randomizado producto del XOR entre un bit de entrada y el bit del circuito generador. Si en recepción se utiliza el mismo circuito y está sincronizado, entonces el bit de-randomizado será $r' = r \oplus g = (d \oplus g) \oplus g$. Como la operación XOR es asociativa tenemos que $r' = d \oplus (g \oplus g) = d \oplus 0 = d$, y de esta manera se recupera el bit original.
+Es necesario que tanto el transmisor como el receptor estén sincronizados en la evolución de la palabra, pues de lo contrario los bits decodificados no serán los mismos que los originales. Para asegurarnos de eso, es que se reinicia el circuito generador en cada inicio de cuadro.
 
 \begin{figure}[h!]
 	\centering
