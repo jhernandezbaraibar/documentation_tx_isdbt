@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.8.13)  24 OCT 2018 18:59
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.8.13)  25 OCT 2018 11:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -823,22 +823,12 @@ Dictionary: translator-theorem-dictionary, Language: English
 )
 LaTeX Info: Redefining \includegraphics on input line 96.
  (./main.nav)
-Overfull \hbox (52.11137pt too wide) in paragraph at lines 96--96
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) in paragraph at lines 96--96
  [][][][]  
  []
 
 File: logo_univ.pdf Graphic file (type QTm)
 <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -848,11 +838,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ] (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -865,11 +850,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema1.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -880,11 +860,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -897,11 +872,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema2.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -913,11 +883,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -929,11 +894,6 @@ File: Standards.png Graphic file (type QTm)
  <use  "Standards.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -943,11 +903,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -960,11 +915,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema3.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -976,11 +926,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1008,11 +953,6 @@ File: sdr.png Graphic file (type QTm)
 File: logo_univ.pdf Graphic file (type QTm)
 
 <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1024,11 +964,6 @@ File: grc.png Graphic file (type QTm)
  <use  "grc.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1042,11 +977,6 @@ File: antena.png Graphic file (type QTm)
  <use  "antena.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1059,11 +989,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema4.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1075,16 +1000,8 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: flowgraphEdited.png Graphic file (type QTm)
  <use  "flowgraphEdited.png" >
-Overfull \vbox (3.2788pt too high) detected at line 9
- []
-
 File: logo_univ.pdf Graphic file (type QTm)
-<use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
+ <use  "logo_univ.pdf" >
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1096,11 +1013,6 @@ File: h_div.png Graphic file (type QTm)
  <use  "h_div.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1110,17 +1022,12 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: rob_datos.png Graphic file (type QTm)
  <use  "rob_datos.png" >
-Overfull \hbox (11.24657pt too wide) in paragraph at lines 37--37
+Overfull \hbox (11.24657pt too wide) in paragraph at lines 38--38
  [] 
  []
 
 File: logo_univ.pdf Graphic file (type QTm)
 <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1132,11 +1039,6 @@ File: h_conv.png Graphic file (type QTm)
  <use  "h_conv.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1148,11 +1050,6 @@ File: rob_port.png Graphic file (type QTm)
  <use  "rob_port.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1164,11 +1061,6 @@ File: bloque_ofdm.png Graphic file (type QTm)
  <use  "bloque_ofdm.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1178,16 +1070,8 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: ofdm_frame.png Graphic file (type QTm)
  <use  "ofdm_frame.png" >
-Overfull \vbox (2.30878pt too high) detected at line 91
- []
-
 File: logo_univ.pdf Graphic file (type QTm)
-<use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
+ <use  "logo_univ.pdf" >
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1199,11 +1083,6 @@ File: final_tx.png Graphic file (type QTm)
  <use  "final_tx.png" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1216,11 +1095,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema5.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1232,11 +1106,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1252,11 +1121,6 @@ Overfull \hbox (1.64473pt too wide) in paragraph at lines 27--27
 
 File: logo_univ.pdf Graphic file (type QTm)
 <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1268,11 +1132,6 @@ File: constelacion_eth.jpeg Graphic file (type QTm)
  <use  "constelacion_eth.jpeg" >
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1282,16 +1141,8 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: contra_tele.png Graphic file (type QTm)
  <use  "contra_tele.png" >
-Overfull \vbox (9.52237pt too high) detected at line 68
- []
-
 File: logo_univ.pdf Graphic file (type QTm)
-<use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
+ <use  "logo_univ.pdf" >
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1304,11 +1155,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema6.tex (./main.toc)
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1320,11 +1166,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1334,11 +1175,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
 ]
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1351,11 +1187,6 @@ Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  (./tema7.tex
 File: logo_univ.pdf Graphic file (type QTm)
  <use  "logo_univ.pdf" >
-Overfull \hbox (52.11137pt too wide) has occurred while \output is active
- [][]  \TU/lmss/m/n/6 ([])  
- []
-
-
 Overfull \hbox (157.77135pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1382,12 +1213,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 118.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 118.
  ) 
 Here is how much of TeX's memory you used:
- 20150 strings out of 494984
- 364866 string characters out of 6177735
- 443310 words of memory out of 5000000
- 23454 multiletter control sequences out of 15000+600000
- 8741 words of font info for 44 fonts, out of 8000000 for 9000
+ 20125 strings out of 494984
+ 364300 string characters out of 6177735
+ 443110 words of memory out of 5000000
+ 23430 multiletter control sequences out of 15000+600000
+ 8733 words of font info for 43 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 54i,16n,66p,770b,864s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,16n,66p,770b,817s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on main.pdf (31 pages).

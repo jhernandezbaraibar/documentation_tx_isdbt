@@ -4,7 +4,7 @@
 \begin{frame}{gr-isdbt-tx}
 \begin{figure}
 	\includegraphics[scale=0.20]{flowgraphEdited}
-	\caption{Esquema de bloques de gr-isdbt-Tx en GNU Radio}
+	%\caption{Esquema de bloques de gr-isdbt-Tx en GNU Radio}
 \end{figure}
 \end{frame}
 
@@ -18,7 +18,7 @@
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.25]{h_div}
-		\caption{Divisor jerárquico}
+		%\caption{Divisor jerárquico}
 	\end{figure}
 \end{frame}
 
@@ -29,23 +29,23 @@
 	\item { Se aplican códigos correctores de errores a nivel de bits y bytes}
 	\item {	Para aumentar la eficacia del código, se utilizan entrelazamientos}
 	\item { Entrelazar implica agregar un retardo, que debe ser corregido }
+	\item { Finaliza con la modulación de los datos}
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.22]{rob_datos}
-	\caption{Codificación de canal}
+	%\caption{Codificación de canal}
 \end{figure}
 \end{frame}
 %\subsection{Mapeo y recombinación jerárquica}
 \begin{frame}
-\frametitle{Recombinacion jerárquica}
+\frametitle{Recombinación jerárquica}
 \begin{itemize}	
 	\item { Se vuelven a entrelazar los datos, ahora mapeados en números complejos}
-	\item {	Para aumentar la eficacia del código, se utilizan entrelazamientos}
-	\item { Entrelazar implica agregar un retardo, que debe ser corregido }
+	\item {	Se trabaja sobre un único flujo, que conformará el espectro}
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.55]{h_conv}
-	\caption{Combinador jerárquico}
+	%\caption{Combinador jerárquico}
 \end{figure}
 \end{frame}
 %\subsection{El robustecimiento a nivel de portadoras}
@@ -54,11 +54,11 @@
 \begin{itemize}	
 	\item { Se realizan entrelazados en tiempo y frecuencia}
 	\item {	El objetivo es mitigar los efectos del canal}
-	\item { No es vital, pero mejora el desempeño en canales ruidosos }
+	\item { No es vital, pero mejora el desempeño en canales con mucha distorsión }
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.55]{rob_port}
-	\caption{Bloques de entrelazamiento}
+	%\caption{Bloques de entrelazamiento}
 \end{figure}
 \end{frame}
 %\subsection{Formación del cuadro OFDM}
@@ -71,7 +71,7 @@
 \end{itemize}
 \begin{figure}
 	\includegraphics[scale=0.4]{bloque_ofdm}
-	\caption{GNU Radio}
+	%\caption{GNU Radio}
 \end{figure}
 \end{frame}
 
@@ -84,7 +84,7 @@
 	\item { Agregamos portadoras auxiliares para enviar información extra (opcional) }
 \end{itemize}
 \begin{figure}
-	\includegraphics[scale=0.3]{ofdm_frame}
+	\includegraphics[scale=0.27]{ofdm_frame}
 	%\caption{GNU Radio}
 \end{figure}
 \end{frame}
