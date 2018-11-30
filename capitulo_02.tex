@@ -45,27 +45,58 @@ En 1966, Chang presentó un método para lograr la multiplexión de canales de d
 
 En el paper, Chang postula la idea de una nueva clase de funciones modulantes acotadas en frecuencia. Lo que permite transmitir a través de un medio lineal a la máxima tasa posible, eliminando ademas la interferencia intersimbólica e intercanal. Además, con estas nuevas funciones modulantes, es posible alterar de manera independiente las características de amplitud y fase, lo que abrió la puerta a la transmisión de números reales. En ese momento se sentaban las bases de una modulación OFDM (Orthogonal Frecuency-Division Multiplexing) que podría ser implementada de forma práctica.
 
-Utilizando las nuevas funciones modulantes introducidas por Chang, las señales OFDM quedan definidas de la siguiente manera:
+Para lograro, consideremos en primera instancia una familia de funciones ortogonales, definida como sigue:
 
-\begin{equation}
-s(t) = \sum_{i=-\frac{N}{2}}^{\frac{N}{2} - 1} d_{i} e^{j2\pi(f_c + \frac{i}{T_s})t}
-\end{equation}
+\begin{equation*}
+	\phi_{n} = e^{j\omega_kt}  \quad\text{donde: }\quad \omega_k = \omega_0 + 2\pi\frac{k}{t}	
+\end{equation*}
 
-Donde N es la cantidad de portadoras en paralelo con las que se va a trabajar, $d_i$ es el símbolo i-ésimo, que lleva la información a transmitir, $f_c$ es la frecuencia central sobre la que se transmitirá y $T_s$ es el periodo del símbolo. 
+Recordemos que la ortogonalidad viene del cumplimiento de la condición:
+\begin{equation*}
+	\int_{a}^{b} \phi_{p}\phi_{q}^{*}(t)dt = 
+	\left \{
+	\begin{tabular}{c}
+	K $si \quad p = q$\\
+	0 $si \quad p \neq q$
+	\end{tabular}
+	\right.
+\end{equation*}
 
-Dentro de la señal OFDM, se pueden definir dos estructuras que serán de interés mayúsculo a la hora de transmitir. A cada intervalo de tamaño $T_s$ se le denominara símbolo OFDM. En los sistemas de transmision digital de datos, se suele encapsular pequeñas cantidades de símbolos en estructuras denominadas \textit{cuadros} o \textit{frames}. A lo largo de los cuadros, se suele incluir información relevante de la transmision, utilizando pocos bits por simbolos, ya que la lectura de esos datos se hará a lo largo del cuadro. Al ser información persistente en el tiempo, esa definicion a lo largo del cuadro será suficiente para transportarla hacia el receptor de forma eficiente. Para el caso de ISDB-T, como se vera mas adelante, definiremos un cuadro OFDM como el conjunto de 204 símbolos OFDM consecutivos.
+Las funciones modulantes ortogonales para OFDM serán entonces definidas de la mencionada familia de funciones, ajustando los parámetros para lograr un equiespaciado en frecuencia en el ancho de banda disponible $W$ para las $N$ portadoras, y agregando un factor de normalización en el periodo. Se obtiene entonces
 
-Volviendo sobre la implementacion de OFDM en los años 60, uno de los mayores problemas de los sistemas multiportadora, era la gran dificultad para escalar en cantidad de portadoras. La complejidad y el costo de construir los osciladores para la cantidad de canales necesarias, mantenían la brecha entre la teoría y la ejecución práctica. 
+\begin{equation*}
+		\phi_{n} =
+		\left \{
+			\begin{tabular}{c}
+ 				$\frac{1}{\sqrt{T}}e^{j2\pi\frac{W}{N}nt}\quad\text{cuando}\quad t \in [0,T] $ \\ 
+ 				0 \quad \text{en otro caso} 
+			\end{tabular}
+		\right.
+\end{equation*}
 
-La solución a estos problemas, llegó cuando se logró programar computadoras capaces de procesar grandes cantidades de datos, mediante la implementación del algoritmo de “Fast Fourier Transform”. 
+La frecuencia de cada portadora sera 
 
-Weinstein y Ebert, resolvieron en  su publicación de 1971 \cite{discrete-ofdm} el mencionado problema de la escalabilidad, mediante la utilización de los avances tecnológicos de la época. Discretizando las señales a transmitir, y modulándolas por computadora, lograron formar sistemas multicanal para la transmision en tiempo discreto en lugar de recurrir a los bancos de osciladores que se usaban hasta el momento. 
+\begin{equation*}
+	f_n = f_0 + \frac{n}{T_{S_{OFDM}}} = f_0 + \frac{W}{N}n \quad\text{para}\quad n = 0,1,2,... 
+\end{equation*}
+	
+Donde $T_{S_{OFDM}} = N.T_S$ y $T_S$ es el tiempo de símbolo que depende del esquema de mapeo utilizado.
 
-Su argumento provenía de la siguiente idea, una señal multitonal, puede ser vista como la transformada de Fourier de un tren de pulsos, y la demodulación coherente a su vez puede entenderse como la aplicación en tiempo continuo de una transformada inversa de Fourier. Entonces, probaron que muestreando la señal de origen, y mediante la implementación de un modem sobre una computadora que ejecute el algoritmo de la transofrmada rápida de Fourier, se pueden obtener aproximaciones suficientemente cercanas a los de la señal original. 
+En cada una de esas portadoras, se mapeará un símbolo complejo $X_{n,m}$ donde $n$ sera el numero de portadora y $m$ será el número de símbolo OFDM en la trama. 
 
-En principio el resultado es válido para cualquier sistema OFDM con N canales simultáneos, con portadoras equiespaciadas en frecuencia, transmitiendo a la misma tasa. Si todos los canales están suficientemente cerca, es posible considerar que la respuesta en frecuencia del canal es plana para cada uno, y la ecualización del canal se vuelve muy sencilla.
+Una vez que todas las portadoras del simbolo hayan sidpo mapeadas, se suman todas las señales, para formar la onda que será transmitida sobre el canal para cada símbolo OFDM, que tendrá la forma
 
-La propagación de la señal a través del canal, se realiza a través de múltiples caminos, puesto que a medida que avanza por el medio, la señal rebota en distintos obstáculos, que a su vez se comportan como nuevos emisores. Esto produce que en recepción se obtengan varias copias de la señal original, con distintos retardos. Este problema ocasiona lo que se demonina Interferencia Intersimbólica (ISI), es decir, la recepción y decodificación de cada símbolo, esta afectada por los símbolos vecinos en el cuadro.
+\begin{equation*}
+	s_m(t) = \sum_{n = 0}^{N - 1} X_{n,m} \phi_{n}(t - mT)
+\end{equation*}
+
+Por lo que podemos escribir el caso general para una trama OFDM con todos sus símbolos concatenados como sigue:
+
+\begin{equation*}
+s(t) = \sum_{m = -\infty}^{\infty}\Big[\sum_{n = 0}^{N - 1} X_{n,m} \phi_{n}(t - mT)\Big]
+\end{equation*}
+
+Si ponemos el foco en la ecuación anterior, notaremos que para el caso general, la señal $s(t)$ es aperiodica, lo cual dificulta lograr un buen sincronismo entre transmisor y receptor. El sincronismo perfecto entre las dos puntas del sistema es vital para eliminar el ISI, por lo tanto este problema debe ser atendido. En OFDM, la solución de sincronismo consta de la adición de un intervalo de guarda o prefijo cíclico. 
 
 \begin{figure}[h!]
 	\centering
@@ -73,9 +104,17 @@ La propagación de la señal a través del canal, se realiza a través de múlti
 	\caption{\label{f:prefijo_ciclico} Inserción del prefijo cíclico.}
 \end{figure}
 
-Para reducir el ISI, se implementa en cada símbolo OFDM lo que se denomina un prefijo cíclico. Las ultimas muestras del símbolo se copian al principio, de forma que al recibir, se calcula la autocorrelación del símbolo, que tendrá su pico en el comienzo de los datos validos. Un ejemplo del prefijo cíclico se encuentra en la figura \ref{f:prefijo_ciclico}
+Las ultimas muestras del símbolo se copian al principio, de forma que al recibir, se calcula la autocorrelación del símbolo, que tendrá su pico en el comienzo de los datos validos. Un ejemplo del prefijo cíclico se encuentra en la figura \ref{f:prefijo_ciclico}
 
 La cantidad de muestras que se copian en el prefijo cíclico es un parámetro del sistema con el que los diseñadores pueden determinar según sea la aplicación. Generalmente se le denomina profundidad, y cuanto mayor sea la profundidad del prefijo, mas robusto sera el sistema frente a la ISI, pero dejara disponible un menor ancho de banda.
+
+La implementacion de OFDM en los años 60 era prácticamente imposible, uno de los mayores problemas de los sistemas multiportadora, era la gran dificultad para escalar en cantidad de portadoras. La complejidad y el costo de construir los osciladores para la cantidad de canales necesarias, mantenían la brecha entre la teoría y la ejecución práctica. 
+
+La solución a estos problemas, llegó cuando se logró programar computadoras capaces de procesar grandes cantidades de datos, mediante la implementación del algoritmo de “Fast Fourier Transform”. 
+
+Weinstein y Ebert, resolvieron en  su publicación de 1971 \cite{discrete-ofdm} el mencionado problema de la escalabilidad, mediante la utilización de los avances tecnológicos de la época. Discretizando las señales a transmitir, y modulándolas por computadora, lograron formar sistemas multicanal para la transmision en tiempo discreto en lugar de recurrir a los bancos de osciladores que se usaban hasta el momento. 
+
+Su argumento provenía de la siguiente idea, una señal multitonal, puede ser vista como la transformada de Fourier de un tren de pulsos, y la demodulación coherente a su vez puede entenderse como la aplicación en tiempo continuo de una transformada inversa de Fourier. Entonces, probaron que muestreando la señal de origen, y mediante la implementación de un modem sobre una computadora que ejecute el algoritmo de la transofrmada rápida de Fourier, se pueden obtener aproximaciones suficientemente cercanas a los de la señal original. 
 
 En síntesis, el esquema de un sistema transmisor OFDM tiene una forma similar a la presentada en la figura \ref{f:ofdm_system}. En la misma, el bloque $CP$ identifica la inserción del prefijo cíclico, y el bloque \xcancel{CP} identifica la remoción del mismo por parte del receptor.
 
@@ -84,6 +123,7 @@ En síntesis, el esquema de un sistema transmisor OFDM tiene una forma similar a
 	\includegraphics[scale=0.65]{figuras/cap02/ofdm_system}
 	\caption{\label{f:ofdm_system} Esquema básico de un sistema OFDM.}
 \end{figure}
+
 
 \section{Codificación de canal}
 
@@ -110,7 +150,11 @@ El estándar ISDB-T hace uso de distintas técnicas para la protección de los d
 
 \subsection{Códigos Cíclicos}
 El conjunto $GF(2) \triangleq \{0,1\}$, con las operaciones de suma $" + "$ y producto $" \times "$ usuales módulo 2, cumple con la propiedad de que cualquier elemento de $GF(2)$ distinto de cero tiene inverso. Esta propiedad se cumple trivialmente en este conjunto y es la condición necesaria para que $GF(2)$ sea un \textit{Campo de Galois}. Es común encontrar que a este campo también se lo llame \textit{campo binario} y se lo denote como $\mathbb {F}_2$.
-Las operaciones de suma y producto definidas en $GF(2)$ son asociativas, conmutativas y distributivas, y llevan elementos de $GF(2)$ en elementos de $GF(2)$. Por esto $GF(2)$ también es un \textit{anillo}. 
+Las operaciones de suma y producto definidas en $GF(2)$ son asociativas, conmutat\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.45]{figuras/cap02/diagrama_codificacion}
+	\caption{\label{diagrama_codificacion} Esquema básico de codificación de canal.}
+\end{figure}ivas y distributivas, y llevan elementos de $GF(2)$ en elementos de $GF(2)$. Por esto $GF(2)$ también es un \textit{anillo}. 
 El conjunto de todos los polinomios con coeficientes en $GF(2)$ con las operaciones usuales de suma y producto forman un \textit{anillo de polinomios} en $GF(2)$ y se denota como $GF(2)[x]$. Por ejemplo $g(x) = x^3 + x + 1$ es un elemento de $GF(2)[x]$.
 
 Sea $\textbf{c} = (c_0, c_1, ..., c_{n-1}) \in GF(2)$, con $GF(2)$ tal como se describió anteriormente. Un código $\mathcal{C}$ de bloque $(n, k)$ se dice que es un \textit{código cíclico} si para cada vector $\textbf{c} = (c_0, c_1, ..., c_{n-1}) \in \mathcal{C}$ cualquier rotación circular a la derecha de $C$ también pertenece a $\mathcal{C}$, es decir $(c_{n-1}, c_0, c_1, ..., c_{n-2}) \in \mathcal{C}$.
@@ -170,7 +214,9 @@ Debido a su capacidad de corrección de errores son especialmente indicados para
 
 
 
-\section{MPEG y sus Estandares}
+\section{La entrada de datos a ISDB-T}
+
+\subsection{MPEG}
 
 El Moving Picture Experts Group (MPEG)\cite{MPEG} es un grupo de trabajo conformado por expertos internacionales, formado por la Organización Internacional de Normalización (ISO) en conjunto con la Comisión Electrotécnica Internacional (IEC), con el objetivo de desarrollar estándares para la codificación, compresión y transmisión de audio y video.
 
@@ -210,4 +256,38 @@ En el transmisor gr-isdbt-tx, tomamos como fuente de datos un archivo codificado
 	Resulta vital para un esquema de transmisión de televisión mantener el bitrate constante, puesto que esto mantiene el ancho de banda de tamaño constante. En una transmision de datos multimedia, hay variabilidad en la tasa de bits todo el tiempo, por lo que puede ocurrir que en algún momento falten datos para contemplar esa tasa. Es por eso que se definen los paquetes nulos. Un multiplexor completa con paquetes ``dummy" cuando ocurre esta deficiencia, y así logra para mantener la tasa constante.
 	
 	El PID de los paquetes nulos es el 0x1FFF.
+	
+\subsection{Broadcast Transport Streams}
 
+El estándar MPEG no está pensado para la transmisión en capas jerárquicas. Para lograr la característica de la transmisión jerárquica y la recepción parcial, ISDB-T cuenta con una solución propia denominada Broadcast Transport Stream. Esta solución consiste en el uso
+de un flujo de transporte propio, formado a partir de tres flujos MPEG multiplexados, lo que supone un procesamiento no tan sencillo. El nuevo flujo deberá incluir cierta información jerárquica, que no provee MPEG, que permita identificar los flujos con sus correspondientes capas jerárquicas. Es importante que el sistema funcione a una velocidad de reloj constante y determinada, por este motivo el flujo BTS deberá tener una tasa perfectamente definida y constante independientemente de los parámetros de cada capa.
+
+La conformación del BTS se lleva a cabo en el bloque TS Remux. Es el encargado de agregar 16 bytes al final de cada paquete TS con la ISDB-T information y la paridad; posicionar los TSP dentro del BTS de acuerdo a cierto patrón de ordenamiento que se detallará, para posibilitar la transmisión jerárquica; insertar la cantidad necesaria de paquetes nulos para asegurar una tasa constante $r_{BTS}$. 
+
+\begin{equation*}
+	r_{BTS} = 4 \times f_{IFFT} = \frac{2048}{63} \approx 32.508 \quad Mbps
+\end{equation*}
+
+La obtención de la fórmula anterior, en conjunto con una descripción mas detallada del Multiplex Frame para ISBD-T puede encontrarse en el análisis realizado por Pablo Flores y Federico Larroca en \cite{bts_pablof}.
+
+Durante la división jerárquica la ISDB-T information de los TSP es removida por lo cual en las siguentes fases de procesamiento ya no se cuenta con la información jerárquica en los flujos de transporte. Es por eso, que resulta necesario definir un orden predefinido dentro del BTS de manera que el receptor pueda reconstruirlo perfectamente sin necesidad de la ISDB-T information. 
+
+Supongamos que tenemos un BTS como el de la figura \label{bts1} en el cual hay dos capas jerárquicas A y B, cada una con su respectiva tasa tal que $r_BTS> r_B > r_A$. Las capas con tasas altas implican un tiempo de transmisión de paquetes mucho más corto que las capas con tasas bajas, y viceversa.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.45]{figuras/cap02/bts1}
+	\caption{\label{bts1} Multiplicable de los TS en un BTS.}
+\end{figure} 
+
+Observando el diagrama puede verse que en recepción el paquete $B_1$ es procesado antes de que termine de ser transmitido el paquete $A_1$, cuando en realidad el orden original era $A_1$ y luego $B_1$. Además se generan espacios de tiempo en los cuales no se entregan paquetes al sistema porque aún se están procesando paquetes que van arribando. Esos intervalos de tiempo deben ser rellenados con paquetes nulos a fin de mantener la tasa constante. Esto resulta en un desordenamiento del patrón original del BTS y de la perdida total de la capacidad de reordenar los datos en recepción.
+
+Para formar los patrones de ordenamiento en transmisión de manera tal que el receptor sea capaz de recuperarlos perfectamente, se agregan los denominados ajustes de atraso. En el ejemplo de la figura \label{bts2} se agrega un ajuste de atraso de 2 TSP y se introduce un paquete nulo en el BTS original. Como resultado ,el flujo BTS reconstruido por el receptor resulta ser exactamente igual al BTS original. Dada una configuración jerárquica del sistema, existe un único patrón de ordenamiento del BTS.
+
+El transmisor implementado en este trabajo toma como flujo de entrada un BTS ya conformado, y con la información jerárquica de los TSP es que logra procesar cada capa por separado. De ahí en adelante las capas son entrelazadas y moduladas cada una de acuerdo a su propia configuración.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.45]{figuras/cap02/bts2}
+	\caption{\label{bts2} Multiplexion de los TS en un BTS.}
+\end{figure}
