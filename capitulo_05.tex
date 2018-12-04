@@ -8,7 +8,7 @@
 
 En la figura \ref{f:flowgraphEdited} se muestra el diagrama de bloques que conforman el transmisor gr-isdbt-tx. En este capítulo repasamos las distintas funcionalidades que fueron implementadas para lograr la transmisión.
 
-Los bloques de este capitulo están separados por funcionalidades y no por orden de aplicación en el flujo de datos establecido por la norma. Describir de esta manera las funcionalidades desarrolladas nos permite comparar algunos bloques de funcionamiento similar y que a la hora de desarrollar necesitaron de soluciones de programación similares.
+Los bloques de este capítulo están separados por funcionalidades y no por orden de aplicación en el flujo de datos establecido por la norma. Describir de esta manera las funcionalidades desarrolladas nos permite comparar algunos bloques de funcionamiento similar y que a la hora de desarrollar necesitaron de soluciones de programación similares.
 
 \section{Obtención de los TS por capa}
 
@@ -16,7 +16,7 @@ Como se explicó anteriormente, en un solo flujo de transporte coexisten paquete
 
 Es necesario separar esta información al comienzo del transmisor, para procesar individualmente cada capa, afín de lograr mantener los datos de cada capa en un mismo flujo, pues como vimos, las capas pueden tener distintas modulaciones y distintos retardos. 
 
-Cada paquete tiene en su encabezado IIP, un parámetro denominado \textit{layer\_information}, que contiene información sobre la capa de transporte a la que pertenece. El parámetro ocupa los primeros cuatro bits del segundo byte del encabezado de cada paquete, y se decodifica según la siguiente tabla
+Cada paquete tiene en su encabezado \gls{IIP}, un parámetro denominado \textit{layer\_information}, que contiene información sobre la capa de transporte a la que pertenece. El parámetro ocupa los primeros cuatro bits del segundo byte del encabezado de cada paquete, y se decodifica según la siguiente tabla
 
 \begin{table}[h!]
 	\centering
@@ -36,20 +36,20 @@ Cada paquete tiene en su encabezado IIP, un parámetro denominado \textit{layer\
 	\caption{\label{Identificador de capa para TSP} Par\'ametro indicador de capa en el IIP.}
 \end{table}
 
-El primero de los bloques de gr-isdbt-tx, es el bloque \textit{Hierarchical Divisor}, es un bloque que se encarga de realizar esta tarea. Dado que conocemos de antemano la cantidad de TSPs que están contenidos en un cuadro multiplex de nuestro BTS de fuente, definimos un bloque con un puerto de entrada y tres puertos de salida. En cada ejecución, se recorre un cuadro multiplex, analizando para cada uno de los paquetes el parámetro \textit{layer\_information}, decodificamos a que capa pertenece, y se enrutan según corresponda. 
+El primero de los bloques de gr-isdbt-tx, es el bloque \textit{Hierarchical Divisor}, es un bloque que se encarga de realizar esta tarea. Dado que conocemos de antemano la cantidad de TSPs que están contenidos en un cuadro múltiplex de nuestro BTS de fuente, definimos un bloque con un puerto de entrada y tres puertos de salida. En cada ejecución, se recorre un cuadro múltiplex, analizando para cada uno de los paquetes el parámetro \textit{layer\_information}, decodificamos a qué capa pertenece, y se enrutan según corresponda. 
 
-Entendemos que la implementación que presentamos de este bloque, existen cosas a mejorar. No las incluimos en este release del código por cuestiones de tiempo. De primera mano, si la cantidad de TSP por cuadro multiplex fuese ser calculada en tiempo de ejecución, el transmisor soportaría cualquier BTS como fuente de datos. Hoy esos parámetros están fijos para el BTS de pruebas con el que trabajamos, y eso limita la robustez del transmisor. Obtener un BTS valido para realizar testing no fue tarea sencilla, puesto que buscamos uno que tuviese datos validos para las tres capas de trabajo de la norma, y los canales nacionales actualmente no estan emitiendo One-Seg. Discutiremos esta carencia junto con otras mas a fondo en el capitulo 7, cuando analicemos el trabajo a futuro.
+Entendemos que la implementación que presentamos de este bloque, existen cosas a mejorar. No las incluimos en este release del código por cuestiones de tiempo. De primera mano, si la cantidad de TSP por cuadro múltiplex fuese ser calculada en tiempo de ejecución, el transmisor soportaría cualquier BTS como fuente de datos. Hoy esos parámetros están fijos para el BTS de pruebas con el que trabajamos, y eso limita la robustez del transmisor. Obtener un BTS válido para realizar testing no fue tarea sencilla, puesto que buscamos uno que tuviese datos válidos para las tres capas de trabajo de la norma, y los canales nacionales actualmente no están emitiendo One-Seg. Discutiremos esta carencia junto con otras mas a fondo en el capítulo 7, cuando analicemos el trabajo a futuro.
 
-Luego del bloque \textit{Hierarchical Divisor}, los TSP de 204 bytes se encaminan hacia el codificador Reed Solomon. El bloque que se utilizo para este propósito, espera en la entrada paquetes de 188 bytes, por lo que implementamos un bloque llamado \textit{TSP Resize} que se encarga de remover los últimos 16 bytes antes de que los paquetes lleguen al codificador. Es importante mencionar que los datos que se eliminan en este bloque, no tienen en este momento del flujo información relevante, ya que en esa posición están los encabezados IIP que el codificador Reed Solomon sobrescribe con la codeword generada, según lo establecido en la norma. 
+Luego del bloque \textit{Hierarchical Divisor}, los TSP de 204 bytes se encaminan hacia el codificador Reed Solomon. El bloque que se utilizó para este propósito, espera en la entrada paquetes de 188 bytes, por lo que implementamos un bloque llamado \textit{TSP Resize} que se encarga de remover los últimos 16 bytes antes de que los paquetes lleguen al codificador. Es importante mencionar que los datos que se eliminan en este bloque, no tienen en este momento del flujo información relevante, ya que en esa posición están los encabezados IIP que el codificador Reed Solomon sobrescribe con la codeword generada, según lo establecido en la norma. 
 
 \section{Codificaciones de Canal}
 
 	\subsection{Reed Solomon}
 La norma ISDB-T utiliza una implementación similar a la de DVB-T del codificador Reed Solomon. En cada TSP se sustituyen los últimos 16 bytes del IIP por la palabra de redundancia de un código RS(204,188). Para lograr esta distancia, lo que se hace es llevar el payload hacia un tamaño mas grande, agregando 51 bytes en 0 al comienzo del TSP. Luego, el nuevo payload de 239 bytes, se inyecta en un codificador RS(255,239) para obtener los 16 bytes de codeword. 
 
-El cambio de tamaño se realiza principalmente para utilizar un algoritmo más eficiente. Una vez obtenida la palabra código del mismo, se remueven los primeros 51 bytes nulos, y obtenemos el código RS(204,188) que entra en el tamaño de un TSP, y ademas es capaz de corregir errores hasta en 8 bytes. 
+El cambio de tamaño se realiza principalmente para utilizar un algoritmo más eficiente. Una vez obtenida la palabra código del mismo, se remueven los primeros 51 bytes nulos, y obtenemos el código RS(204,188) que entra en el tamaño de un TSP, y además es capaz de corregir errores hasta en 8 bytes. 
 
-Para la implementacion de esta funcionalidad en ISDB-T, no fue necesario desarrollar ningún bloque. Dentro de los complementos de GNU Radio esta el paquete \textit{gr-dvb}\cite{gr-dvb} (originalmente un proyecto de terceros, que en 2015 fue incorporado al repositorio oficial de GNU Radio), que contiene los bloques necesarios para implementar tanto un transmisor como un receptor bajo la norma DVB. Al compartir el codificador Reed Solomon con ISDBT, basto con utilizar el bloque de gr-dvb.
+Para la implementación de esta funcionalidad en ISDB-T, no fué necesario desarrollar ningún bloque. Dentro de los complementos de GNU Radio está el paquete \textit{gr-dvb}\cite{gr-dvb} (originalmente un proyecto de terceros, que en 2015 fué incorporado al repositorio oficial de GNU Radio), que contiene los bloques necesarios para implementar tanto un transmisor como un receptor bajo la norma DVB. Al compartir el codificador Reed Solomon con ISDBT, bastó con utilizar el bloque de gr-dvb.
 
 \begin{figure}[h!]
 	\centering
@@ -57,14 +57,14 @@ Para la implementacion de esta funcionalidad en ISDB-T, no fue necesario desarro
 	\caption{\label{f:RSencoder} Bloque Reed Solomon Encoder de gr-dvb.}
 \end{figure}
 
-En la figura 5.1, mostramos el bloque y la configuración paramétrica del mismo, tal cual se implementó en gr-isdbt-tx. Los parámetros \textbf{p}, \textbf{m} y \textbf{GF polynomial} son los que configuran el polinomio generador que es la base del algoritmo. Para configurar el polinomio necesario para RS(255,239), debemos cargar en el bloque el polinomio:
+En la figura \ref{f:RSencoder}, mostramos el bloque y la configuración paramétrica del mismo, tal cual se implementó en gr-isdbt-tx. Los parámetros \textbf{p}, \textbf{m} y \textbf{GF polynomial} son los que configuran el polinomio generador que es la base del algoritmo. Para configurar el polinomio necesario para RS(255,239), debemos cargar en el bloque el polinomio:
 
 \begin{gather*}
 	p(x) = x^8 + x^4 + x^3 + x^2 + 1
 \end{gather*}
 
 	\subsection{Viterbi}
-	Otro de los códigos de canal implementados por ISDB-T es el código Viterbi. Este código, es  convolucional con puncturing, su codigo madre tiene una tasa de $\frac{1}{2}$ y constante $k = 7$, lo que permite obtener en salida datos codificados a cualquier tasa m/n en transmisión, sin aumentar la complejidad de la decodificación en recepción. 
+	Otro de los códigos de canal implementados por ISDB-T es el código Viterbi. Este código, es  convolucional con puncturing, su código madre tiene una tasa de $\frac{1}{2}$ y constante $k = 7$, lo que permite obtener en salida datos codificados a cualquier tasa m/n en transmisión, sin aumentar la complejidad de la decodificación en recepción. 
 	
 	Esto sucede, porque tanto el lado transmisor como el receptor, conocen la llamada matriz de puncturing. En esa matriz, se especifica para cada tasa de código buscada los bits redundantes, que serán eliminados al transmitir para lograr la tasa deseada. Vale recordar que estos bits deben ser reingresados por el decodificador en recepción, pues de lo contrario aumentaría fuertemente la complejidad de la decodificación.
 	
@@ -76,7 +76,7 @@ En la figura 5.1, mostramos el bloque y la configuración paramétrica del mismo
 	
 	Agregar este tipo de códigos a la cadena de transmisión, aumenta la resistencia ante las perdidas y mantiene una tasa de bits constante, lo que colabora con el mantenimiento del sincronismo del sistema.
 	
-	DVB utiliza el mismo código en su cadena de transmisión, con los mismos parámetros, por lo que en gr-isdbt-tx, no fue necesario realizar un desarrollo del bloque sino que reutilizamos el existente en gr-dvb. 
+	DVB utiliza el mismo código en su cadena de transmisión, con los mismos parámetros, por lo que en gr-isdbt-tx, no fué necesario realizar un desarrollo del bloque sino que reutilizamos el existente en gr-dvb. 
 	
 	\begin{figure}[h!]
 		\centering
@@ -105,13 +105,13 @@ Es necesario que tanto el transmisor como el receptor estén sincronizados en la
 	\caption{\label{f:energy} Bloque dispersor de energía de gr-isdbt-tx.}
 \end{figure}
 
-En el release actual de gr-isdbt-tx, el bloque dispersor de energía solicita como parámetro de entrada la cantidad de TSPs que conforman el frame de cada layer, para poder reiniciar con éxito el circuito generador. Durante el desarrollo del código, este parámetro fue de mucha ayuda ya que no nos resulto sencillo sincronizar transmision y recepción, y además sirvió como herramienta de debugging en distintas pruebas que se realizaron. 
+En el release actual de gr-isdbt-tx, el bloque dispersor de energía solicita como parámetro de entrada la cantidad de TSPs que conforman el frame de cada layer, para poder reiniciar con éxito el circuito generador. Durante el desarrollo del código, este parámetro fue de mucha ayuda ya que no nos resultó sencillo sincronizar transmisión y recepción, y además sirvió como herramienta de debugging en distintas pruebas que se realizaron. 
 
-Como trabajo pendiente, al igual que en el divisor jerárquico, nos proponemos eliminar este parámetro y obtener la cantidad de TSP por frame y por layer en tiempo de ejecución, de nuevo, para ampliar el espectro de fuentes de datos que pueda tomar este transmisor. 
+Como trabajo pendiente, al igual que en el divisor jerárquico, nos proponemos eliminar este parámetro y obtener la cantidad de TSP por frame y por layer en tiempo de ejecución, de nuevo, para lograr más flexibilidad en cuanto a las fuentes de datos que pueda tomar este transmisor. 
 	
 \section{La modulación}
 
-Para resolver la modulación en nuestro transmisor, decidimos crear un solo bloque que resuelva en conjunto los problemas de interleaving de bits y modulación. Esto resulto bastante conveniente, pues basto con crear una variable que contenga un selector de modulación, y en base a el se crean una serie de colas, cuyos tamaños responden a lo explicado sobre interleaving en el inciso 5.7.
+Para resolver la modulación en nuestro transmisor, decidimos crear un solo bloque que resuelva en conjunto los problemas de interleaving de bits y modulación. Esto resultó bastante conveniente, pues bastó con crear una variable que contenga un selector de modulación, y en base a él se crean una serie de colas, cuyos tamaños responden a lo explicado sobre interleaving en \ref{sect:entrelazamiento_bits}.
 
 \begin{figure}[h!]
 	\centering
@@ -120,9 +120,9 @@ Para resolver la modulación en nuestro transmisor, decidimos crear un solo bloq
 \end{figure}
 
 
-El problema que nos encontramos en esta etapa, fue el de particionar la información en un byte, pero conservar el resto. Un ejemplo claro de esto se da cuando la modulacion es \textit{64-QAM}, pues cada símbolo en este caso se construye con 6 bits. Ahora, el parseo de datos entre bloques, GNU Radio lo hace encapsulados en datos de tipo \textit{byte}. Por lo tanto, necesitábamos una forma de resolver el problema de separar 6 bits utiles de un dato, y guardar los 2 siguientes para el próximo símbolo. En principio, no parecería ser un problema tan grave, pero podría pasar que los 2 bits que nos quedan pendientes, se correspondan con un símbolo que se construirá en una próxima llamada al método modulador del objeto "bloque mapper". A nivel de programación, esto implica que la memoria volatil de la instancia del objeto, se borra, por lo que habría que utilizar algún almacenamiento que permanezca en memoria estática, y actualizarla en cada símbolo que se procesa.
+El problema que nos encontramos en esta etapa, fué el de particionar la información en un byte, pero conservar el resto. Un ejemplo claro de esto se dá cuando la modulación es \textit{64-QAM}, pues cada símbolo en este caso se construye con 6 bits. Ahora, el parseo de datos entre bloques, GNU Radio lo hace encapsulados en datos de tipo \textit{byte}. Por lo tanto, necesitábamos una forma de resolver el problema de separar 6 bits utiles de un dato, y guardar los 2 siguientes para el próximo símbolo. En principio, no parecería ser un problema tan grave, pero podría pasar que los 2 bits que nos quedan pendientes, se correspondan con un símbolo que se construirá en una próxima llamada al método modulador del objeto "bloque mapper". A nivel de programación, esto implica que la memoria volátil de la instancia del objeto, se borra, por lo que habría que utilizar algún almacenamiento que permanezca en memoria estática, y actualizarla en cada símbolo que se procesa.
 
-Recorrer ese camino nos pareció ademas de muy laborioso, poco eficiente en términos de CPU. Encontramos la solución en un conjunto de bloques propietarios de GNU Radio, que lo resuelven de manera eficiente. Los bloques \textit{Packed to Unpacked} nos resuelven el problema. Basta con tener en cuenta a la hora de utilizar el transmisor, definirle el parámetro de \textit{Bits per Chunk} de forma consistente con la modulación que se este utilizando. 
+Recorrer ese camino nos pareció además de muy laborioso, poco eficiente en términos de CPU. Encontramos la solución en un conjunto de bloques propietarios de GNU Radio, que lo resuelven de manera eficiente. Los bloques \textit{Packed to Unpacked} nos resuelven el problema. Basta con tener en cuenta a la hora de utilizar el transmisor, definirle el parámetro de \textit{Bits per Chunk} de forma consistente con la modulación que se este utilizando. 
 
 \begin{table}[h!]
 	\centering
@@ -142,9 +142,9 @@ Recorrer ese camino nos pareció ademas de muy laborioso, poco eficiente en tér
 
 A la salida de los bloques \textit{Packed to Unpacked}, tendremos un byte completo de 8 bits, pero rellenado con la cantidad de bits requerida por la modulación, comenzando por el bit mas significativo.  Esto nos permite normalizar la recepción de datos del bloque modulador, para cada caso, sabremos perfectamente como esta compuesto el byte de datos. 
 
-Una vez allí, alcanza con crear una cola con el retardo correspondiente, y enrutar los bits hacia la misma de forma ordenada. La secciona de modulación del bloque, funciona de la siguiente manera. 
+Una vez allí, alcanza con crear una cola con el retardo correspondiente, y enrutar los bits hacia la misma de forma ordenada. La sección de modulación del bloque, funciona de la siguiente manera. 
 
-Se obtiene de la cola los bits a procesar, y se arma, manteniendo el orden especificado en la norma, una palabra de N bits, donde $N={2,4,6}$ según corresponda en la tabla \tablename{Bits por simbolo segun modulacion}. Una vez formada la palabra, se re interpreta como un numero decimal, y se busca en un arreglo el complejo que se corresponda con la palabra recién formada. Esta información se obtiene de la tabla   
+Se obtiene de la cola los bits a procesar, y se arma, manteniendo el orden especificado en la norma, una palabra de N bits, donde $N={2,4,6}$ según corresponda en la tabla \ref{Bits por simbolo segun modulacion}. Una vez formada la palabra, se re interpreta como un número decimal, y se busca en un arreglo el complejo que se corresponda con la palabra recién formada.
 
 \section{El uso de los entrelazamientos}
 
@@ -156,21 +156,27 @@ Realizando un entrelazamiento frecuencial las portadoras que pudieran verse afec
 
 El procedimiento del entrelazamiento en ISDB-T se divide en dos etapas: el \textit{enterlazamiento inter-segmentos}, y el \textit{entrelazamiento intra-segmentos }.
 
-Primero se separan los segmentos en tres grupos: los destinados a recepci\'on parcial (\textit{one-seg}), los que utilizan \textit{modulaci\'on coherente}, y por otro lado los que utilizan \textit{modulaci\'ion diferencial}. Como en el caso de \textit{gr-isdbt-tx} s\'olo se utiliza modulaci\'on coherente, los caminos que pueden tomar los segmentos son \'unicamente dos.
+Primero se separan los segmentos en tres grupos: los destinados a recepci\'on parcial (\textit{one-seg}), los que utilizan \textit{modulación coherente}, y por otro lado los que utilizan \textit{modulación diferencial}. Como en el caso de \textit{gr-isdbt-tx} s\'olo se utiliza modulación coherente, los caminos que pueden tomar los segmentos son \'unicamente dos.
 
-Posteriormente viene la etapa de entrelazamiento inter-segmentos. Precisamente consiste en intercalar las portadoras entre los segmentos que comparten la modulac\'on. Para el segmento destinado a la recepci\'on parcial este proceso no tiene sentido, por lo cual pasa directamente a la etapa de enterlazamiento intra-segmento.
+Posteriormente viene la etapa de entrelazamiento inter-segmentos. Precisamente consiste en intercalar las portadoras entre los segmentos que comparten la modulación. Para el segmento destinado a la recepci\'on parcial este proceso no tiene sentido, por lo cual pasa directamente a la etapa de enterlazamiento intra-segmento.
 
 El entrelazamiento intra-segmento se realiza permutando las portadoras de cada segmento entre s\'i. Se comienza por rotar las portadoras de acuerdo a la siguiente expresi\'on:
 
-Luego se realiza una aleatorizac\'on que est\'a determinada por \textit{Look Up Tables} que dependen del modo de transmisi\'on y puden consultarse en la norma \cite{norma}.
+\begin{equation}
+S^{rotada}_{i,k} = S_{(k+i) mod C, k}
+\end{equation}
+
+Donde $i$ representa el número de portadora dentro del segmento y puede tomar valores entre $[0, C-1]$, con $C = 96 /times 2^{modo-1}$ la cantidad de portadoras de datos en cada segmento; $k$ es el número de segmento y toma valores entre cero y la cantidad de segmentos que utilizan esa modulación. 
+
+Luego se realiza una aleatorización que est\'a determinada por \textit{Look Up Tables} que dependen del modo de transmisi\'on y puden consultarse en la norma \cite{norma}.
 
 \subsection{Entrelazamiento temporal}
 
-El entrelazamiento temporal consiste en distribu\'uir los s\'imbolos complejos entre distintos s\'imbolos OFDM. Esta distribuci\'on o entrelazamiento se realiza para cada portadora, es decir que se realiza en el dominio del tiempo.
+El entrelazamiento temporal consiste en distribuír los s\'imbolos complejos entre distintos s\'imbolos OFDM. Esta distribuci\'on o entrelazamiento se realiza para cada portadora, es decir que se realiza en el dominio del tiempo.
 
 Esta t\'ecnica act\'ua como mecanismo de protecci\'on frente a ruidos impulsivos que t\'ipicamente se caracterizan por una corta duraci\'on en el tiempo. La profundidad o largo del entrelazamiento temporal es el par\'ametro que rige este proceso de entrelazado y puede ser seteado de manera independiente para cada capa. Est\'a \'intimamente ligado a la dispersi\'on temporal que se realiza en los s\'imbolos; a mayor profundidad, los s\'imbolos de una misma portadora son retardados un tiempo mayor.
 
-La Figura \ref{f:entrelazamiento_temporal} describe esquem\'aticamente el mecanismo de entrelazamiento. Consiste en aplicar un retardo distinto para cada s\'imbolo dentro de un mismo segmento; los segmentos de una misma capa son retardados de igual manera seg\'un la profundidad de entrelazamiento elegida. 
+La figura \ref{f:entrelazamiento_temporal} describe esquem\'aticamente el mecanismo de entrelazamiento. Consiste en aplicar un retardo distinto para cada s\'imbolo dentro de un mismo segmento; los segmentos de una misma capa son retardados de igual manera seg\'un la profundidad de entrelazamiento elegida. 
 
 La implementaci\'on de estos retardos en \textit{gr-isdbt-tx} es llevada a cabo por medio de colas en las que, de manera secuencial, se empujan los s\'imbolos que van arribando correspondientes a las distintas capas jer\'arquicas. Desde el otro extremo se extrae un s\'imbolo de cada cola tambi\'en de manera secuencial. 
 
@@ -180,7 +186,7 @@ Para una capa jer\'arquica con profundidad de entrelazamiento $I_L$, que puede s
 q_L(i) = I_L \times m_i = I_L \times ((i \times 5) \; mod \; 96)
 \end{equation}
 
-Donde $q_L(i)$ representa el tamano de las colas o búfers; $m_i$ es definido por el est\'andar como $m_i = (i \times 5) \; mod \; 96$, para $i = 0, 1,..,n_c$ con $n_c = 1$, $2$, o $3$ seg\'un el modo de transmisi\'on. 
+Donde $q_L(i)$ representa el tamaño de las colas o búfers; $m_i$ es definido por el est\'andar como $m_i = (i \times 5) \; mod \; 96$, para $i = 0, 1,..,n_c$ con $n_c = 1$, $2$, o $3$ seg\'un el modo de transmisi\'on. 
 
 \begin{figure}[!h]
 	\centering
@@ -188,9 +194,9 @@ Donde $q_L(i)$ representa el tamano de las colas o búfers; $m_i$ es definido po
 	\caption{\label{f:entrelazamiento_temporal} Mecanismo de entrelazamiento temporal.}
 \end{figure}
 
-El proceso de entrelazamiento introduce un retardo que debe ser ajustado de manera que el retardo total introducido por el proceso sea un m\'ultiplo de cuadro OFDM. Para ello \textit{gr-isdbt-tx} conforma colas m\'as largas de las especificadas en el esquema de la Figura \ref{f:entrelazamiento_temporal} logrando as\'i un retardo total de un cuadro OFDM.
+El proceso de entrelazamiento introduce un retardo que debe ser ajustado de manera que el retardo total introducido por el proceso sea un m\'ultiplo de cuadro OFDM. Para ello \textit{gr-isdbt-tx} conforma colas m\'as largas de las especificadas en el esquema de la figura \ref{f:entrelazamiento_temporal} logrando as\'i un retardo total de un cuadro OFDM.
 
-La cantidad de s\'imbolos OFDM que genera de atraso el proceso est\'a dada por:
+Este proceso genera un atraso que en símbolos OFDM está dado por la siguiente expresión:
 
 \begin{equation}
 95 \times I_L \; mod \; 204
@@ -202,7 +208,7 @@ La implementaci\'on en el transmisor de este ajuste de atraso consiste en empuja
 
 \section{Entrelazamiento de bytes}
 
-El bloque de entrelazamiento de bytes se utiliza para aumentar la capacidad correctora de errores del código Reed Solomon. Como ya se explico en el capitulo 3, esto se hace implementando un sistema de colas de retardos de largos variables, por las que se van enrutando los bytes uno a uno. 
+El bloque de entrelazamiento de bytes se utiliza para aumentar la capacidad correctora de errores del código Reed Solomon. Como ya se explicó en el capítulo 3, esto se hace implementando un sistema de colas de retardos de largos variables, por las que se van enrutando los bytes uno a uno. 
 
 \begin{figure}[!h]
 	\centering
@@ -210,9 +216,9 @@ El bloque de entrelazamiento de bytes se utiliza para aumentar la capacidad corr
 	\caption{\label{f:byteint} Bloque entrelazamiento de bytes.}
 \end{figure}
 
-A nivel de código, esto se implemento mediante un vector de 12 elementos. Cada uno de los elementos se define como una cola de bytes, de tamaño $17*i$ siendo $i$ el numero de elemento. La cola se crea en el comienzo de la ejecución, cuando se crea una instancia del bloque. Luego, en régimen permanente, los bytes simplemente llegan en orden y van siendo asignados uno a uno a su cola correspondiente.
+A nivel de código, esto se implemento mediante un vector de 12 elementos. Cada uno de los elementos se define como una cola de bytes, de tamaño $17*i$ siendo $i$ el número de elemento. La cola se crea en el comienzo de la ejecución, cuando se crea una instancia del bloque. Luego, en régimen permanente, los bytes simplemente llegan en orden y van siendo asignados uno a uno a su cola correspondiente.
 
-Como se vio anteriormente, es necesario realizar un ajuste de atraso para que el retardo total del bloque sea igual al periodo de un cuadro OFDM. Exploramos distintas alternativas para implementar esta funcionalidad, y la que nos pareció mas eficiente fue crear un elemento extra en la cola de vectores, que contenga una cola mas larga, correspondiente al ajuste de atraso. El bloque solicita como entrada los parámetros para calcular la cantidad de bytes de atraso, como se ve en la figura \ref{f:byteint}, y crea la cola del elemento 13 del vector, del tamaño necesario, que recordamos, esta dada por la siguiente ecuación:
+Como se vió anteriormente, es necesario realizar un ajuste de atraso para que el retardo total del bloque sea igual al período de un cuadro OFDM. Exploramos distintas alternativas para implementar esta funcionalidad, y la que nos pareció más eficiente fué crear un elemento extra en la cola de vectores, que contenga una cola más larga, correspondiente al ajuste de atraso. El bloque solicita como entrada los parámetros para calcular la cantidad de bytes de atraso, como se ve en la figura \ref{f:byteint}, y crea la cola del elemento 13 del vector, del tamaño necesario, que recordamos, está dado por la siguiente ecuación:
 
 \begin{equation}
 D_{bytes} = \frac{204\times m_L\times FEC_L \times 96\times2^{modo-1}}{8\times204} - 11
@@ -220,7 +226,7 @@ D_{bytes} = \frac{204\times m_L\times FEC_L \times 96\times2^{modo-1}}{8\times20
 
 Donde $m_L$ y $FEC_L$ son el esquema de modulación y la tasa de código convolucional utilizados para la capa jerárquica L-ésima. Al final del cociente, se le restan los 11 bytes de delay que son agregados por el multicamino de las colas del entrelazado.
 
-Un detalle que no esta definido en la norma, es la equivalencia entre esquema de modulación utilizado y el valor del parámetro $m_L$ a insertar en la ecuación. 
+Un detalle que no está definido en la norma, es la equivalencia entre esquema de modulación utilizado y el valor del parámetro $m_L$ a insertar en la ecuación. 
 
 \begin{table}[h!]
 	\centering
@@ -238,11 +244,11 @@ Un detalle que no esta definido en la norma, es la equivalencia entre esquema de
 	\caption{\label{corr_ml} Asignación de valor de $m_L$ según modulación}
 \end{table}
 
-Por lo tanto, el flujo de los bytes en el bloque queda constituido por dos colas en serie, una de atraso, por la que circulan todos los bytes ni bien entran al bloque, y otra determinada por el entrelazamiento tal cual esta establecido en la norma. 
+Por lo tanto, el flujo de los bytes en el bloque queda constituido por dos colas en serie, una de atraso, por la que circulan todos los bytes ni bien entran al bloque, y otra determinada por el entrelazamiento tal cual está establecido en la norma. 
 
-El efecto total del bloque es el atraso y entrelazamiento que define el estándar. Pudimos probar durante el desarrollo de gr-isdbt-tx, que si el valor del atraso no es el correcto, no sólo se pierde el sincronismo con el desentrelazador de recepción, sino que también se pierde el sincronismo con el reseteo del PRBS del dispersor de energía. Los TSP entonces vuelven a recorrer el dispersor, pero contra un circuito distinto al recorrido en transmision, ocasionando que los datos a la salida del bloque estén completamente cambiados. Cuando esto sucede, los datos siguen su camino hacia el decodificador Reed Solomon con codewords invalidas, que son interpretadas como paquetes con una cantidad de errores superiores a la capacidad del código. En ese caso, el bloque Reed Solomon entiende que los paquetes están muy corrompidos para ser recuperados y a la salida del receptor, no se obtienen datos.
+El efecto total del bloque es el atraso y entrelazamiento que define el estándar. Pudimos probar durante el desarrollo de gr-isdbt-tx, que si el valor del atraso no es el correcto, no sólo se pierde el sincronismo con el desentrelazador de recepción, sino que también se pierde el sincronismo con el reseteo del PRBS del dispersor de energía. Los TSP entonces vuelven a recorrer el dispersor, pero contra un circuito distinto al recorrido en transmisión, ocasionando que los datos a la salida del bloque estén completamente cambiados. Cuando esto sucede, los datos siguen su camino hacia el decodificador Reed Solomon con codewords inválidas, que son interpretadas como paquetes con una cantidad de errores superiores a la capacidad del código. En ese caso, el bloque Reed Solomon entiende que los paquetes están muy corrompidos para ser recuperados y a la salida del receptor, no se obtienen datos.
   
-\section{Entrelazamiento de bits}
+\section{Entrelazamiento de bits}\label{sect:entrelazamiento_bits}
 
 En gr-isdbt-tx, implementamos el entrelazamiento de bits en conjunto con el bloque modulador. Esto significa que el bloque tiene a cargo dos tareas, primero entrelazar los bits que le ingresan provenientes de una determinada capa jerárquica dando lugar a un nuevo flujo de bits entrelazados. Y luego agrupar estos bits para formar símbolos complejos según la modulación que tenga la capa.
 
@@ -257,13 +263,13 @@ El tamaño de un s\'imbolo OFDM corresponde a:
 N_{OFDM} = m_L \times N_L \times 96 \times 2^{modo-1} \quad \text{bits}
 \end{equation}
 
-$N_{OFDM}$ depende de la cantidad de segmentos utilizados $N_L$, del modo de transmisi\'on y de la modulaci\'on de la capa, $m_L$, que se obtiene según la tabla \ref{corr_ml};. La soluci\'on implementada en este bloque es distinta a la del entrelazador de bytes. Aqui, el retardo total se obtiene incrementando los tamaños de las colas de manera que el retardo total sea de dos s\'imbolos OFDM para cada capa. Por lo tanto para tener el retardo deseado los tamanos de las colas deben ser:
+$N_{OFDM}$ depende de la cantidad de segmentos utilizados $N_L$, del modo de transmisi\'on y de la modulaci\'on de la capa, $m_L$, que se obtiene según la tabla \ref{corr_ml};. La soluci\'on implementada en este bloque es distinta a la del entrelazador de bytes. Aquí, el retardo total se obtiene incrementando los tamaños de las colas de manera que el retardo total sea de dos s\'imbolos OFDM para cada capa. Por lo tanto para tener el retardo deseado los tamaños de las colas deben ser:
 
 \begin{equation}
 Q_i = q_i + \dfrac{2 \times N_{OFDM} - 120 \times m_L}{m_L} = q_i + N_L \times 96 \times 2^{modo-1} - 120
 \end{equation}
 
-Una vez que son empujados los bits en cada cola, desde el otro extremo se extrae un bit por cola y se mapean en un s\'imbolo complejo de acuerdo a lo establecido en la norma. En la Figura \ref{f:mapeo_64QAM} se muestra c\'omo se realiza este mapeo para el caso de la modulaci\'on 64QAM. 
+Una vez que son empujados los bits en cada cola, desde el otro extremo se extrae un bit por cola y se mapean en un s\'imbolo complejo de acuerdo a lo establecido en la norma. En la figura \ref{f:mapeo_64QAM} se muestra c\'omo se realiza este mapeo para el caso de la modulaci\'on 64QAM. 
 
 \begin{figure}[!h]
 \centering
@@ -273,7 +279,7 @@ Una vez que son empujados los bits en cada cola, desde el otro extremo se extrae
 
 Para resolver el mapeo, se implementaron arrays de números complejos. Una vez obtenidos los bits a modular, se ordenan y se convierten a un entero. Ese entero es la posición en el array del numero complejo que se mapea en la constelación, que se copia a la salida.
 
-Por \'ultimo los complejos deben ser normalizados seg\'un un factor de normalizaci\'on que se presenta en la Tabla \ref{t:factor_normalizacion}.
+Por \'ultimo los complejos deben ser normalizados seg\'un un factor de normalizaci\'on que se presenta en la tabla \ref{t:factor_normalizacion}.
 
 \begin{table}[h!]
 \centering
@@ -293,12 +299,12 @@ QPSK 		& $1/ \sqrt{2}$\\
 
 
 
-\section{Formacion de cuadros OFDM}
+\section{Formación de cuadros OFDM}
 El cuadro OFDM es una estructura de datos que agrupa los datos de carga \'util, portadoras piloto y señales de control. Tiene todo lo necesario para que un receptor compatible con ISDB-T sea capaz de decodificarlo en flujos MPEG y reproducir la informaci\'on.
 
 Se trata de un conjunto de 204 s\'imbolos OFDM, cada uno de ellos conformado por $13 \times 108 \times 2^{modo -1}$ s\'imbolos complejos. Una de las particularidades del cuadro, es que su estructura tiene posiciones fijas, donde siempre viaja información con las características de la transmisión, y posiciones móviles, en las que viajan portadoras que estiman el efecto que tiene el canal sobre los datos, para poder, con esa información, robustecer al sistema. 
 
-Para cada segmento, la estructura del cuadro tiene su forma particular. En la siguiente figura presentamos un ejemplo para una modulación coherente, basada en un modo de transmisión 1.
+Para cada segmento, la estructura del cuadro tiene su forma particular. En la figura \ref{f:ofdm_frame} presentamos un ejemplo para una modulación coherente, basada en un modo de transmisión 1.
 
 \begin{figure}[!h]
 	\centering
@@ -306,9 +312,9 @@ Para cada segmento, la estructura del cuadro tiene su forma particular. En la si
 	\caption{\label{f:ofdm_frame} Estructura de cuadro OFDM para un segmento, con modo de transmisión 1.}
 \end{figure}
 
-A nivel de codigo, la solucion que se implemento en este proyecto para el bloque, es bastante larga. Separamos el bloque en dos momentos, el transitorio y el regimen. Durante el transitorio, esto es, cuando se llama al bloque por primera vez y se crea en la memoria una instancia del mismo, se inicializan todas las variables. Entre ellas estan, la palabra TMCC para todo el cuadro, los valores iniciales de la secuencia PRBS que rige el movimiento de las portadoras SP y algunas variables generales que mantienen conteos de frames para seguimiento.
+A nivel de código, la solución que se implementó en este proyecto para el bloque, es bastante larga. Separamos el bloque en dos momentos, el transitorio y el régimen. Durante el transitorio, esto es, cuando se llama al bloque por primera vez y se crea en la memoria una instancia del mismo, se inicializan todas las variables. Entre ellas están, la palabra TMCC para todo el cuadro, los valores iniciales de la secuencia PRBS que rige el movimiento de las portadoras SP y algunas variables generales que mantienen conteos de frames para seguimiento.
 
-La implementación de la TMCC se puede desarrollar en dos etapas. En primera instancia se toman los valores seteados en el bloque \verb|OFDM Frame Structure| y a partir de ello se codifican los primeros 122 bits de la TMCC como se indica en la Tabla \ref{t:bits_TMCC}. Luego, en una segunda etapa, se lleva a cabo el proceso de generación de los bits de paridad. Este proceso es tal cual se describió en la sección de Códigos Cíclicos; en el caso de la TMCC los coeficientes del polinomio $m(x)$ están dados por los bits $B_{20}$ a $B_{121}$, que son los que estarán protegidos por el código. Ambas partes, transmisor y receptor, conocen el polinomio generador $g(x)$ definido por el estándar ISDB-T como:
+La implementación de la TMCC se puede desarrollar en dos etapas. En primera instancia se toman los valores seteados en el bloque \verb|OFDM Frame Structure| y a partir de ello se codifican los primeros 122 bits de la TMCC como se indica en la tabla \ref{t:bits_TMCC}. Luego, en una segunda etapa, se lleva a cabo el proceso de generación de los bits de paridad. Este proceso es tal cual se describió en la sección de Códigos Cíclicos; en el caso de la TMCC los coeficientes del polinomio $m(x)$ están dados por los bits $B_{20}$ a $B_{121}$, que son los que estarán protegidos por el código. Ambas partes, transmisor y receptor, conocen el polinomio generador $g(x)$ definido por el estándar ISDB-T como:
 
 \begin{equation}
 \begin{split}
@@ -371,13 +377,13 @@ $B_{68} \; - \; B_{80}$ &  & Parámetros de transmisión capa A \\
 
 La información que transporta la TMCC es crítica, y debe ser transmitida con una mayor confiabilidad que el resto de las señales. Al momento de ser insertada la TMCC el resto de las señales ya han sido codificadas en cuanto a protección contra errores. Esto es así porque codificar la TMCC con códigos cíclicos acortados reduce el tiempo de decodificación y la complejidad en el receptor, con lo cual se opta por transmitir la TMCC en varias portadoras a lo largo del cuadro OFDM. La recepción de la TMCC requiere una relación \textit{Carrier-to-Noise} (C/N) menor que el resto de las señales, con lo cual es normal que se pueda recibir la TMCC en escenarios menos favorables.
 
-En el caso general de un llamado a operar del bloque, la escritura se diseño organizada por simbolos OFDM. En cada llamado al bloque, se completara un simbolo generico. Algunas estructuras de control mantendran el control de los cambios de palabras de control y otras variables. Los parametros genericos de transmision que dependen de parametros como el modo y las constelaciones de cada capa, se resuelven en el transitorio.
+En el caso general de un llamado a operar del bloque, la escritura se diseñó organizada por símbolos OFDM. En cada llamado al bloque, se completará un símbolo genérico. Algunas estructuras de control mantendrán el control de los cambios de palabras de control y otras variables. Los parámetros genéricos de transmisión que dependen de parámetros como el modo y las constelaciones de cada capa, se resuelven en el transitorio.
 
 La cadena de sucesos de un llamado genérico es la siguiente. Primero se inicializa un vector de complejos en salida con el tamaño suficiente para todas las portadoras y los intervalos de guarda. Luego, se entra en una estructura de control que se encargara de  repetir el proceso de escritura de símbolo OFDM cuantas veces el core de GNU Radio considere necesarios, a través del valor de \textit{noutputitems}. Dependiendo del modo en el que se trabaje, se llama para cada segmento una función que se encarga de rellenar el segmento, según sea el modo de trabajo.
 
 En caso de que se este trabajando en modo One-Seg, agregamos en este bloque un booleano que, en caso de estar en true, limita el rellenado de segmentos al segmento 0. 
 
-En el caso general, las funciones de llenado de segmento se llaman para todos los segmentos, en el orden lineal que tendrán a la salida, el mismo que ya vimos en el capitulo 3.
+En el caso general, las funciones de llenado de segmento se llaman para todos los segmentos, en el orden lineal que tendrán a la salida, el mismo que ya vimos en el capítulo 3.
 
 \begin{figure}[h!]
 	\centering
@@ -385,13 +391,13 @@ En el caso general, las funciones de llenado de segmento se llaman para todos lo
 	\caption{\label{f:bloque_ofdm} Bloque de conformacion de cuadro OFDM.}
 \end{figure}
 
-Las funciones de llenado de segmento, toman como parámetro de entrada el numero de segmento que se va a escribir. Con este numero, encuentran en función de su posición en el cuadro, los indices en donde van las portadoras auxiliares y los datos. Luego iteran punto a punto por todas las portadoras del segmento, asignando según corresponda. En el caso de los datos, se copian simplemente de la entrada. Para el caso de las portadoras auxiliares, cada una tiene una funcion que almacena el estado de las mismas, y con ayuda de los indices de posicion y de simbolo dentro del cuadro OFDM, evolucionan los datos dinámicos de las mismas y escriben en el segmento el dato correspondiente. 
+Las funciones de llenado de segmento, toman como parámetro de entrada el número de segmento que se va a escribir. Con este numero, encuentran en función de su posición en el cuadro, los índices en donde van las portadoras auxiliares y los datos. Luego iteran punto a punto por todas las portadoras del segmento, asignando según corresponda. En el caso de los datos, se copian simplemente de la entrada. Para el caso de las portadoras auxiliares, cada una tiene una funcion que almacena el estado de las mismas, y con ayuda de los índices de posición y de símbolo dentro del cuadro OFDM, evolucionan los datos dinámicos de las mismas y escriben en el segmento el dato correspondiente. 
 	
 \section{La transformada de Fourier}
 
 Una vez formado el cuadro OFDM, de forma correcta con todas las portadoras de datos y auxiliares completas, es el momento de pasar la señal al dominio del tiempo, para agregarle el prefijo cíclico y ponerla en el aire. 
 
-Utilizamos para esto uno de los bloques de GNU Radio que implementan el algoritmo \textit{Fast Fourier Transform}. Este algoritmo, que ya fue mencionado en el documento, permite realizar de forma rápida y suficientemente aproximada de la transformada de Fourier de una señal digital, siempre y cuando se maneje un tamaño de muestras que sea múltiplo de una potencia de 2.
+Utilizamos para esto uno de los bloques de GNU Radio que implementan el algoritmo \textit{Fast Fourier Transform}. Este algoritmo, que ya fué mencionado en el documento, permite realizar de forma rápida y suficientemente aproximada de la transformada de Fourier de una señal digital, siempre y cuando se maneje un tamaño de muestras que sea múltiplo de una potencia de 2.
 
 \begin{figure}[!h]
 	\centering
@@ -403,9 +409,9 @@ El parámetro \textit{Reverse} del bloque, indica la dirección en la que se rea
 
 \section{El prefijo cíclico}
 
-Para sincronizar los relojes de transmision y recepción, y eliminar de forma suficiente la interferencia intersimbolica, es que en ISDBT se utiliza un prefijo cíclico. Esto es, las primeras N muestras de la señal, se copian tal cual están hacia el final de la señal. Esto hace que, al calcular la autocorrelacion de la señal en recepción, sea posible detectar de forma perfecta el comienzo de la señal, así como los parámetros de transmision en caso de que sean desconocidos. 
+Para sincronizar los relojes de transmisor y receptor, y eliminar de forma suficiente la interferencia intersimbólica, es que en ISDBT se utiliza un prefijo cíclico. Esto es, las primeras N muestras de la señal, se copian tal cual están hacia el final de la señal. Esto hace que, al calcular la autocorrelación de la señal en recepción, sea posible detectar de forma perfecta el comienzo de la señal, así como los parámetros de transmisión en caso de que sean desconocidos. 
 
-Se repaso el fundamento teorico detras de esta practica en el capitulo 3, en caso de buscar profundizar en la misma, una clara explicación de estos conceptos esta en \cite{gr-isdbt}. No entraremos en mas detalles de este proceso para no ser repetitivos.
+Se repasó el fundamento teórico detrás de esta práctica en el capítulo 3, en caso de buscar profundizar en la misma, una clara explicación de estos conceptos está en \cite{gr-isdbt}. No entraremos en más detalles de este proceso para no ser repetitivos.
 
 \begin{figure}[!h]
 	\centering
@@ -413,14 +419,14 @@ Se repaso el fundamento teorico detras de esta practica en el capitulo 3, en cas
 	\caption{\label{f:cp} Bloque que implementa prefijo cíclico.}
 \end{figure}
 
-Este bloque tampoco es desarrollo propio del proyecto gr-isdbt-tx. Si bien escribimos un bloque que realiza esta funcionalidad (a nivel de programación se resuelve con un memcpy) preferimos dejar la implementacion existente, que funciona muy bien y esta validada por la comunidad de usuarios de GNU Radio.
+Este bloque tampoco es desarrollo propio del proyecto gr-isdbt-tx. Si bien escribimos un bloque que realiza esta funcionalidad (a nivel de programación se resuelve con un memcpy) preferimos dejar la implementación existente, que funciona muy bien y está validada por la comunidad de usuarios de GNU Radio.
 
-De todos modos, la implementacion de este bloque es un problema que los tutores nos plantearon al inicio del proyecto, y es interesante como primer acercamiento al entorno de desarrollo de GNU Radio. La lógica detrás del funcionamiento del bloque es simple, por lo que el kid de la cuestión esta en manejar debidamente el movimiento de muestras entre el bloque y el core del software.
+De todos modos, la implementación de este bloque es un problema que los tutores nos plantearon al inicio del proyecto, y es interesante como primer acercamiento al entorno de desarrollo de GNU Radio. La lógica detrás del funcionamiento del bloque es simple, por lo que el kid de la cuestión está en manejar debidamente el movimiento de muestras entre el bloque y el core del software.
 
 \section{La transmision desde USRP}
 
-Como ya se discutió en secciones anteriores, para realizar la transmisión de la señal a través del equipo USRP, es necesario utilizar el bloque sink del complemento \textit{gr-uhd}. Siempre que se mantengan las condiciones para la buena transmision que se enumeraron en el capitulo 4, es esperable tener a la señal en el aire sin mayores problemas. 
+Como ya se discutió en secciones anteriores, para realizar la transmisión de la señal a través del equipo USRP, es necesario utilizar el bloque sink del complemento \textit{gr-uhd}. Siempre que se mantengan las condiciones para la buena transmisión que se enumeraron en el capítulo 4, es esperable tener a la señal en el aire sin mayores problemas. 
 
 Como consideraciones generales, recomendamos verificar que el espectro a utilizar este disponible, de forma de no solaparse con la señal de alguno de los canales comerciales, que transmiten a alta potencia y podrían causar problemas para decodificar nuestra señal.
 
-Durante el desarrollo del transmisor, antes de probar la transmision contra un televisor comercial, una prueba bastante sencilla es la de transmitir hacia un archivo. Luego, podemos usar ese archivo como entrada de datos al receptor \textit{gr-isdbt} para corroborar que la transmision tenga todos los parámetros correctos. Disponer de todos los bloques del receptor para tomar medidas, es un excelente método de debugging.
+Durante el desarrollo del transmisor, antes de probar la transmisión contra un televisor comercial, una prueba bastante sencilla es la de transmitir hacia un archivo. Luego, podemos usar ese archivo como entrada de datos al receptor \textit{gr-isdbt} para corroborar que la transmisión tenga todos los parámetros correctos. Disponer de todos los bloques del receptor para tomar medidas, es un excelente método de debugging.

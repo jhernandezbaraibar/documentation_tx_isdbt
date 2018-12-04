@@ -1,10 +1,10 @@
 \chapter{Evaluación del sistema}
 
-Para la evaluación del transmisor, nos pusimos como objetivo final lograr la transmision exitosa hacia un televisor comercial homologado por el LATU. En ese camino, nos propusimos una serie de objetivos de más corto alcance. 
+Para la evaluación del transmisor, nos pusimos como objetivo final lograr la transmisión exitosa hacia un televisor comercial homologado por el LATU. En ese camino, nos propusimos una serie de objetivos de más corto alcance. 
 
-Como primer paso, nos habíamos propuesto lograr la decodificación con \textit{gr-isdbt} dentro del mismo flowgraph (eso es, una prueba del sistema punta a punta trasmitiendo en condiciones ideales). Luego, nos propusimos superar una situación en la que una PC ejecuta el transmisor, enviando la señal a través del USRP, y otra computadora hace lo propio con el receptor \textit{gr-isdbt}. Esto le agrega a la prueba anterior, el desafío de la puesta en el aire y decodificación de la señal ruidosa. Y por último, nos planteamos el objetivo final, la decodificación contra un televisor comercial. En este capitulo desarrollamos estas pruebas, y el nivel de éxito que alcanzó cada una.
+Como primer paso, nos habíamos propuesto lograr la decodificación con \textit{gr-isdbt} dentro del mismo flowgraph (eso es, una prueba del sistema punta a punta trasmitiendo en condiciones ideales). Luego, nos propusimos superar una situación en la que una PC ejecuta el transmisor, enviando la señal a través del USRP, y otra computadora hace lo propio con el receptor \textit{gr-isdbt}. Esto le agrega a la prueba anterior, el desafío de la puesta en el aire y decodificación de la señal ruidosa. Y por último, nos planteamos el objetivo final, la decodificación contra un televisor comercial. En este capítulo desarrollamos estas pruebas, y el nivel de éxito que alcanzó cada una.
 
-En virtud de poder asegurar de forma cuantitativa si se cumplen o no esos objetivos, es necesario contar con herramientas que permitan medir de alguna manera la calidad de una señal digital. Existen varios indicadores de calidad en una transmisión digital, en este caso nos basaremos en dos de ellos que son ampliamente utilizados y proporcionan una medida concisa de la calidad de la señal. Es por eso que a continuación definiremos el \textit{Bit Error Rate} (BER), y el \textit{Modulation Error Rate} (MER).
+En virtud de poder asegurar de forma cuantitativa si se cumplen o no esos objetivos, es necesario contar con herramientas que permitan medir de alguna manera la calidad de una señal digital. Existen varios indicadores de calidad en una transmisión digital, en este caso nos basaremos en dos de ellos que son ampliamente utilizados y proporcionan una medida concisa de la calidad de la señal. Es por eso que a continuación definiremos el \textit{Bit Error Rate} (\gls{BER}), y el \textit{Modulation Error Rate} (\gls{MER}).
 
 \section{Indicadores de calidad de una señal}
 \subsection{Bit Error Rate (BER)}
@@ -30,15 +30,15 @@ El MER se puede medir de varias maneras según lo que interese considerar. Es co
 
 \section{Pruebas contra gr-isdbt}
 
-Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de gr-isdbt, no parecería en principio un desafió mayor lograr la decodificacion punta a punta. Pero en si, lo es, y eso es parte de la potencia del desarrollo con código abierto, constantemente podemos estar evaluando nuestro desempeñp desde el otro lado. 
+Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de gr-isdbt, no parecería en principio un desafió mayor lograr la decodificacion punta a punta. Pero en sí, lo es, y eso es parte de la potencia del desarrollo con código abierto, constantemente podemos estar evaluando nuestro desempeño desde el otro lado. 
 
 Como receptor, \textit{gr-isdbt} ha sido sometido a una diversidad de pruebas con resultados satisfactorios, por lo tanto, podemos considerarlo como una simulación de un televisor comercial válida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor \textit{gr-isdbt-tx} conectado a la entrada del receptor \textit{gr-isdbt}.
 
 \subsubsection{Pruebas sobre el flowgraph}
 
-En este caso ideal, donde todo funciona dentro de un mismo flowgraph y no hay variabilidad de las muestras transmitidas, el transmisor se comporta de forma perfecta. Sí encontramos, consumo excesivo de CPU en algunos bloques, en parte debido a problemas de optimización del código. Resolver estos problemas es un desafío que nos planteamos como parte del trabajo a futuro.
+En este caso ideal, donde todo funciona dentro de un mismo flowgraph y no hay variabilidad de las muestras transmitidas, el transmisor se comporta de forma perfecta. Detectamos un consumo excesivo de CPU en algunos bloques, en parte debido a problemas de optimización del código. Resolver estos problemas es un desafío que nos planteamos como parte del trabajo a futuro.
 
-Para la prueba sobre flowgraph se utilizó un BTS constituido por tres capas jerárquicas donde se destina un segmento para la capa A y seis segmentos para las capas B y C respectivamente, todas en moduladas en 64QAM. Tanto la tasa de código convolucional como la profundidad del entrelazamiento temporal son las mismas para las tres capas y son de 1/2 y 8 respectivamente. 
+Para la prueba sobre flowgraph se utilizó un BTS constituido por tres capas jerárquicas donde se destina un segmento para la capa A y seis segmentos para las capas B y C respectivamente, todas moduladas en 64QAM. Tanto la tasa de código convolucional como la profundidad del entrelazamiento temporal son las mismas para las tres capas y son de 1/2 y 8 respectivamente. 
 
 \begin{figure}[!h]
 	\centering
@@ -46,11 +46,11 @@ Para la prueba sobre flowgraph se utilizó un BTS constituido por tres capas jer
 	\caption{\label{f:const_rec} Constelación en recepción. Caso ideal.}
 \end{figure}
 
-Como se puede ver en la figura \ref{f:const_rec}, el receptor \textit{gr-isdbt} se sincroniza perfectamente con la señal transmitida, y en la constelación de recepción, vemos la misma constelación que en transmisión. Esto no debe sorprender, ya que en esta prueba, el canal esta representado por un cable ideal. En la misma figura se puede apreciar las modulaciones 64QAM utilizada para las portadoras de datos y BPSK para las señales piloto. 
+Como se puede ver en la figura \ref{f:const_rec}, el receptor \textit{gr-isdbt} se sincroniza perfectamente con la señal transmitida, y en la constelación de recepción, vemos la misma constelación que en transmisión. Esto no debe sorprender, ya que en esta prueba, el canal está representado por un cable ideal. En la misma figura se puede apreciar las modulaciones 64QAM utilizada para las portadoras de datos y BPSK para las señales piloto. 
 
 Recibir la constelación perfecta en \textit{gr-isdbt} significa varias cosas. Por un lado el cuadro OFDM está siendo conformado correctamente del lado del transmisor, por otro lado, se está decodificando correctamente las portadoras piloto (SP, TMCC y piloto continuo). Además el receptor entiende perfectamente la información contenida en la TMCC, es decir que su contenido es el correcto y pasa satisfactoriamente los chequeos de paridad.
 
-Podemos asegurar que esta prueba constituye un éxito dado que en el otro extremo de \textit{gr-isdbt} se logró obtener cada una de las tres capas jerárquicas transmitidas sin algún tipo de error.
+Podemos asegurar que esta prueba constituye un éxito dado que en el otro extremo de \textit{gr-isdbt} se logró obtener cada una de las tres capas jerárquicas transmitidas sin ningún tipo de error.
 
 Luego de esta primera prueba ideal, realizamos una segunda, aumentando la complejidad del canal. Se agregó un bloque \verb|Channel Model| que simula un canal que agrega ruido blanco gaussiano y cuyos parámetros potencia de ruido, offset de frecuencia y respuesta al impulso son configurables. Se observó que el decodificador Reed-Solomon a partir de un cierto nivel de ruido deja de funcionar, sin embargo la TMCC continúa decodificándose correctamente incluso para niveles de ruido más altos. La tabla \ref{t:resultados_errores} resume los resultados obtenidos para distintos valores de la potencia de ruido $N$.
 
@@ -78,30 +78,23 @@ Para valores $N < 9$ el BER es prácticamente el mismo, para cualquier $N$. Se o
 
 \subsubsection{Pruebas en el aire}
 
-Realizamos la misma prueba con \textit{gr-isdbt} como receptor, pero en lugar de simular un canal en GNU Radio, utilizamos el aire como medio, transmitiendo en una linea vista, a un metro de distancia.
+Realizamos la misma prueba con \textit{gr-isdbt} como receptor, pero en lugar de simular un canal en GNU Radio, utilizamos el aire como medio, transmitiendo en una línea vista, a un metro de distancia.
 
-El resultado fué interesante. Si bien no es posible decodificar las señales todavía, intermitentemente es posible observar la constelación en recepción. 
-
-Entendemos que tenemos algún problema de sincronismo, surgido seguramente por el uso del USRP. Dado que es el único cambio entre la prueba anterior y esta. Por cuestiones de tiempo no hemos podido profundizar mas en el análisis de este error, pero lo dejamos planteado como otra de las tareas a resolver en el corto plazo.
- 
+En una primera instancia no se obtenía video a la salida de \textit{gr-isdbt}, se veía la constelación decodificada de manera intermitente pero con demasiado ruido. Para esta prueba se estaba utilizando el USRP B100 como transmisor y el HackRF como receptor. Luego de realizar varias pruebas pudimos constatar que el HackRF introduce un offset de continua considerable lo cual no lo hace particularmete bueno para esta prueba. Una vez identificado este problema junto con otros bugs en el transmisor, fué posible la recepción exitosa con \textit{gr-isdbt}. 
 
 \section{Pruebas contra televisores comerciales}
 
-Si bien las pruebas contra \textit{gr-isdbt} con canal inalámbrico no fueron del todo satisfactorias, se intentó transmitir hacia un televisor comercial compatible con ISDB-T. 
+Las pruebas de validación con \textit{gr-isdbt}, tanto dentro del framework de GNU Radio como en el aire, permitieron dar el siguiente paso para probar el transmisor contra televisores comerciales homologados para el estándar.  
 
-Esta prueba resultó exitosa, lográndose ver con excelente calidad las tres capas jerárquicas transmitidas. Se probó transmitir sin línea de vista, moviendo la antena transmisora, y a una distancia de 5 metros. En todos los casos el televisor reproduce la imágen sin problema.
+Esta prueba consistió en utilizar un laptop corriendo \textit{gr-isdbt-tx} junto con un USRP B100 y una antena para la banda de TV digital. Desde el televisor se realizó un escaneo y la detección de nuestro canal fué inmediata. El televisor logró reproducir perfectamente el contenido que le estábamos transmitiendo, mostrando una excelente calidad de audio y video para cada una de las capas jerárquicas. Se probó transmitir sin línea de vista, moviendo la antena transmisora, y a una distancia de hasta 5 metros con excelentes resultados. Sin embargo era posible percibir un pequeño problema de fluidez de la imágen que no ocurrió en ninguna de las pruebas anteriores. Luego de varias pruebas y debugging, pudimos determinar que la causa provenía de un error en el modo de transmisión en que se estaba trabajando. Como vimos en capítulos anteriores, cada configuración jerárquica determina una cierta cantidad de paquetes que se transmiten por cuadro OFDM y por lo tanto un determinado bitrate. Una vez resuelto este problema la recepción en el TV comercial fué totalmente satisfactoria.  
 
-Sí se puede notar alguna imperfección en cuanto a la fluidez del video y el audio decodificado en el televisor pero sin algún tipo de pixeleo o congelamiento de la imágen. Las pruebas se realizaron durante varias horas a lo largo de cuatro días, y en ningún momento se perdió comunicación con el televisor.
+Esta prueba se repitió en el stand asignado para \textit{gr-isdbt-tx} en Ingeniería DeMuestra 2018, en el que funcionó continuamente y sin perder la continuidad durante la totalidad del tiempo de exposición. 
 
-Esta prueba se repitió en el stand asignado para gr-isdbt-tx en la Ingeniería DeMuestra 2018, en el que funciono continuamente y sin perder la continuidad durante la totalidad del tiempo de exposición. 
-
-Como nota al pie, fuera del alcance de este documento, nos gustaría señalar la gran recepción por parte de los visitantes al stand. Nos encontramos con un publico muy interesado y receptivo, y al final de la presentación, el proyecto fue galardonado como el mejor proyecto de Ingeniería Eléctrica.
+Como nota al pie, fuera del alcance de este documento, nos gustaría señalar la gran recepción por parte de los visitantes al stand. Nos encontramos con un público muy interesado y receptivo, y al final de la presentación, el proyecto fue galardonado como el mejor proyecto de Ingeniería Eléctrica en la categoría Señales y Telecomunicaciones.
 
 \section{Pruebas contra equipos analizadores de TV}
 
-De las pruebas anteriores surgen varias hipótesis sobre la recepción intermitente con \textit{gr-isdbt} y las imperfecciones en la recepción con TV comercial. Podría deberse tanto a un desajuste en la tasa de muestreo del lado del transmisor, así como también un incorrecto manejo de los equipos USRP o limitaciones por sus especificaciones de diseño.
-
-Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohde}, propiedad de la Unidad Reguladora de Comunicaciones, que es capaz de analizar señales de TV compatible con ISDB-T. 
+Durante el desarrollo de las pruebas anteriores aparecieron una serie de bugs que se presentaron como un verdadero desafío. Los problemas de recepción inalámbrica con \textit{gr-isdbt} y las imperfecciones al  momento de recibir en un TV comercial, motivaron el uso de sofisticadas herramientas comerciales para tener una idea de las posibles causas. Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohde}, propiedad de la Unidad Reguladora de Comunicaciones, que es capaz de analizar señales de TV compatible con ISDB-T. 
 
 \begin{figure}[!h]
 	\centering
@@ -109,5 +102,5 @@ Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohd
 	\caption{\label{f:calidad_imagen} Constelación de las tres capas jerárquicas tomadas con el analizador ETH de Rohde \& Schwarz.}
 \end{figure}
 
-Como vemos en la figura \ref{f:calidad_imagen}, con este instrumento se pudo observar claramente las constelaciones de las tres capas jerárquicas pero con demasiado ruido. También se observó que la señal presenta una variabilidad bastante grande del offset en frecuencia, en el entorno de los $1300Hz$ parámetro que para las señales comerciales de TVD presenta una estabilidad considerable, variando en el entorno de los $5Hz$ . Esto quizás sea parte de la causa de la mala recepción en las pruebas contra \textit{gr-isdbt}. Atribuimos esta diferencia a la comparativa entre los equipos de desarrollo en pequeña escala con los que trabajamos, en comparación a los equipos de alta precisión con los que se manejan las operadoras de TV abierta en la actualidad.
+Como vemos en la figura \ref{f:calidad_imagen}, con este instrumento se pudo observar claramente las constelaciones de las tres capas jerárquicas pero con demasiado ruido. También se observó que la señal presenta una variabilidad bastante grande del offset en frecuencia, que va desde los $400Hz$ a los $1300Hz$. Este parámetro para las señales comerciales de TVD presenta una estabilidad considerable, variando en el entorno de los $5Hz$. Los cristales de los equipos SDR utilizados tienen una precisión del orden de las 20ppm, lo cual hace que sea razonable esta variación encontrada.
 

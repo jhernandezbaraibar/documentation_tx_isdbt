@@ -12,7 +12,7 @@ El esquema de transmisión del estándar ISDB-T que se presenta en la Figura \re
 
 Cada una de esas etapas tiene a su vez varias subetapas, o bloques fundamentales, que se enfocan en resolver los distintos problemas discutidos que surgen al transmitir una señal inalámbrica. Esto dá como resultado una variedad de parámetros de operación presentados en la Tabla \ref{parametros_ISDBT} que permitirán por ejemplo, la transmisión jerárquica en distintas capas, cada una con su propia configuración; o enfocarse en robustecer la transmisión frente al \textit{multipath} o al efecto Doppler.
 
-A nivel de la distribuci\'on en el espectro, el estándar utiliza 6 MHz de ancho de banda de canal distribu\'ido en 14 segmentos de los cuales sólo 13 son utilizados para enviar datos, el restante se utiliza como guarda a ambos lados del canal. Tambi\'en se incluye un piloto continuo que se trata de una portadora modulada en BPSK ubicada a continuaci\'on del Segmento 12.
+A nivel de la distribuci\'on en el espectro, el estándar utiliza 6 MHz de ancho de banda de canal distribu\'ido en 14 segmentos de los cuales sólo 13 son utilizados para enviar datos, el restante se utiliza como guarda a ambos lados del canal. Tambi\'en se incluye un piloto continuo que se trata de una portadora modulada en \gls{BPSK} ubicada a continuaci\'on del Segmento 12.
 
 \begin{figure}[h!]
 	\centering
@@ -20,15 +20,15 @@ A nivel de la distribuci\'on en el espectro, el estándar utiliza 6 MHz de ancho
 	\caption{\label{segmentos_isdbt} Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.}
 \end{figure}
 
-Tener un esquema de transmisi\'on jer\'arquica permite asignar a cada capa jer\'arquica la cantidad de segmentos que uno quiera. El est\'andar de la ARIB denomina a estas capas como A, B y C, y es posible tener configurac\'ones con solamente 2 capas presentes tal como la de la Figura \ref{segmentos_isdbt} en la que la capa A corresponde al segmento 0 y el resto de los segmentos forman la capa B.
+Tener un esquema de transmisi\'on jer\'arquica permite asignar a cada capa jer\'arquica la cantidad de segmentos que uno quiera. El est\'andar de la ARIB denomina a estas capas como A, B y C, y es posible tener configuraciones con solamente 2 capas presentes tal como la de la figura \ref{segmentos_isdbt} en la que la capa A corresponde al segmento 0 y el resto de los segmentos forman la capa B.
 
-En los comienzos de la televisi\'on digital en el Uruguay los operadores que prestaban servicios de televisi\'on digital deb\'ian transmitir su señal en calidad HD, en SD y \textit{oneseg}, es decir en tres capas jer\'arquicas. Esto era as\'i porque se entend\'ia que en el mercado circulaba una gran cantidad de receptores que no eran capaces de procesar la calidad HD. Posteriormente esa directiva fu\'e suprimida y al d\'ia de hoy los operadores no est\'an obligados a transmitir en SD.
+En los comienzos de la televisi\'on digital en el Uruguay los operadores que prestaban servicios de televisi\'on digital deb\'ian transmitir su señal en calidad \gls{HD}, en \gls{SD} y \textit{oneseg}, es decir en tres capas jer\'arquicas. Esto era as\'i porque se entend\'ia que en el mercado circulaba una gran cantidad de receptores que no eran capaces de procesar la calidad HD. Posteriormente esa directiva fu\'e suprimida y al d\'ia de hoy los operadores no est\'an obligados a transmitir en SD.
 
 
 
 El sistema puede operar en tres \textit{modos de transmisi\'on} diferentes que se caracterizan por la cantidad de portadoras utilizadas, siempre en el mismo ancho de banda de 6 MHz. Las portadoras utilizadas son $2^{10+modo}$ donde el modo puede ser 1, 2 o 3.
 
-Se define la frecuencia de muestreo de la IFFT como $f_{IFFT} \triangleq \frac{512}{63 \mu s} \approx 8.127 MHz$, que a su vez coincide con el n\'umero de portadoras utilizadas sobre el tiempo de s\'imbolo activo $T_s$. Por lo tanto la utilizaci\'on de un n\'umero mayor de portadoras implica utilizar s\'imbolos m\'as largos para respetar la relaci\'on de la $f_{IFFT}$; aumentar el tiempo de s\'imbolo activo implica reducir el ancho de banda ocupado por cada portadora.
+Se define la frecuencia de muestreo de la \gls{IFFT} como $f_{IFFT} \triangleq \frac{512}{63 \mu s} \approx 8.127 MHz$, que a su vez coincide con el n\'umero de portadoras utilizadas sobre el tiempo de s\'imbolo activo $T_s$. Por lo tanto la utilizaci\'on de un n\'umero mayor de portadoras implica utilizar s\'imbolos m\'as largos para respetar la relaci\'on de la $f_{IFFT}$; aumentar el tiempo de s\'imbolo activo implica reducir el ancho de banda ocupado por cada portadora.
 
 Cada segmento a su vez est\'a conformado por dos tipos de señales portadoras. Las primeras son las correspondientes a los datos, y las otras son las denominadas \textit{portadoras piloto} que cumplen se utilizan para la estimaci\'on del canal y transmisi\'on de par\'ametros de control e informaci\'on del sistema.
 De manera general, los segmentos tienen $96 \times 2^{modo-1}$ portadoras de datos $12 \times 2^{modo-1}$ portadoras piloto dependiendo del modo de transmisi\'on. En la Tabla \ref{parametros_ISDBT} se eval\'uan estos par\'ametros para los distintos modos de transmisi\'on. 
@@ -79,7 +79,7 @@ Esquemas de modulacion & DQPSK, QPSK,\\
 
 \section{BTS como fuente de datos}
 
-El est\'andar ISDB-T admite la posibilidad de tomar hasta tres \textit{Transport Streams} (TS) MPEG-4. A estos flujos se les debe agregar la informaci\'on necesaria para la transmisi\'on en capas jer\'arquicas. El bloque TS Remux es el que se encarga de multiplexar los tres flujos de transporte y a cada TSP agregarle 16 bytes de informaci\'on. 
+El est\'andar ISDB-T admite la posibilidad de tomar hasta tres \textit{Transport Streams} (TS) MPEG-2. A estos flujos se les debe agregar la informaci\'on necesaria para la transmisi\'on en capas jer\'arquicas. El bloque TS Remux es el que se encarga de multiplexar los tres flujos de transporte y a cada TSP agregarle 16 bytes de informaci\'on. 
 Una vez que se agregan estos datos los paquetes de cada capa son multiplexados seg\'un un patr\'on de ordenamiento que es \'unico para cada configuraci\'on del sistema, en \cite{multiplex-pattern} se explica este patr\'on y se presenta un algoritmo para recuperarlo en recepci\'on. El transmisor implementado en este trabajo toma como flujo de entrada un BTS ya conformado, y con la informaci\'on jer\'arquica de los TSP es que logra procesar cada capa por separada. De ah\'i en adelante las capas son entrelazadas y moduladas cada una de acuerdo a su propia configuraci\'on. 
 
 \section{Robustecimiento frente a las no idealidades del canal}
@@ -138,7 +138,7 @@ N = \dfrac{ k_i b_p L_D F}{204 \times 8}
 
 De todos los casos posibles, y considerando que $N$ debe ser entero, el valor más pequeño para un cuadro OFDM resulta ser $F=204$ símbolos OFDM.
 
-Luego de conformarse el cuadro OFDM los datos ya están listos para ser transmitidos mediante la modulación OFDM. En este punto los símbolos son procesados por el bloque de la IFFT y a continuación es necesario agregar el prefijo cíclico. Una vez agregado el prefijo las muestras ya estan prontas para ser dirigidas al conversor D/A, a una tasa de $\dfrac{64}{63} \times 8MHz \approx 8.127 MSamples/s$, para la transmisión en ondas electromagnéticas.
+Luego de conformarse el cuadro OFDM los datos ya están listos para ser transmitidos mediante la modulación OFDM. En este punto los símbolos son procesados por el bloque de la IFFT y a continuación es necesario agregar el prefijo cíclico. Una vez agregado el prefijo las muestras ya estan prontas para ser dirigidas al conversor \gls{DA}, a una tasa de $\dfrac{64}{63} \times 8MHz \approx 8.127 MSamples/s$, para la transmisión en ondas electromagnéticas.
 
 \section{Necesidad del prefijo cíclico}
 
@@ -197,7 +197,7 @@ Donde $w[n]$ corresponde al ruido gaussiano aditivo que introduce el canal, y $h
 r[n] = \sum_{k = 0}^{L-1} h_k x[n-k] + w[n]
 \end{equation}
 
-La señal resultante tendrá $N+L-1$ muestras dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias. Sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la Figura \ref{f:prefijo_ciclico}.
+La señal resultante tendrá $N+L-1$ muestras dado el efecto que tienen las muestras de la respuesta al impulso del canal. Esto hace que al enviar dos símbolos OFDM consecutivos haya un solapamiento de $L-1$ muestras en recepción. Como primera medida podría separarse los símbolos enviados la cantidad de muestras necesarias. Sin embargo existe otra solución que consiste en el agregado de un \textit{prefijo cíclico}. La idea es utilizar esos $L$ espacios para transmitir las últimas $L$ muestras del símbolo siguiente tal como se muestra en la figura \ref{f:prefijo_ciclico}.
 
 
 
@@ -235,7 +235,7 @@ Cada segmento OFDM está conformado por una cantidad de portadoras en función d
 
 
 \subsubsection{Scattered Pilot}
-Las portadoras piloto son señales moduladas en BPSK que se generan a partir de una secuencia pseudoaleatoria PRBS (Pseudo Random Binary Sequence). El procedimiento para generar estas portadoras consiste en evolucionar el circuito de la figura \ref{f:prbs} y tomar $W_i$ para la modulación BPSK. El índice de la portadora SP dentro del símbolo OFDM es el que determina la cantidad de veces que se debe evolucionar el registro para obtener $W_i$.
+Las portadoras piloto son señales moduladas en BPSK que se generan a partir de una secuencia pseudoaleatoria \gls{PRBS} (Pseudo Random Binary Sequence). El procedimiento para generar estas portadoras consiste en evolucionar el circuito de la figura \ref{f:prbs} y tomar $W_i$ para la modulación BPSK. El índice de la portadora \gls{SP} dentro del símbolo OFDM es el que determina la cantidad de veces que se debe evolucionar el registro para obtener $W_i$.
 Por último la modulación se realiza como $(4/3, 0)$ si $W_i = 0$, y $(-4/3, 0)$ si $W_i = 1$.
 
 \begin{figure}[h!]
@@ -251,8 +251,8 @@ Las SP se ubican cada 12 portadoras y a medida que transcurren los símbolos OFD
 
 \subsubsection{Portadoras TMCC}
 
-Las portadoras TMCC son las que transportan toda la información de las capas jerárquicas y la información de control. Si bien en los cuadros OFDM se transmiten varias TMCC estas tienen exactamente el mismo contenido, lo que da al receptor la posibilidad de ponderar todas las TMCC que recibe para quedarse con las que tienen mayor porcentaje de coincidencia entre sí.
-Se compone de 204 bits modulados en DBPSK de los cuales el primero es un bit de referencia para realizar la modulación diferencial. Este bit coincide con el valor de la $W_i$ correspondiente al primer símbolo del cuadro OFDM.
+Las portadoras \gls{TMCC} son las que transportan toda la información de las capas jerárquicas y la información de control. Si bien en los cuadros OFDM se transmiten varias TMCC estas tienen exactamente el mismo contenido, lo que da al receptor la posibilidad de ponderar todas las TMCC que recibe para quedarse con las que tienen mayor porcentaje de coincidencia entre sí.
+Se compone de 204 bits modulados en \gls{DBPSK} de los cuales el primero es un bit de referencia para realizar la modulación diferencial. Este bit coincide con el valor de la $W_i$ correspondiente al primer símbolo del cuadro OFDM.
 Los siguientes 16 bits son utilizados por una señal de sincronismo que puede tomar los valores $w_0 = 0011010111101110$ y $w_1 = 1100101000010001$, alternándose entre una y otra en cada cuadro OFDM.
 A continuación se encuentran los datos de la información jerárquica y otros parámetros para los que se dedican 105 bits. Estos 105 bits son protegidos por un código cíclico acortado (200,118) con lo cual se dedican los siguientes 82 bits para la paridad. 
   

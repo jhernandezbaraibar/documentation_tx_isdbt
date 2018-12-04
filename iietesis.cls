@@ -58,11 +58,14 @@ FIng, UdelaR]
 \RequirePackage{wasysym} % 
 \RequirePackage{layout} %
 \RequirePackage{ifthen} %
+\RequirePackage{glossaries} %
+\makeglossaries
+\input{./glosario.tex}
+
 \RequirePackage[a4paper=true]{hyperref} % To follows url links
 
 \RequirePackage{sectsty}
 \allsectionsfont{\mdseries\sffamily}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Correcciones a babel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -429,6 +432,7 @@ FIng, UdelaR]
   \fi
 }
 \makeatother
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 % Information page
