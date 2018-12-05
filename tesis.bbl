@@ -1,23 +1,31 @@
 \begin{thebibliography}{10}
 
-\bibitem{ARIB}
-ARIB.
-\newblock Association of radio industries and businesses, 1995.
-\newblock [Web; accedido el 06-11-2018].
+\bibitem{gr-isdbt-tx}
+Javier Hernandez and Santiago Castro.
+\newblock gr-isdbt-tx.
+\newblock \url{https://github.com/jhernandezbaraibar/gr-isdbt-Tx}, 2018.
+\newblock [Web; accedido el 04-12-2018].
 
 \bibitem{norma}
 ARIB.
-\newblock Transmission system for digital terrestrial television broadcasting,
+\newblock {Transmission System for Digital Terrestrial Television
+  Broadcasting}.
+\newblock
+  \url{https://www.arib.or.jp/english/html/overview/doc/6-STD-B31v1_6-E2.pdf},
   2001.
 
 \bibitem{decreto_apagon}
-Presidencia de~la Republica.
-\newblock Decreto de presidencia n° 153/12, 2012.
+Presidencia de~la República.
+\newblock Decreto de {Presidencia N°} 153/12.
+\newblock \url{https://www.impo.com.uy/bases/decretos/153-2012}, 2012.
 \newblock [Web; accedido el 24-11-2018].
 
 \bibitem{cancelacion_decreto_apagon}
 MIEM.
-\newblock Decreto n° 585/12, 2015.
+\newblock Decreto {N}° 585/12.
+\newblock
+  \url{http://archivo.presidencia.gub.uy/sci/decretos/2012/05/miem_585.pdf},
+  2015.
 \newblock [Web; accedido el 24-11-2018].
 
 \bibitem{ine2017}
@@ -25,27 +33,32 @@ Instituto~Nacional de~Estadística.
 \newblock {\em Encuesta Continua de Hogares}, 2017.
 
 \bibitem{winCom16}
-Gabriel Gómez Víctor González Barbone Pablo~Belzarena Federico~Larroca,
-  Pablo Flores-Guridi.
-\newblock An open and free isdb-t full seg receiver implemented in gnu radio.
-\newblock {\em Mathematical Methods and Algorithms. Jhon Wiley and Son}, 2015.
+Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor
+  González~Barbone, and Pablo Belzarena.
+\newblock An open and free {ISDB-T} full seg receiver implemented in {GNU
+  Radio}.
+\newblock \url{https://iie.fing.edu.uy/publicaciones/2016/LFGGB16/LFGGB16.pdf},
+  2016.
 
 \bibitem{gr-isdbt}
-Pablo Flores.
-\newblock La norma isdbt y un receptor implementado en sdr.
-\newblock 2016.
+Pablo Flores-Guridi.
+\newblock La norma {ISDBT} y un receptor implementado en {SDR}.
+\newblock
+  \url{https://iie.fing.edu.uy/investigacion/grupos/artes/wp-content/uploads/sites/13/2017/04/tesis_MSc_pflores-corregida2-acta.pdf},
+  2016.
 
 \bibitem{chang-ofdm}
 Robert~W Chang.
 \newblock Synthesis of band-limited orthogonal signals for multichannel data
   transmission.
-\newblock {\em Agregar Luego}, 1966.
+\newblock {\em Bell System Technical Journal}, 45(10):1775--1796, 1966.
 
 \bibitem{discrete-ofdm}
-Weinstein and Edbert.
+S~Weinstein and Paul Ebert.
 \newblock Data transmission by frequency-division multiplexing using the
-  discrete fourier transform.
-\newblock {\em Agregar Luego}, 1971.
+  discrete {Fourier} transform.
+\newblock {\em IEEE transactions on Communication Technology}, 19(5):628--634,
+  1971.
 
 \bibitem{moon2005error}
 Todd~K Moon.
@@ -54,23 +67,26 @@ Todd~K Moon.
 
 \bibitem{MPEG}
 MPEG.
-\newblock Moving picture experts group, 1995.
+\newblock Moving {Picture} {Experts} {Group}.
+\newblock \url{https://mpeg.chiariglione.org/}, 1995.
 \newblock [Web; accedido el 06-11-2018].
 
 \bibitem{mpeg4_10}
 MPEG.
-\newblock Mpeg 4 part 10, 2009.
+\newblock {MPEG} 4 part 10.
+\newblock \url{https://www.iso.org/standard/52974.html}, 2009.
 \newblock [Web; accedido el 5-10-2018].
 
 \bibitem{mpeg2_1}
 MPEG.
-\newblock Mpeg 2 part 1, 2010.
+\newblock {MPEG} 2 part 1.
+\newblock \url{https://www.iso.org/standard/55688.html}, 2010.
 \newblock [Web; accedido el 5-10-2018].
 
 \bibitem{multiplex-pattern}
-P.~Flores-Guridi and F.~Larroca.
-\newblock The isdb-t multiplex frame pattern explained.
-\newblock In {\em 2017 IEEE URUCON}, pages 1--4, Oct 2017.
+Pablo Flores-Guridi and Federico Larroca.
+\newblock The {ISDB-T} multiplex frame pattern explained.
+\newblock In {\em URUCON, 2017 IEEE}, pages 1--4. IEEE, 2017.
 
 \bibitem{forney1965concatenated}
 G~David Forney.
@@ -79,49 +95,55 @@ G~David Forney.
 
 \bibitem{van1997ml}
 Jan-Jaap Van~de Beek, Magnus Sandell, and Per~Ola Borjesson.
-\newblock Ml estimation of time and frequency offset in ofdm systems.
+\newblock {ML} estimation of time and frequency offset in {OFDM} systems.
 \newblock {\em IEEE transactions on signal processing}, 45(7):1800--1805, 1997.
 
 \bibitem{mitola_SDR}
-Allan~S. Margulies and Joseph~Mitola III.
-\newblock Software defined radios: A technical challenge and a migration
+Allan~S Margulies and Joseph Mitola.
+\newblock Software defined radios: a technical challenge and a migration
   strategy.
-\newblock 1988.
+\newblock In {\em Spread Spectrum Techniques and Applications, 1998.
+  Proceedings., 1998 IEEE 5th International Symposium on}, volume~2, pages
+  551--556. IEEE, 1998.
 
 \bibitem{GNURadio}
 GNU Radio.
-\newblock Gnu radio software, 2016.
+\newblock {GNU} {Radio} {Software}.
+\newblock \url{https://www.gnuradio.org/}, 2016.
 \newblock [Web; accedido el 01-10-2018].
 
 \bibitem{EttusResearch}
-Ettus Research, 2010.
+Ettus Research.
+\newblock \url{https://www.ettus.com/}, 2010.
 \newblock [Web; accedido el 01-10-2018].
 
 \bibitem{GreatScottGadgets}
-Great~Scott Gadgets, 2019-2018.
-\newblock [Web; accedido el 01-10-2018].
-
-\bibitem{USRP_arch}
-Ettus Research.
-\newblock Usrp general architecture, 2016.
+Great~Scott Gadgets, 2018.
 \newblock [Web; accedido el 01-10-2018].
 
 \bibitem{b100}
-Ettus Research, 2010.
+Ettus Research.
+\newblock \url{https://kb.ettus.com/B100}, 2010.
 \newblock [Web; accedido el 01-10-2018].
 
 \bibitem{UHD}
 Ettus Research.
-\newblock The usrp™ hardware driver repository, 2018.
+\newblock The {USRP}™ {Hardware} {Driver} {Repository}.
+\newblock \url{https://github.com/EttusResearch/uhd}, 2018.
 \newblock [Web; accedido el 24-11-2018].
 
 \bibitem{gr-dvb}
 Git~User BogdanDIA.
-\newblock Dvb-t implementation in gnuradio, 2015.
+\newblock {DVB-T} implementation in {GNU Radio}.
+\newblock \url{https://github.com/BogdanDIA/gr-dvbt}, 2015.
 \newblock [Web; accedido el 06-11-2018].
 
 \bibitem{Rohde}
-Rohde Schwarz, 2018.
+Rohde~\& Schwarz.
+\newblock {R \& S} {ETH} {Handheld} {TV} {Analyzer}.
+\newblock
+  \url{https://www.rohde-schwarz.com/fi/product/eth-productstartpage_63493-10186.html},
+  2018.
 \newblock [Web; accedido el 8-10-2018].
 
 \end{thebibliography}

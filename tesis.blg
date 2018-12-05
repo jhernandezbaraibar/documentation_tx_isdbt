@@ -15,52 +15,48 @@ A level-1 auxiliary file: capitulo_07.aux
 The style file: unsrt.bst
 Database file #1: referencias.bib
 Warning--empty title in ine2017
-Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
+Name 1 in "Flores-Guridi, Pablo," has a comma at the end for entry gr-isdbt
 while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Federico Larroca, Pablo Flores-Guridi, Gabriel Gómez, Víctor González Barbone, Pablo Belzarena" for entry winCom16
-while executing---line 944 of file unsrt.bst
-Warning--empty journal in gr-isdbt
 Warning--empty journal in forney1965concatenated
-Warning--empty journal in mitola_SDR
-You've used 25 entries,
+You've used 24 entries,
             1791 wiz_defined-function locations,
-            560 strings with 5668 characters,
-and the built_in function-call counts, 3475 in all, are:
-= -- 270
-> -- 119
-< -- 1
-+ -- 55
-- -- 30
-* -- 86
-:= -- 553
-add.period$ -- 69
-call.type$ -- 25
+            581 strings with 6836 characters,
+and the built_in function-call counts, 4046 in all, are:
+= -- 372
+> -- 132
+< -- 3
++ -- 58
+- -- 34
+* -- 138
+:= -- 633
+add.period$ -- 82
+call.type$ -- 24
 change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 29
-duplicate$ -- 165
-empty$ -- 441
-format.name$ -- 30
-if$ -- 792
+cite$ -- 26
+duplicate$ -- 169
+empty$ -- 477
+format.name$ -- 34
+if$ -- 942
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 10
-newline$ -- 122
-num.names$ -- 25
-pop$ -- 143
+int.to.str$ -- 24
+missing$ -- 8
+newline$ -- 131
+num.names$ -- 24
+pop$ -- 123
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 93
+skip$ -- 84
 stack$ -- 0
-substring$ -- 43
-swap$ -- 28
-text.length$ -- 1
+substring$ -- 135
+swap$ -- 40
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 4
-while$ -- 29
-width$ -- 27
-write$ -- 239
-(There were 2 error messages)
+warning$ -- 2
+while$ -- 36
+width$ -- 26
+write$ -- 265
+(There was 1 error message)

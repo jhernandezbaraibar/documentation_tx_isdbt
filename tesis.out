@@ -19,7 +19,7 @@
 \BOOKMARK [0][-]{chapter.3}{El Sistema de Televisión Digital Terrestre ISDB-T}{}% 19
 \BOOKMARK [1][-]{section.3.1}{BTS\040como\040fuente\040de\040datos}{chapter.3}% 20
 \BOOKMARK [1][-]{section.3.2}{Robustecimiento\040frente\040a\040las\040no\040idealidades\040del\040canal}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.3}{Formacion\040de\040los\040cuadros\040OFDM}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.3}{Formación de los cuadros OFDM}{chapter.3}% 22
 \BOOKMARK [1][-]{section.3.4}{Necesidad del prefijo cíclico}{chapter.3}% 23
 \BOOKMARK [1][-]{section.3.5}{Las\040portadoras\040y\040la\040modulacion}{chapter.3}% 24
 \BOOKMARK [0][-]{chapter.4}{Radio\040definida\040por\040Software}{}% 25
@@ -44,7 +44,7 @@
 \BOOKMARK [1][-]{section.5.8}{Formación de cuadros OFDM}{chapter.5}% 44
 \BOOKMARK [1][-]{section.5.9}{La\040transformada\040de\040Fourier}{chapter.5}% 45
 \BOOKMARK [1][-]{section.5.10}{El prefijo cíclico}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.11}{La\040transmision\040desde\040USRP}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.11}{La transmisión desde USRP}{chapter.5}% 47
 \BOOKMARK [0][-]{chapter.6}{Evaluación del sistema}{}% 48
 \BOOKMARK [1][-]{section.6.1}{Indicadores de calidad de una señal}{chapter.6}% 49
 \BOOKMARK [2][-]{subsection.6.1.1}{Bit\040Error\040Rate\040\(BER\)}{section.6.1}% 50

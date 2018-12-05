@@ -423,10 +423,10 @@ Este bloque tampoco es desarrollo propio del proyecto gr-isdbt-tx. Si bien escri
 
 De todos modos, la implementación de este bloque es un problema que los tutores nos plantearon al inicio del proyecto, y es interesante como primer acercamiento al entorno de desarrollo de GNU Radio. La lógica detrás del funcionamiento del bloque es simple, por lo que el kid de la cuestión está en manejar debidamente el movimiento de muestras entre el bloque y el core del software.
 
-\section{La transmision desde USRP}
+\section{La transmisión desde USRP}
 
-Como ya se discutió en secciones anteriores, para realizar la transmisión de la señal a través del equipo USRP, es necesario utilizar el bloque sink del complemento \textit{gr-uhd}. Siempre que se mantengan las condiciones para la buena transmisión que se enumeraron en el capítulo 4, es esperable tener a la señal en el aire sin mayores problemas. 
+Como ya se discutió en secciones anteriores, para realizar la transmisión de la señal a través del equipo USRP, es necesario utilizar el bloque sink del complemento \textit{gr-uhd}. Siempre que se mantengan las condiciones para la buena transmisión que se enumeraron en el capítulo 4, es esperable tener a la señal en el aire sin mayores problemas. Algo que hay que tener en cuenta es que la tasa de muestras que recibe el USRP, por su arquitectura, debe ser un divisor de 64MSamples/s. Por este motivo es necesario utilizar un bloque \verb|Rational Resampler| que realice el ajuste. Con un bloque \verb|Rational Resampler| de parámetro 63/64, se tiene que $8.127 MSps \times 63/64 \approx 8 MHz$ .
 
-Como consideraciones generales, recomendamos verificar que el espectro a utilizar este disponible, de forma de no solaparse con la señal de alguno de los canales comerciales, que transmiten a alta potencia y podrían causar problemas para decodificar nuestra señal.
+Como consideraciones generales, recomendamos verificar que el espectro a utilizar esté disponible, de forma de no solaparse con la señal de alguno de los canales comerciales, que transmiten a alta potencia y podrían causar problemas para decodificar nuestra señal.
 
 Durante el desarrollo del transmisor, antes de probar la transmisión contra un televisor comercial, una prueba bastante sencilla es la de transmitir hacia un archivo. Luego, podemos usar ese archivo como entrada de datos al receptor \textit{gr-isdbt} para corroborar que la transmisión tenga todos los parámetros correctos. Disponer de todos los bloques del receptor para tomar medidas, es un excelente método de debugging.

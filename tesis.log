@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.9.10)  4 DEC 2018 00:20
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.9.10)  4 DEC 2018 23:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1955,7 +1955,7 @@ Package babel Info: Redefining spanish shorthand "?
 [14.26]
 File: figuras/cap02/bts1.png Graphic file (type QTm)
  <use  "figuras/cap02/bts1.png" >
-Overfull \hbox (10.19142pt too wide) in paragraph at lines 273--274
+Overfull \hbox (20.33914pt too wide) in paragraph at lines 273--274
  [][] 
  []
 
@@ -4022,6 +4022,24 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 119.
  (./tesis.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 10--16
+[]$[][][][][] [] [] [] [][][] [] [][][][] [] [][] [] [][] [] [][][][][][][] [] 
+[][][][] [] [][][][][][][][] [] [][][] [] [][][][][][][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--49
+[]$[][][][][] [] [] [] [][][] [] [][][][] [] [][][] [] [][] [] [][][][][][][][]
+[][][][][] [] [][][][][][] [] [][][][][] [] [][][][][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--49
+[][][][][][][] [] [][][][][] [] [][] [] [][][][] [] [][] [] [][][][][] [] [][][
+] [] [][][][][][][][][][][][][][][][][][][][][][][][][] [] [][][]$[]\TU/lmr/m/n
+/10.95 ,
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -4029,34 +4047,46 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 80.
 [59.71
 
 
 
-]) (./tesis.gls
+]
+Underfull \hbox (badness 1231) in paragraph at lines 142--148
+[]\TU/lmr/m/n/10.95 Rohde & Schwarz.  R & S ETH Handheld TV Analyzer.  []$[][][
+][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--148
+[] [] [][][] [] [][][][][][][][][][][][][][] [] [][][] [] [][] [] [][][][][][][
+] [] [][][][][][][][][][][][][][][][][][][][][] []
+ []
+
+) (./tesis.gls
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 
@@ -4405,10 +4435,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
  ) 
 Here is how much of TeX's memory you used:
- 20666 strings out of 493068
- 321308 string characters out of 6137720
- 462389 words of memory out of 5000000
- 24067 multiletter control sequences out of 15000+600000
+ 20664 strings out of 493068
+ 321290 string characters out of 6137720
+ 462332 words of memory out of 5000000
+ 24065 multiletter control sequences out of 15000+600000
  14269 words of font info for 80 fonts, out of 8000000 for 9000
  1347 hyphenation exceptions out of 8191
  52i,15n,79p,1934b,643s stack positions out of 5000i,500n,10000p,200000b,80000s

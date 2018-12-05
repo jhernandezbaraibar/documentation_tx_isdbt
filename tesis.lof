@@ -12,7 +12,7 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Distribuci\'on espectral de los segmentos OFDM. A la derecha, entre el segmento 12 y el intervalo de guarda, puede apreciarse la presencia del piloto continuo.\relax }}{18}{figure.caption.13}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Circuito generador de la PRBS para la scattered pilot.\relax }}{24}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP\cite {USRP_arch}\relax }}{30}{figure.caption.20}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura general de un equipo USRP.\relax }}{30}{figure.caption.20}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Bloque sink al equipo USRP\relax }}{31}{figure.caption.22}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Flowgraph del transmisor gr-isdbt-tx.\relax }}{33}{figure.caption.23}
