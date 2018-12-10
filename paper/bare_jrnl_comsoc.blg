@@ -11,46 +11,50 @@ Database file #1: IEEEabrv.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Name 1 in "Flores-Guridi, Pablo," has a comma at the end for entry gr-isdbt
+while executing---line 2403 of file IEEEtran.bst
+Warning--empty journal in forney1965concatenated
 
 Done.
-You've used 5 entries,
+You've used 22 entries,
             4087 wiz_defined-function locations,
-            850 strings with 7920 characters,
-and the built_in function-call counts, 2524 in all, are:
-= -- 207
-> -- 30
-< -- 13
-+ -- 18
-- -- 5
-* -- 105
-:= -- 441
-add.period$ -- 8
-call.type$ -- 5
-change.case$ -- 6
-chr.to.int$ -- 30
-cite$ -- 5
-duplicate$ -- 189
-empty$ -- 210
-format.name$ -- 5
-if$ -- 553
+            936 strings with 10258 characters,
+and the built_in function-call counts, 11215 in all, are:
+= -- 943
+> -- 174
+< -- 52
++ -- 94
+- -- 32
+* -- 442
+:= -- 1889
+add.period$ -- 43
+call.type$ -- 22
+change.case$ -- 31
+chr.to.int$ -- 120
+cite$ -- 23
+duplicate$ -- 877
+empty$ -- 984
+format.name$ -- 38
+if$ -- 2552
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 39
-newline$ -- 40
-num.names$ -- 5
-pop$ -- 96
+int.to.str$ -- 22
+missing$ -- 178
+newline$ -- 89
+num.names$ -- 22
+pop$ -- 437
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 200
+skip$ -- 900
 stack$ -- 0
-substring$ -- 79
-swap$ -- 131
-text.length$ -- 3
+substring$ -- 323
+swap$ -- 601
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 5
-warning$ -- 0
-while$ -- 9
-width$ -- 6
-write$ -- 68
+type$ -- 22
+warning$ -- 1
+while$ -- 42
+width$ -- 24
+write$ -- 218
+(There was 1 error message)

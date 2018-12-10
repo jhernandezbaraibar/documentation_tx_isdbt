@@ -473,38 +473,11 @@ Integrated Services Digital Broadcasting, GNU Radio, Software Defined Radio.
 \end{IEEEkeywords}
 
 
-
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
 
 
 \section{Introducción}
-% The very first letter is a 2 line initial drop letter followed
-% by the rest of the first word in caps.
-% 
-% form to use if the first word consists of a single letter:
-% \IEEEPARstart{A}{demo} file is ....
-% 
-% form to use if you need the single drop letter followed by
-% normal text (unknown if ever used by the IEEE):
-% \IEEEPARstart{A}{}demo file is ....
-% 
-% Some journals put the first two words in caps:
-% \IEEEPARstart{T}{his demo} file is ....
-% 
-% Here we have the typical use of a "T" for an initial drop letter
-% and "HIS" in caps to complete the first word.
 Los antiguos sistemas de televisión analógica están siendo reemplazados por los nuevos sistemas digitales. Existe una innumerable cantidad de mejoras y ventajas respecto a los antiguos, como por ejemplo una mayor eficiencia espectral, mejor calidad de audio y video, la posibilidad de transmitir múltiples programas al mismo tiempo en el mismo canal, y la utilización de canales de datos. El enorme crecimiento que han tenido las comunicaciones inalámbricas en los últimos tiempos, ha hecho que el espectro radioeléctrico se convierta en un recurso natural finito extremadamente valioso. Varios países ya han transitado el camino “apagón analógico”, reemplazando definitivamente los sistemas de televisión analógica. Sin embargo hay muchos otros en los que aún conviven ambos sistemas de teledifusión.
 El despliegue de un nuevo sistema de televisión digital es una tarea mayúscula, tal como en otros campos de las comunicaciones inalámbricas surgen distintas soluciones para el mismo problema. Respecto a los sistemas de televisión digital, se pueden encontrar los siguientes estándares: ISDB (Integrated Services Digital Broadcasting) es el estándar japonés, DVB (Digital Video Broadcasting) es el estándar europeo, ATSC (Advanced Television Systems Committee) es el estándar norteamericano y DTMB (Digital Terrestrial Multimedia Broadcast) es el estándar chino.
 
@@ -519,22 +492,18 @@ En este trabajo presentamos gr-isdbt-tx (https://github.com/jhernandezbaraibar/g
 
 Este transmisor ha sido implementado completamente en GNU Radio y puede tomar hasta tres flujos de entrada MPEG-2 tal como lo establece el estándar. Tiene la posibilidad de trabajar tanto en modo one-seg como en full-seg, y el usuario cuenta con la libertad de establecer los parámetros de configuración del sistema. El desarrollo sobre GNU Radio hace que, con solamente un PC, el usuario pueda correr un sistema de televisión digital de punta a punta integrando gr-isdbt-tx con gr-isdbt. Alternativamente con un hardware SDR, como el USRP B100, es posible transmitir la señal por el aire hacia cualquier televisor de uso doméstico compatible con ISDB-T.
 
-En lo que sigue se presenta una descripción del estándar ISDB-T
----------------------------
-Los detalles de programación y los algoritmos utilizados pueden ser consultados en detalle en el repositorio del proyecto. Aqui describiremos el funcionamiento del sistema
+En lo que sigue se presenta una descripción del estándar ISDB-T, haciendo hincapié en los puntos fundamentales de esta norma y los parámetros más relevantes. Los detalles en cuanto a la programación y los algoritmos utilizados pueden ser consultados en el repositorio del proyecto \cite{gr-isdbt-tx}.
+
+
 \begin{figure*}[!h]
 \centering
-%\captionsetup{justification=centering}
 \includegraphics[width=7.1in]{figuras/esquema-tx}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
 \caption{Esquema del sistema transmisor ISDB-T.}
 \label{esquema-tx}
 \end{figure*}
 
 \section{El estándar ISDB-T}
-El estándar de television digital terrestre ISDB-T puede ser caracterizado en cuatro grandes etapas: la conformación del Broadcast Transport Stream (BTS), la codificación de canal, la formación del cuadro OFDM, y la puesta en el aire de la señal. En la figura \ref{esquema_isdbt} se presenta el esquema completo del sistema transmisor.
+El estándar de television digital terrestre ISDB-T puede ser caracterizado en cuatro grandes etapas: la conformación del Broadcast Transport Stream (BTS), la codificación de canal, la formación del cuadro OFDM, y la puesta en el aire de la señal. En la figura \ref{esquema-tx} se presenta el esquema completo del sistema transmisor.
 El sistema admite como fuente de datos hasta tres flujos de transporte MPEG-2 \cite{MPEG}. Cada flujo está conformado por una secuencia de paquetes denominados \textit{Transport Stream Packet} (TSP) de 188 bytes. Los flujos MPEG-2 son multiplexados por el bloque TS Remux en un único flujo llamado \textit{Broadcast Transport Stream} (BTS); además de la multiplexación de los TSP el TS Remux tiene otras tareas como el agregado de cierta información jerárquica en los paquetes.
 
 Una de las características destacables de ISDB-T es la posibilidad de la transmisión jerárquica de la información, esto es, que cada flujo MPEG-2 puede ser transmitido con una configuración propia con distintos grados de robustez. A la transmisión de un flujo MPEG-2 con su configuración jerárquica se lo denomina \textit{capa jerárquica} y el estándar permite transmitir hasta tres capas en simultáneo. Cada capa tiene asignada un conjunto de portadoras en el espectro que más adelante se analizará su conformación.
@@ -543,7 +512,7 @@ Una vez conformado el BTS se comienza a robustecer la señal agregando redundanc
 
 Como cada flujo debe ser procesado por separado es necesario que a cada uno se le aplique un proceso según la configuración jerárquica elegida. Es por esto que hay un bloque \textbf{divisor jerárquico} encargado de separar el BTS en tres flujos y encaminarlos según lo que corresponda.
 
-El robustecimiento de la señal se realiza con distintos objetivos, por ejemplo para evitar el fading en frecuencia, las ráfagas de errores, ...., etc. El bloque dispersor de energía tiene como objetivo eliminar posibles largas secuencias de unos o ceros que puedan haber en el flujo de transporte. De otra manera podrían haber errores de sincronismo y también habrían porciones del espectro donde se concentraría la energía, quedando así subutilizado este recurso. El dispersor de energía utiliza un circuito para generar una secuencia pseudo-aleatoria la cual es invertible aplicando el mismo circuito a la secuencia. Como resultado se obtiene una secuencia aleatoria sin largas secuencias de ceros y unos.
+El robustecimiento de la señal se realiza con distintos objetivos, por ejemplo para evitar el fading en frecuencia y las ráfagas de errores. El bloque dispersor de energía tiene como objetivo eliminar posibles largas secuencias de unos o ceros que puedan haber en el flujo de transporte. De otra manera podrían haber errores de sincronismo y también habrían porciones del espectro donde se concentraría la energía, quedando así subutilizado este recurso. El dispersor de energía utiliza un circuito para generar una secuencia pseudo-aleatoria la cual es invertible aplicando el mismo circuito a la secuencia. Como resultado se obtiene una secuencia aleatoria sin largas secuencias de ceros y unos.
 
 A continuación del dispersor de energía se encuentra el bloque de \textbf{entrelazamiento de bytes}. El entrelazamiento consiste en aplicar una serie de retardos a los distintos bytes que van arribando al bloque. Como el receptor conoce la manera en que se realizaron estos retardos es capaz de deshacerlos y volver a la secuencia original. Esta estrategia de entrelazamiento es ampliamente utilizada luego de un código de bloque como el Reed-Solomon, este último es capaz de corregir errores de hasta ocho bytes. Si durante la transmisión se corrompiera una cantidad mayor de bytes consecutivos el código se volvería inútil, sin embargo al estar los bytes entrelazados el receptor vé estos errores como puntuales y el código es capaz de corregirlos.
 
@@ -556,10 +525,10 @@ Luego de armado el flujo único con las tres capas jerárquicas, se realiza un \
 
 Debido a la característica de ISDB-T de utilizar un gran número de portadoras en el espectro, ocurre que frente a canales selectivos en frecuencia se pueden ver afectadas una cantidad importante de portadoras consecutivas. Una estrategia para mitigar esto es el \textbf{entrelazamiento frecuencial}. El entrelazamiento que realiza este estándar consiste en dos etapas; el entrelazamiento inter-segmentos y el entrelazamiento intra-segmentos. En la primer etapa los símbolos que comparten la misma modulación son intercalados, mientras que en la segunda etapa los símbolos de un mismo segmento son rotados de acuerdo a cierta expresión que establece el estándar. Posteriormente son aleatorizados según ciertas \textit{Look Up Tables} \cite{norma}.
 
-Para colocar la señal en el aire, ISDB-T utiliza un esquema de \textbf{modulación OFDM} \cite{chang-ofdm} (Orthogonal Frecuency-Division Multiplexing). Este esquema consiste en el uso de portadoras ortogonales,lo que ofrece una mejor eficiencia espectral respecto a los clásicos esquemas de multiplexación en frecuencia.
+Para colocar la señal en el aire, ISDB-T utiliza un esquema de \textbf{modulación OFDM} \cite{chang-ofdm} (Orthogonal Frecuency-Division Multiplexing). Este esquema consiste en el uso de portadoras ortogonales, lo que ofrece una mejor eficiencia espectral respecto a los clásicos esquemas de multiplexación en frecuencia.
 La idea de esta tecnología consiste en modular pulsos rectangulares con los símbolos complejos provenientes del sistema, que como ya se mencionó, pueden ser DQPSK, QPSK, 16QAM y 64QAM. Luego de esta modulación se agrega un \textbf{prefijo cíclico} que consiste en una copia del símbolo OFDM y es una fracción del símbolo activo. Puede tomar los valores de 1/4, 1/8, 1/16, 1/32. Esta copia consiste en tomar la última porción del símbolo activo OFDM y copiarlo al comienzo.  Es posible ver que si la señal tiene un ancho de banda $W$, y $N$ es la cantidad total de portadoras, entonces un símbolo activo OFDM tiene una duración $T_S = N/W$\cite{chang-ofdm}.
 
-En cuanto al número de portadoras utilizadas, ISDB-T admite la utilización de $2^{11}$, $2^{12}$ o $2^{13}$ portadoras según si el \textbf{modo de transmisión} es 1, 2 o 3 respectivamente. Sin embargo no todas estas portadoras son utilizadas ya que algunas son reservadas para mantener un intervalo de guarda. Las portadoras son dividas en 14 conjuntos denominados \textbf{segmentos}, cada uno de ellos con igual número de portadoras. De ellos 13 son utilizados para transmitir datos y el restante es utilizado como guarda a ambos lados del espectro.
+En cuanto al número de portadoras utilizadas, ISDB-T admite la utilización de $2^{11}$, $2^{12}$ o $2^{13}$ portadoras según si el \textbf{modo de transmisión} es 1, 2 o 3 respectivamente. Sin embargo no todas estas portadoras son utilizadas ya que algunas son reservadas para mantener un intervalo de guarda. Las portadoras son divididas en 14 conjuntos denominados \textbf{segmentos}, cada uno de ellos con igual número de portadoras. De esos 14, sólo 13 son utilizados para transmitir datos y el restante es utilizado como guarda a ambos lados del espectro.
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|}
@@ -618,7 +587,7 @@ Una vez armado el cuadro OFDM lo que sigue es la modulación de los símbolos en
 \section{GNU Radio y las Radios Definidas por Software}
 GNU Radio es un entorno de desarrollo orientado a procesamiento de señales,
 gratuito y de código abierto. Mediante la interconexión de bloques de procesamiento, puede usarse en conjunto con antenas de RF para desarrollar SDRs, o en una versión local en modo de simulación de sistemas. La aplicación por defecto trae una amplia gama de bloques funcionales para
-trabajar, desde herramientas simples como filtros y ecualizadores, hasta estructuras complicadas, como lo es un transmisor TVD completo. Existe además una gran comunidad, muy activa, que está permanentemente publicando nuevos contenidos, para ampliar la gama de herramientas existentes en la actualidad. Esto se da porque al ser de código abierto, es relativamente sencillo crear bloques nuevos. El entorno soporta desarrollos de código en Python y en C++, siendo este ultimo el lenguaje con el que hemos implementado nuestro transmisor \textit{gr-isdbt-tx}. 
+trabajar, desde herramientas simples como filtros y ecualizadores, hasta estructuras complicadas, como lo es un transmisor TVD completo. Existe además una gran comunidad, muy activa, que está permanentemente publicando nuevos contenidos, para ampliar la gama de herramientas existentes en la actualidad. Esto se da porque al ser de código abierto, es relativamente sencillo crear bloques nuevos. El entorno soporta desarrollos de código en Python y en C++, siendo este ultimo el lenguaje con el que hemos implementado nuestro transmisor \textit{gr-isdbt-tx}, en la figura \ref{flowgraph-tx} se puede ver el diagrama de bloques. 
 
 \section{El Broadcast Transport Stream}
 El estándar MPEG no está pensado para la transmisión en capas jerárquicas.
@@ -635,11 +604,7 @@ por lo cual en las siguentes fases de procesamiento ya no se cuenta con la infor
 
 \begin{figure}[!h]
 \centering
-%\captionsetup{justification=centering}
 \includegraphics[width=3.5in]{figuras/bts1}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
 \caption{Patrón de ordenamiento incorrecto del BTS.}
 \label{bts1}
 \end{figure}
@@ -664,14 +629,38 @@ procesar cada capa por separado. De ahí en adelante las capas son entrelazadas 
 \label{bts2}
 \end{figure}
 
-\section{La estructura de cuadro OFDM}
+\begin{figure*}[!h]
+\centering
+%\captionsetup{justification=centering}
+\includegraphics[width=5in]{figuras/flowgraph-tx}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Flowgraph del sistema gr-isdbt-tx.}
+\label{flowgraph-tx}
+\end{figure*}
+
 
 \section{Los ajustes de atraso y el sincronismo}
 Los bloques de entrelazamiento introducen atrasos. Estos atrasos son producto de los retardos variables a los que se someten los bytes, bits o símbolos complejos. Para que el sistema funcione correctamente el atraso total introducido por cada bloque debe ser un múltiplo de cuadro OFDM. Esto es un detalle importante que se tuvo en cuenta en el desarrollo de \textit{gr-isdbt-tx}, por lo que entendemos necesario desarrollar el concepto del ajuste de atraso.
 
 
 \subsection{Ajuste de atraso en el entrelazamiento de byte}
+El entrelazamiento de bytes se implementa empujando secuencialmente los bytes que arriban al bloque hacia búfers o colas. Estas colas son 12, y tienen un tamaño definido de $17 \times i$ bytes, con $i \in [0,..,11]$. Este proceso introduce un retardo equivalente al tamaño de la cola más larga multiplicado por el número de colas, es decir que el retardo es:
 
+\begin{equation}
+d_{bytes} = (11 \times 17 \times 12) = 2244 \quad bytes
+\end{equation} 
+
+Expresado en TSP, los 2244 bytes equivalen a 11 TSPs (cada TSP tiene 188 bytes más 16 bytes insertados por el codificador Reed-Solomon).
+Para conocer el ajuste que es necesario realizar lo que debemos hacer es calcular cúantos TSP hay en un cuadro OFDM y a este número restarle los 11 TSP que agrega el proceso de por sí.
+En particular para una capa jerárquica con modulación $m_L$, código convolucional $FEC_L$, el ajuste de atraso necesario es el siguiente:
+
+\begin{equation}
+D_{TSP} = \dfrac{204 \times m_L \times FEC_L \times 96 \times 2^{modo-1}}{8 \times 204} - 11 
+\end{equation}
+
+Por lo tanto expresado en bytes, el ajuste que hay que agregar es $204 \times D_{TSP}$ bytes.
 
 \subsection{Ajuste de atraso en el entrelazamiento de bits}
 En este entrelazamiento se utilizan 2, 4 ó 6 colas dependiendo si la modulación utilizada es QPSK, 16QAM, o 64QAM respectivamente. El tamaño de las colas, $q_i$, viene definido por el estándar. Por ejemplo para 16QAM los tamaños son $q_0 = 0$, $q_1 = 40$, $q_2 = 80$, $q_3 = 120$. Cualquiera sea la modulación el retardo máximo siempre es de 120 bits. Sin embargo vamos a dejarlo paramétrico en $q_i$ a fin de calcular el ajuste de atraso que es necesario introducir a cada cola.
@@ -726,117 +715,74 @@ La implementación en el transmisor de este ajuste de atraso consiste en empujar
 
 
 \section{Pruebas}
+\subsection{Pruebas contra gr-isdbt}
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de \textit{gr-isdbt}, no parecería en principio un desafío mayor lograr la decodificacion punta a punta. Pero en sí, lo es, y eso es parte de la potencia del desarrollo con código abierto, constantemente podemos estar evaluando nuestro desempeño desde el otro lado. 
 
-% needed in second column of first page if using \IEEEpubid
-%\IEEEpubidadjcol
+Como receptor, \textit{gr-isdbt} ha sido sometido a una diversidad de pruebas con resultados satisfactorios, por lo tanto, podemos considerarlo como una simulación de un televisor comercial válida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor \textit{gr-isdbt-tx} conectado a la entrada del receptor \textit{gr-isdbt}.
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=3.5in]{figuras/const_rec}
+\caption{Constelación recibida con gr-isdbt. Prueba realizada dentro de GNU Radio.}
+\label{const_rec}
+\end{figure}
 
+\subsubsection{Pruebas sobre el flowgraph}
 
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure}
+En este caso ideal, donde todo funciona dentro de un mismo flowgraph y no hay variabilidad de las muestras transmitidas, el transmisor se comporta de forma perfecta. Detectamos un consumo excesivo de CPU en algunos bloques, en parte debido a problemas de optimización del código.
 
-% Note that the IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
+Para la prueba sobre flowgraph se utilizó un BTS constituído por tres capas jerárquicas donde se destina un segmento para la capa A y seis segmentos para las capas B y C respectivamente, todas moduladas en 64QAM. Tanto la tasa de código convolucional como la profundidad del entrelazamiento temporal son las mismas para las tres capas y son de 1/2 y 8 respectivamente.
 
+Como se puede ver en la figura \ref{const_rec}, el receptor \textit{gr-isdbt} se sincroniza perfectamente con la señal transmitida, y en la constelación de recepción, vemos la misma constelación que en transmisión. Esto no debe sorprender, ya que en esta prueba, el canal está representado por un cable ideal. En la misma figura se puede apreciar las modulaciones 64QAM utilizada para las portadoras de datos y BPSK para las señales piloto. 
 
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a 
-% line do not exceed the text width or a line break will occur.
-%
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
-%\label{fig_second_case}}
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
+Recibir la constelación perfecta en \textit{gr-isdbt} significa varias cosas. Por un lado el cuadro OFDM está siendo conformado correctamente del lado del transmisor, por otro lado, se está decodificando correctamente las portadoras piloto (SP, TMCC y piloto continuo). Además el receptor entiende perfectamente la información contenida en la TMCC, es decir que su contenido es el correcto y pasa satisfactoriamente los chequeos de paridad.
+
+Podemos asegurar que esta prueba constituye un éxito dado que en el otro extremo de \textit{gr-isdbt} se logró obtener cada una de las tres capas jerárquicas transmitidas sin ningún tipo de error.
+
+\subsubsection{Pruebas en el aire}
+
+Realizamos la misma prueba con \textit{gr-isdbt} como receptor, pero en lugar de simular un canal en GNU Radio, utilizamos el aire como medio, transmitiendo en una línea vista, a un metro de distancia.
+
+\begin{figure}[!h]
+\centering
+%\captionsetup{justification=centering}
+\includegraphics[width=3.5in]{figuras/constelacion_eth}
+\caption{Constelación de las tres capas jerárquicas tomadas con el analizador de TV ETH.}
+\label{const_eth}
+\end{figure}
 
 
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% the IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
+En una primera instancia no se obtenía video a la salida de \textit{gr-isdbt}, se veía la constelación decodificada de manera intermitente pero con demasiado ruido. Para esta prueba se estaba utilizando el USRP B100 como transmisor y el HackRF como receptor. Luego de realizar varias pruebas pudimos constatar que el HackRF introduce un offset de continua considerable lo cual no lo hace particularmete bueno para esta prueba. Una vez identificado este problema junto con otros bugs en el transmisor, fué posible la recepción exitosa con \textit{gr-isdbt}. 
+
+\subsection{Pruebas contra televisores comerciales}
+Las pruebas de validación con \textit{gr-isdbt}, tanto dentro del framework de GNU Radio como en el aire, permitieron dar el siguiente paso para probar el transmisor contra televisores comerciales homologados para el estándar.  
+
+Esta prueba consistió en utilizar un laptop con procesador Intel Core i7, 16GB de RAM, disco SSD, corriendo \textit{gr-isdbt-tx} junto con un USRP B100 y una antena para la banda de TV digital. Desde el televisor se realizó un escaneo y la detección de nuestro canal fué inmediata. El televisor logró reproducir perfectamente el contenido que le estábamos transmitiendo, mostrando una excelente calidad de audio y video para cada una de las capas jerárquicas. Se probó transmitir sin línea de vista, moviendo la antena transmisora, y a una distancia de hasta 5 metros con excelentes resultados. 
+
+\subsection{Pruebas contra equipos analizadores de TV}
+
+Durante el desarrollo de las pruebas anteriores aparecieron una serie de bugs que se presentaron como un verdadero desafío. Los problemas de recepción inalámbrica con \textit{gr-isdbt} y las imperfecciones al  momento de recibir en un TV comercial, motivaron el uso de sofisticadas herramientas comerciales para tener una idea de las posibles causas. Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohde}, propiedad de la Unidad Reguladora de Servicios de Comunicaciones \cite{ursec}, que es capaz de analizar señales de TV compatible con ISDB-T.
 
 
-% Note that the IEEE does not put floats in the very first column
-% - or typically anywhere on the first page for that matter. Also,
-% in-text middle ("here") positioning is typically not used, but it
-% is allowed and encouraged for Computer Society conferences (but
-% not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively. 
-% Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the
-% \fnbelowfloat command of the stfloats package.
+
+Como vemos en la figura \ref{const_eth}, con este instrumento se pudo observar claramente las constelaciones de las tres capas jerárquicas pero con demasiado ruido. También se observó que la señal presenta una variabilidad bastante grande del offset en frecuencia, que va desde los $400Hz$ a los $1300Hz$. Este parámetro para las señales comerciales de TVD presenta una estabilidad considerable, variando en el entorno de los $5Hz$. Los cristales de los equipos SDR utilizados tienen una precisión del orden de las 20ppm, lo cual hace que sea razonable esta variación encontrada.
 
 
 
 
-\section{Conclusiones}
-The conclusion goes here.
+\section{Conclusiones y trabajo a futuro}
+Este proyecto tenia como objetivos, dos grandes ítems. Por un lado buscábamos implementar un transmisor de televisión digital basado en SDR, cuya validez estaría determinada por la capacidad de transmitir hacia un televisor comercial homologado para ISDB-T. Por otro lado, también buscábamos echar luz sobre el conocimiento disponible sobre la norma ISDB-T. 
 
+En cuanto al primer objetivo, entendemos que ha sido cumplido de forma satisfactoria. Hemos probado el transmisor contra varios televisores comerciales, de diferentes proveedores, y en todos los casos el equipo encuentra el canal transmitido de forma exitosa, y decodifica las tres capas procesadas de forma correcta. 
+
+Durante las pruebas encontramos diversos problemas que, mediante distintas estrategias, hemos podido solucionar. Cada prueba realizada aportó su cuota en el proceso de validación del transmisor. Como se mencionó anteriormente, dentro del flowgraph las cosas parecían funcionar perfectamente pero al pasar a testear sobre \textit{gr-isdbt} aparecieron otra clase de problemas, al igual que en los televisores comerciales. Esto deja en evidencia la necesidad de tener un profundo dominio de cada aspecto de la norma, de otra manera, por ejemplo, un simple error al realizar los ajustes de atraso hace que el sistema deje de funcionar por completo.
+
+El repositorio con el proyecto está disponible de forma gratuita para cualquier interesado en aprender mas de la norma ISDB-T, y en conjunto con \textit{gr-isdbt}, se tiene una herramienta de análisis del sistema, que cuenta con control absoluto de todas las variables. 
+
+Queda pendiente el mejor desarrollo de algunos de los bloques del sistema. Algunos ítems, como la portabilidad del divisor jerárquico, será necesario resolver cuanto antes para robustecer el funcionamiento del transmisor. También las mejoras por el lado de la optimización de la programación y el manejo de recursos de la PC. En la primer ejecución de \textit{gr-isdbt} para transmitir con el USRP, el bloque OFDM Frame Structure acaparaba todo el procesador. Para seguir adelante fué necesario replantearse la programación del bloque, de otra manera era imposible tener un transmisor funcional. Esto se logró y mejoró notablemente el rendimiento, pero aún queda trabajo en algunos otros bloques demandantes.
+
+Por otra parte entendemos que con este trabajo se ha podido dejar en evidencia una vez más las grandes capacidades que tienen GNU Radio y las SDR, y el amplio abanico de posibilidades que ofrecen a la hora de desarrollar sistemas de comunicaciones.
 
 
 
@@ -857,20 +803,17 @@ The conclusion goes here.
 
 
 \appendices
-\section{Proof of the First Zonklar Equation}
-Appendix one text goes here.
+
 
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
-\section{}
-Appendix two text goes here.
+%\section{}
+%Appendix two text goes here.
 
 
 % use section* for acknowledgment
-\section*{Acknowledgment}
+%\section*{Acknowledgment}
 
-
-The authors would like to thank...
 
 
 % Can use something like this to put references on a page
@@ -938,7 +881,7 @@ The authors would like to thank...
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv}
-
+\nocite{*}
 % biography section
 % 
 % If you have an EPS/PDF photo (graphicx package needed) extra braces are

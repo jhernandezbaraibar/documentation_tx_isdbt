@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.9.10)  9 DEC 2018 23:50
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.9.26)  10 DEC 2018 02:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -433,12 +433,12 @@ Missing character: There is no ” in font ptmb8t!
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--519
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
 []\T1/ptm/m/n/10 En este tra-bajo pre-sen-ta-mos gr-isdbt-tx
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--519
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
 \T1/ptm/m/n/10 (https://github.com/jhernandezbaraibar/gr-isdbt-Tx), un
  []
 
@@ -451,35 +451,31 @@ File: figuras/esquema-tx.pdf Graphic file (type QTm)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: Reference `esquema_isdbt' on page 2 undefined on input line 537.
-
-
 [2]
 LaTeX Font Info:    Try loading font information for OT1+ntxtlf on input line 5
-60.
+29.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 560
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 529
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2016/01/31 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 560
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 529
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 560
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 529
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-Overfull \hbox (4.99928pt too wide) in paragraph at lines 565--600
+Overfull \hbox (4.99928pt too wide) in paragraph at lines 534--569
  [][] 
  []
 
@@ -488,45 +484,136 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Missing character: There is no ̣ in font ntxmi!
 [3]
-
-LaTeX Warning: Citation `gr-isdbt' on page 4 undefined on input line 632.
-
 File: figuras/bts1.pdf Graphic file (type QTm)
-<use  "figuras/bts1.pdf" >
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 639--643
+ <use  "figuras/bts1.pdf" >
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 607--608
+ [][] 
+ []
+
+File: figuras/bts2.pdf Graphic file (type QTm)
+<use  "figuras/bts2.pdf" >
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 624--628
+ [][] 
+ []
+
+File: figuras/flowgraph-tx.png Graphic file (type QTm)
+<use  "figuras/flowgraph-tx.png" >
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 2057) has occurred while \output is active []
+
+ [4]
+[5]
+File: figuras/const_rec.jpeg Graphic file (type QTm)
+ <use  "figuras/const_rec.jpeg" >
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 726--727
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-File: figuras/bts2.pdf Graphic file (type QTm)
-<use  "figuras/bts2.pdf" >
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 659--663
+File: figuras/constelacion_eth.jpeg Graphic file (type QTm)
+<use  "figuras/constelacion_eth.jpeg" >
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 750--751
  [][] 
  []
 
-[4] (./bare_jrnl_comsoc.bbl
-Underfull \hbox (badness 3229) in paragraph at lines 39--43
-\T1/ptm/m/n/8 ing,'' https://www.arib.or.jp/english/html/overview/doc/6-STD-B31
-v1_6-
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6] [7] (./bare_jrnl_comsoc.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 33--36
+[]\T1/ptm/m/n/8 J. Her-nan-dez and S. Cas-tro, ``gr-isdbt-tx,''
  []
 
-) [5] (./bare_jrnl_comsoc.aux)
+
+Underfull \hbox (badness 6188) in paragraph at lines 42--46
+[]\T1/ptm/m/n/8 ARIB, ``Trans-mis-sion Sys-tem for Dig-i-tal Ter-res-trial Tele
+-vi-sion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
+\T1/ptm/m/n/8 en SDR,'' https://iie.fing.edu.uy/investigacion/grupos/artes/wp-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
+\T1/ptm/m/n/8 content/uploads/sites/13/2017/04/tesis_MSc_pflores-corregida2-
+ []
+
+
+Underfull \hbox (badness 4634) in paragraph at lines 58--61
+\T1/ptm/m/n/8 schwarz.com/fi/product/eth-productstartpage_63493-10186.html, 201
+8,
+ []
+
+
+Underfull \hbox (badness 5756) in paragraph at lines 63--65
+[]\T1/ptm/m/n/8 URSEC, ``Unidad reg-u-ladora de ser-vi-cios de co-mu-ni-ca-cion
+es,''
+ []
+
+Invalid UTF-8 byte or sequence at line 67 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 67 replaced by U+FFFD.
+Missing character: There is no � in font ptmr8t!
+Missing character: There is no � in font ptmr8t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+[]\T1/ptm/m/n/8 F. Lar-roca, P. Flores-Guridi, G. Gmez, V. Gon-zlez Bar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+\T1/ptm/m/n/8 bone, and P. Belzarena, ``An open and free ISDB-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+\T1/ptm/m/n/8 T full seg re-ceiver im-ple-mented in GNU Ra-dio,''
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+\T1/ptm/m/n/8 https://iie.fing.edu.uy/publicaciones/2016/LFGGB16/LFGGB16.pdf,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
+[]\T1/ptm/m/n/8 ------, ``The USRP? Hard-ware Driver Repos-i-tory,''
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 116--119
+\T1/ptm/m/n/8 https://github.com/EttusResearch/uhd, 2018, [Web; ac-ce-dido el 2
+4-
+ []
+
+
+Underfull \hbox (badness 5460) in paragraph at lines 121--124
+[]\T1/ptm/m/n/8 G. U. Bog-dan-DIA, ``DVB-T im-ple-men-ta-tion in GNU Ra-dio,''
+ []
+
+) [8
+
+] (./bare_jrnl_comsoc.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4921 strings out of 493068
- 71321 string characters out of 6137720
- 131189 words of memory out of 5000000
- 8780 multiletter control sequences out of 15000+600000
+ 4957 strings out of 493068
+ 71703 string characters out of 6137720
+ 131190 words of memory out of 5000000
+ 8801 multiletter control sequences out of 15000+600000
  93006 words of font info for 105 fonts, out of 8000000 for 9000
  1350 hyphenation exceptions out of 8191
  36i,10n,77p,1007b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on bare_jrnl_comsoc.pdf (5 pages).
+Output written on bare_jrnl_comsoc.pdf (8 pages).

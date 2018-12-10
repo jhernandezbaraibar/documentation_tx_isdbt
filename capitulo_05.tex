@@ -216,7 +216,7 @@ El bloque de entrelazamiento de bytes se utiliza para aumentar la capacidad corr
 	\caption{\label{f:byteint} Bloque entrelazamiento de bytes.}
 \end{figure}
 
-A nivel de código, esto se implemento mediante un vector de 12 elementos. Cada uno de los elementos se define como una cola de bytes, de tamaño $17*i$ siendo $i$ el número de elemento. La cola se crea en el comienzo de la ejecución, cuando se crea una instancia del bloque. Luego, en régimen permanente, los bytes simplemente llegan en orden y van siendo asignados uno a uno a su cola correspondiente.
+A nivel de código, esto se implementó mediante un vector de 12 elementos. Cada uno de los elementos se define como una cola de bytes, de tamaño $17*i$ siendo $i$ el número de elemento. La cola se crea en el comienzo de la ejecución, cuando se crea una instancia del bloque. Luego, en régimen permanente, los bytes simplemente llegan en orden y van siendo asignados uno a uno a su cola correspondiente.
 
 Como se vió anteriormente, es necesario realizar un ajuste de atraso para que el retardo total del bloque sea igual al período de un cuadro OFDM. Exploramos distintas alternativas para implementar esta funcionalidad, y la que nos pareció más eficiente fué crear un elemento extra en la cola de vectores, que contenga una cola más larga, correspondiente al ajuste de atraso. El bloque solicita como entrada los parámetros para calcular la cantidad de bytes de atraso, como se ve en la figura \ref{f:byteint}, y crea la cola del elemento 13 del vector, del tamaño necesario, que recordamos, está dado por la siguiente ecuación:
 

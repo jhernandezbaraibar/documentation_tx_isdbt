@@ -30,7 +30,7 @@ El MER se puede medir de varias maneras según lo que interese considerar. Es co
 
 \section{Pruebas contra gr-isdbt}
 
-Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de gr-isdbt, no parecería en principio un desafió mayor lograr la decodificacion punta a punta. Pero en sí, lo es, y eso es parte de la potencia del desarrollo con código abierto, constantemente podemos estar evaluando nuestro desempeño desde el otro lado. 
+Considerando que realizamos la mayoría del desarrollo contrastando los bloques del transmisor contra los de gr-isdbt, no parecería en principio un desafío mayor lograr la decodificacion punta a punta. Pero en sí, lo es, y eso es parte de la potencia del desarrollo con código abierto, constantemente podemos estar evaluando nuestro desempeño desde el otro lado. 
 
 Como receptor, \textit{gr-isdbt} ha sido sometido a una diversidad de pruebas con resultados satisfactorios, por lo tanto, podemos considerarlo como una simulación de un televisor comercial válida. Es en ese punto en el que comenzamos las pruebas. Dentro de un entorno controlado, el transmisor \textit{gr-isdbt-tx} conectado a la entrada del receptor \textit{gr-isdbt}.
 
@@ -38,7 +38,7 @@ Como receptor, \textit{gr-isdbt} ha sido sometido a una diversidad de pruebas co
 
 En este caso ideal, donde todo funciona dentro de un mismo flowgraph y no hay variabilidad de las muestras transmitidas, el transmisor se comporta de forma perfecta. Detectamos un consumo excesivo de CPU en algunos bloques, en parte debido a problemas de optimización del código. Resolver estos problemas es un desafío que nos planteamos como parte del trabajo a futuro.
 
-Para la prueba sobre flowgraph se utilizó un BTS constituido por tres capas jerárquicas donde se destina un segmento para la capa A y seis segmentos para las capas B y C respectivamente, todas moduladas en 64QAM. Tanto la tasa de código convolucional como la profundidad del entrelazamiento temporal son las mismas para las tres capas y son de 1/2 y 8 respectivamente. 
+Para la prueba sobre flowgraph se utilizó un BTS constituído por tres capas jerárquicas donde se destina un segmento para la capa A y seis segmentos para las capas B y C respectivamente, todas moduladas en 64QAM. Tanto la tasa de código convolucional como la profundidad del entrelazamiento temporal son las mismas para las tres capas y son de 1/2 y 8 respectivamente. 
 
 \begin{figure}[!h]
 	\centering
@@ -94,7 +94,7 @@ Como nota al pie, fuera del alcance de este documento, nos gustaría señalar la
 
 \section{Pruebas contra equipos analizadores de TV}
 
-Durante el desarrollo de las pruebas anteriores aparecieron una serie de bugs que se presentaron como un verdadero desafío. Los problemas de recepción inalámbrica con \textit{gr-isdbt} y las imperfecciones al  momento de recibir en un TV comercial, motivaron el uso de sofisticadas herramientas comerciales para tener una idea de las posibles causas. Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohde}, propiedad de la Unidad Reguladora de Comunicaciones, que es capaz de analizar señales de TV compatible con ISDB-T. 
+Durante el desarrollo de las pruebas anteriores aparecieron una serie de bugs que se presentaron como un verdadero desafío. Los problemas de recepción inalámbrica con \textit{gr-isdbt} y las imperfecciones al  momento de recibir en un TV comercial, motivaron el uso de sofisticadas herramientas comerciales para tener una idea de las posibles causas. Se tuvo la posibilidad de acceder a un equipo ETH de Rohde \& Schwarz \cite{Rohde}, propiedad de la Unidad Reguladora de Servicios de Comunicaciones, que es capaz de analizar señales de TV compatible con ISDB-T. 
 
 \begin{figure}[!h]
 	\centering
