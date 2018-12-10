@@ -166,7 +166,7 @@ El entrelazamiento intra-segmento se realiza permutando las portadoras de cada s
 S^{rotada}_{i,k} = S_{(k+i) mod C, k}
 \end{equation}
 
-Donde $i$ representa el número de portadora dentro del segmento y puede tomar valores entre $[0, C-1]$, con $C = 96 /times 2^{modo-1}$ la cantidad de portadoras de datos en cada segmento; $k$ es el número de segmento y toma valores entre cero y la cantidad de segmentos que utilizan esa modulación. 
+Donde $i$ representa el número de portadora dentro del segmento y puede tomar valores entre $[0, C-1]$, con $C = 96 \times 2^{modo-1}$ la cantidad de portadoras de datos en cada segmento; $k$ es el número de segmento y toma valores entre cero y la cantidad de segmentos que utilizan esa modulación. 
 
 Luego se realiza una aleatorización que est\'a determinada por \textit{Look Up Tables} que dependen del modo de transmisi\'on y puden consultarse en la norma \cite{norma}.
 
@@ -186,7 +186,7 @@ Para una capa jer\'arquica con profundidad de entrelazamiento $I_L$, que puede s
 q_L(i) = I_L \times m_i = I_L \times ((i \times 5) \; mod \; 96)
 \end{equation}
 
-Donde $q_L(i)$ representa el tamaño de las colas o búfers; $m_i$ es definido por el est\'andar como $m_i = (i \times 5) \; mod \; 96$, para $i = 0, 1,..,n_c$ con $n_c = 1$, $2$, o $3$ seg\'un el modo de transmisi\'on. 
+Donde $q_L(i)$ representa el tamaño de las colas o búfers; $m_i$ es definido por el est\'andar como $m_i = (i \times 5) \; mod \; 96$, para $i = 0, 1,..,n_c$ con $n_c = 96$, $192$, o $384$ seg\'un el modo de transmisi\'on. 
 
 \begin{figure}[!h]
 	\centering
