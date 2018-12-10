@@ -674,7 +674,7 @@ Los bloques de entrelazamiento introducen atrasos. Estos atrasos son producto de
 
 
 \subsection{Ajuste de atraso en el entrelazamiento de bits}
-En este entrelazamiento se utilizan 2, 4 ó 6 colas dependiendo si la modulación utilizada es QPSK, 16QAM, o 64QAM respectivamente. El tamaño de las colas, $q_i$, viene definido por el estándar. Por ejemplo para 64QAM los tamaños son $q_0 = 0$, $q_1 = 40$, $q_2 = 80$, $q_3 = 120$. Cualquiera sea la modulación el retardo máximo siempre es de 120 bits. Sin embargo vamos a dejarlo paramétrico en $q_i$ a fin de calcular el ajuste de atraso que es necesario introducir a cada cola.
+En este entrelazamiento se utilizan 2, 4 ó 6 colas dependiendo si la modulación utilizada es QPSK, 16QAM, o 64QAM respectivamente. El tamaño de las colas, $q_i$, viene definido por el estándar. Por ejemplo para 16QAM los tamaños son $q_0 = 0$, $q_1 = 40$, $q_2 = 80$, $q_3 = 120$. Cualquiera sea la modulación el retardo máximo siempre es de 120 bits. Sin embargo vamos a dejarlo paramétrico en $q_i$ a fin de calcular el ajuste de atraso que es necesario introducir a cada cola.
 
 El retardo agregado por el proceso corresponde al camino más largo que deben atravesar los bits, es decir un retardo de 120 símbolos. Según
 la modulación que utilice la capa, estos 120 símbolos se traducen en un mayor o menor retardo en el tiempo; para QPSK corresponde a esperar que ingresen $120 \times 2$ bits en la entrada, mientras que para 64QAM deben pasar $120 \times 6$ bits.
